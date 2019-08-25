@@ -1,0 +1,54 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePlantillaContablesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('plantilla_contables', function (Blueprint $table) {
+            $table->increments('id');
+
+
+            $table->string('docReferencia',20)->nullable();
+            $table->string('coNoCo',20)->nullable();
+            $table->string('debito',20)->nullable();
+            $table->string('credito',20)->nullable();
+            $table->string('nota',200)->nullable();
+            $table->integer('codigoPUC')->nullable();
+            $table->integer('codigoNIIIF')->nullable();
+            $table->bigInteger('valorRetenido')->nullable();
+            $table->bigInteger('base')->nullable();
+
+
+            $table->integer('transacciones_id')->unsigned()->nullable();
+            $table->integer('retecionesDescuentos_id')->unsigned()->nullable();
+            $table->integer('puc_id')->unsigned()->nullable();
+
+            $table->foreign('transacciones_id')->references('id')->on('transacciones')->onDelete('cascade');;
+            $table->foreign('retecionesDescuentos_id')->references('id')->on('retencion_descuentos');
+            $table->foreign('puc_id')->references('id')->on('pucs');
+
+
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('plantilla_contables');
+    }
+}
