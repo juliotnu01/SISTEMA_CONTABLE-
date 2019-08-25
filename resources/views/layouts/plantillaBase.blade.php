@@ -100,6 +100,7 @@
                     @endcan
                     @can('dependecias.index')
                         <a class="collapse-item" href="{{route('dependecias.index')}}">Dependencias</a>
+                        <a class="collapse-item" href="{{route('dependecias.index')}}">Dependencias</a>
                     @endcan
                 </div>
             </div>
