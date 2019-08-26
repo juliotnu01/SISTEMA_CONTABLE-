@@ -40,15 +40,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="34" column="40" lean-forward="true" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+            <state relative-caret-position="361">
+              <caret line="40" column="79" lean-forward="true" selection-start-line="40" selection-start-column="79" selection-end-line="40" selection-end-column="79" />
               <folding>
                 <element signature="e#7138#7160#0#HTML" expanded="true" />
                 <element signature="e#11564#11595#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -191,12 +200,12 @@
         <option value="$PROJECT_DIR$/resources/views/transacciones/index.blade.php" />
         <option value="$PROJECT_DIR$/public/js/demo/datatables-demo.js" />
         <option value="$PROJECT_DIR$/../../phpMyAdmin/config.inc.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/components/Cuenta.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/Puc.vue" />
         <option value="$PROJECT_DIR$/resources/views/planUnicoCuentas/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php" />
       </list>
     </option>
   </component>
@@ -343,24 +352,6 @@
             <path>
               <item name="contable" type="b2602c69:ProjectViewProjectNode" />
               <item name="contable" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contable" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contable" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contable" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -368,6 +359,13 @@
               <item name="contable" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="contable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="contable" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -727,18 +725,18 @@
       <workItem from="1566710332295" duration="884000" />
       <workItem from="1566773864656" duration="2172000" />
       <workItem from="1566829672451" duration="4864000" />
-      <workItem from="1566836668284" duration="3736000" />
+      <workItem from="1566836668284" duration="3958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1826890000" />
+    <option name="totallyTimeSpent" value="1827112000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1883" y="-46" width="1852" height="1023" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49433428" visible="true" weight="0.1858259" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49433428" visible="true" weight="0.1858259" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.5056657" side_tool="true" weight="0.19395973" />
@@ -1078,13 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Puc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -1169,12 +1160,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="34" column="40" lean-forward="true" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+        <state relative-caret-position="361">
+          <caret line="40" column="79" lean-forward="true" selection-start-line="40" selection-start-column="79" selection-end-line="40" selection-end-column="79" />
           <folding>
             <element signature="e#7138#7160#0#HTML" expanded="true" />
             <element signature="e#11564#11595#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
         </state>
       </provider>
     </entry>
