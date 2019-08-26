@@ -6,12 +6,7 @@
     <bookmark url="file://$PROJECT_DIR$/resources/js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bffc6f30-8596-46b3-951e-3506738c421b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="bffc6f30-8596-46b3-951e-3506738c421b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+            <state relative-caret-position="418">
+              <caret line="34" column="40" lean-forward="true" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
               <folding>
                 <element signature="e#7138#7160#0#HTML" expanded="true" />
                 <element signature="e#11564#11595#0#HTML" expanded="true" />
@@ -58,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="42" column="39" lean-forward="true" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+            <state relative-caret-position="285">
+              <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
@@ -732,12 +727,12 @@
       <workItem from="1566710332295" duration="884000" />
       <workItem from="1566773864656" duration="2172000" />
       <workItem from="1566829672451" duration="4864000" />
-      <workItem from="1566836668284" duration="3544000" />
+      <workItem from="1566836668284" duration="3736000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1826698000" />
+    <option name="totallyTimeSpent" value="1826890000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1883" y="-46" width="1852" height="1023" extended-state="0" />
@@ -1162,23 +1157,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+        <state relative-caret-position="285">
+          <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
           <folding>
-            <element signature="e#7138#7160#0#HTML" expanded="true" />
-            <element signature="e#11564#11595#0#HTML" expanded="true" />
+            <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="42" column="39" lean-forward="true" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+        <state relative-caret-position="418">
+          <caret line="34" column="40" lean-forward="true" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
           <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
+            <element signature="e#7138#7160#0#HTML" expanded="true" />
+            <element signature="e#11564#11595#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
