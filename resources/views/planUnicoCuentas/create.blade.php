@@ -51,7 +51,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group ">
                                             <label for="">Cuenta Superior</label>
-                                            <input type="text"  class="form-control-plaintext" id="codigoSuperior" name="codigoSuperior"  value="{{$cuenta->codigoSuperior}}" placeholder="Cuenta dependiente..." readonly>
+                                            <input type="text"  class="form-control-plaintext" id="codigoSuperior" name="codigoSuperior"  value="{{$cuenta->codigoCuenta}}" placeholder="Cuenta dependiente..." readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -180,41 +180,119 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2();
-           /* $('#codigoCuenta').focusout(function() {
-                var nivel = $('#nivel').val();
-                var codigoCuenta = $('#codigoCuenta').val();
-                var codigoCuentaLong = codigoCuenta.length;
-                console.log(' TAMAÑO  '+ codigoCuentaLong +' NIVEL '+ nivel)
-                if (nivel<=2 || nivel==="EL NUMERO ESTA MAL REDACTADO" && nivel2){
-                    if ( codigoCuentaLong != 2 ){
-                        alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 1 DIGITO');
-                    }
-                }
-                else if (nivel>=2 || nivel==="EL NUMERO ESTA MAL REDACTADO"){
-                    if ( codigoCuentaLong != 4){
-                         alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITOS');
-                    }
-                }
-                else if (nivel<4 || nivel==="EL NUMERO ESTA MAL REDACTADO"){
-                    if ( codigoCuentaLong != 6){
-                        alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITOS');
-                    }
-                }
-                else if (nivel<5 || nivel==="EL NUMERO ESTA MAL REDACTADO"){
-                    if ( codigoCuentaLong != 8){
-                        alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITOS');
-                    }
-                }*/
-                //
-                // if(codigoCuentaLong != 6 || nivel === 4 || codigoCuentaLong === 1 || nivel === 2 || nivel=== "EL NUMERO ESTA MAL REDACTADO"){
-                //     alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 3 DIGITOS');
-                // }
-                // if(codigoCuentaLong > 7 || nivel === 5 || codigoCuentaLong === 1 || nivel === 2 || nivel=== "EL NUMERO ESTA MAL REDACTADO"){
-                //     alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 4 DIGITOS');
-                // }
+            var codigoCuenta = $('#codigoCuenta').val();
+            var codigoCuentaLong = codigoCuenta.length;
+            var nivel = $('#nivel').val();
+            switch (nivel) {
+                case '1':
+                    //DE 1 NIVEL 2
+                    $('#codigoCuenta').focusout(function() {
+                        var nivel = $('#nivel').val();
+                        var codigoCuenta = $('#codigoCuenta').val();
+                        var codigoCuentaLong = codigoCuenta.length;
+                        console.log(' TAMAÑO  ' + codigoCuentaLong + ' NIVEL ' + nivel)
+                        if (nivel <= 2 || nivel === "EL NUMERO ESTA MAL REDACTADO") {
+                            if (codigoCuentaLong != 2) {
+                                alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 1 DIGITO');
+                            }
+                        }
+                    });
+                break;
+                case '2': //DE 2 NIVEL 3
+                    $('#codigoCuenta').focusout(function() {
+                        var nivel = $('#nivel').val();
+                        var codigoCuenta = $('#codigoCuenta').val();
+                        var codigoCuentaLong = codigoCuenta.length;
+                        console.log(' TAMAÑO  ' + codigoCuentaLong + ' NIVEL ' + nivel)
+                        if (nivel >= 2 || nivel === "EL NUMERO ESTA MAL REDACTADO") {
+                            if (codigoCuentaLong != 4) {
+                                alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITO');
+                            }
+                        }
+                    });
+                break;
+                case '3': // DE 3 NIVEL 4
+                    $('#codigoCuenta').focusout(function() {
+                        var nivel = $('#nivel').val();
+                        var codigoCuenta = $('#codigoCuenta').val();
+                        var codigoCuentaLong = codigoCuenta.length;
+                        console.log(' TAMAÑO  ' + codigoCuentaLong + ' NIVEL ' + nivel)
+                        if (nivel >= 3 || nivel === "EL NUMERO ESTA MAL REDACTADO") {
+                            if (codigoCuentaLong != 6) {
+                                alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITO');
+                            }
+                        }
+                    });
+                break;
+                case '4': // DE 4 NIVEL 5
+                    $('#codigoCuenta').focusout(function() {
+                        var nivel = $('#nivel').val();
+                        var codigoCuenta = $('#codigoCuenta').val();
+                        var codigoCuentaLong = codigoCuenta.length;
+                        console.log(' TAMAÑO  ' + codigoCuentaLong )
+                        if (nivel >= 4 || nivel === "EL NUMERO ESTA MAL REDACTADO") {
+                        if (codigoCuentaLong !=8) {
+                                alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITO');
+                            }
+                        }
+                    });
+                break;
+                case '5': // DE 5 NIVEL 6
+                    $('#codigoCuenta').focusout(function() {
+                        var nivel = $('#nivel').val();
+                        var codigoCuenta = $('#codigoCuenta').val();
+                        var codigoCuentaLong = codigoCuenta.length;
+                        console.log(' TAMAÑO  ' + codigoCuentaLong )
+                        if (nivel >= 5 || nivel === "EL NUMERO ESTA MAL REDACTADO") {
+                            if (codigoCuentaLong !=10) {
+                                alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITO');
+                            }
+                        }
+                    });
+                break;
+                case '6': // DE 6 NIVEL 7
+                    $('#codigoCuenta').focusout(function() {
+                        var nivel = $('#nivel').val();
+                        var codigoCuenta = $('#codigoCuenta').val();
+                        var codigoCuentaLong = codigoCuenta.length;
+                        console.log(' TAMAÑO  ' + codigoCuentaLong )
+                        if (nivel >= 6 || nivel === "EL NUMERO ESTA MAL REDACTADO") {
+                            if (codigoCuentaLong !=12) {
+                                alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITO');
+                            }
+                        }
+                    });
+                break;
+                case '7': // DE 7 NIVEL 8
+                    $('#codigoCuenta').focusout(function() {
+                        var nivel = $('#nivel').val();
+                        var codigoCuenta = $('#codigoCuenta').val();
+                        var codigoCuentaLong = codigoCuenta.length;
+                        console.log(' TAMAÑO  ' + codigoCuentaLong )
+                        if (nivel >= 7 || nivel === "EL NUMERO ESTA MAL REDACTADO") {
+                            if (codigoCuentaLong !=14) {
+                                alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITO');
+                            }
+                        }
+                    });
+                break;
+                case '8': // DE 8 NIVEL 9
+                    $('#codigoCuenta').focusout(function() {
+                        var nivel = $('#nivel').val();
+                        var codigoCuenta = $('#codigoCuenta').val();
+                        var codigoCuentaLong = codigoCuenta.length;
+                        console.log(' TAMAÑO  ' + codigoCuentaLong )
+                        if (nivel >= 8 || nivel === "EL NUMERO ESTA MAL REDACTADO") {
+                            if (codigoCuentaLong !=16) {
+                                alert('ESTA CUENTA SOLO SE PUEDE AUMENTAR 2 DIGITO');
+                            }
+                        }
+                    });
+                break;
+                default:
+                    alert('ERROR');
+            }
 
-
-            });
         });
     </script>
     <script !src="">
@@ -240,6 +318,9 @@
                     },
                     nivel:{
                         digits: true,
+                    },
+                    tipoCuenta_id:{
+                        required: true,
                     }
                 },
                 messages: {
@@ -255,6 +336,9 @@
                     },
                     nivel:{
                         digits:"ERROR",
+                    },
+                    tipoCuenta_id{
+                        required: "Este campo es Obligatorio",
                     }
                 }
             });

@@ -31,7 +31,7 @@ class planCuentasPUCController extends Controller
             $pucQuery=puc::whereNull('codigoSuperior');
 
         }
-        $puc = $pucQuery->with('cuentas.cuentas.cuentas.cuentas.cuentas')
+        $puc = $pucQuery->with('cuentas.cuentas.cuentas.cuentas.cuentas.cuentas.cuentas')
                         ->where('id','!=',1)
                         ->get();
         $pucTipoCuenta=Puc::select('tipoCuenta');

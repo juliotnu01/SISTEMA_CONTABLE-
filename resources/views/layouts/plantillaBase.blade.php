@@ -67,8 +67,7 @@
             <div class="sidebar-brand-icon">
                 <?php $imageneEmpresa= \Illuminate\Support\Facades\DB::table('empresas')->select('logo_plandesarrollo')->first(); ?>
                 {{--{{dd($imageneEmpresa)}}--}}
-                    <img src="{{asset('images/'.$imageneEmpresa->logo_plandesarrollo)}}" class="img-circle" style="width: 80%; margin-top: 44px;" alt="">
-
+                <img src="{{asset('images/'.$imageneEmpresa->logo_plandesarrollo)}}" class="img-circle" style="width: 80%; margin-top: 44px;" alt="">
             </div>
         </a>
         &nbsp
