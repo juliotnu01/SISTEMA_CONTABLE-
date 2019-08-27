@@ -376,9 +376,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                    <table class="table" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
+                            <th>Tipo de Retencion</th>
                             <th>Concepto</th>
                             <th>%</th>
                             <th>IVA</th>
@@ -390,13 +391,15 @@
                         <tbody>
                         @foreach($retenciones as $item)
                             <tr>
-                                <td><input  style="width: 90px;" class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                                <td><input  style="width: 50px;"  type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
-                                <td><input  style="width: 30px;" type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
-                                <td style="width: 59px;"><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
-                                <td style="width: 59px;"><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
-                                <input type="hidden" class="transacciones_id"  name="transacciones_id" value="{{$item->id}}"/>
-                                <td style="display:none;"><input  name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}}"/><td>
+                                <td>{{$item->tipoRetencion}}</td>
+                                <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
+                                <td><input type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
+                                <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
+                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
+                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
+                                <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
+                                <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
+                                <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
                                 <td>
                                     <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
                                 </td>
@@ -439,8 +442,9 @@
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
                                 <td><input  style="width: 80px;"  type="text" class="valorRetenido"></td>
                                 <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
-                                <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$itemDescuento->codigoCuenta .'- '.$itemDescuento->nombreCuenta}}"/>
-                                <input type="hidden" class="transacciones_id"  name="transacciones_id" value="{{$itemDescuento->id}}"/>
+                                <input  type="hidden" class="codigoCuenta" name="codigoPUC" id="codigoCuenta" value="{{$itemDescuento->codigoCuenta}} - {{$itemDescuento->nombreCuenta}}">
+                                <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
+                                    <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
                                 <td>
                                     <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
                                 </td>
@@ -455,7 +459,6 @@
             </div>
         </div>
     </div>
-
     <script
             src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
