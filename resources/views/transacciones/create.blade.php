@@ -195,23 +195,23 @@
                                     <label for="">Tipo de Pago</label>
                                     <select  name= "tipoPago" id="tipoPago" class="select2 form-control custom-select" >
                                         <option value="" >[Seleccione una Opción]</option>
-                                        <option value="TP1" {{ old('tipoPago') }} > Para Nómina</option>
-                                        <option value="TP2" {{ old('tipoPago') }} > Contribuciones Inherentes a la Nómina</option>
-                                        <option value="TP3" {{ old('tipoPago') }} > Prestaciones Sociales</option>
-                                        <option value="TP4" {{ old('tipoPago') }} > Viáticos y Gastos de Transporte</option>
-                                        <option value="TP5" {{ old('tipoPago') }} > Servicio de la Deuda</option>
-                                        <option value="C1"  {{ old('tipoPago') }} > Contratos de Prestación de Servicios</option>
-                                        <option value="C2"  {{ old('tipoPago') }} > Consultorías</option>
-                                        <option value="C3"  {{ old('tipoPago') }} > Mantenimiento y/o Reparación</option>
-                                        <option value="C4"  {{ old('tipoPago') }} > Obra Pública</option>
-                                        <option value="C5"  {{ old('tipoPago') }} > Compra Ventas y/o Suministro</option>
-                                        <option value="C6"  {{ old('tipoPago') }} > Concesión</option>
-                                        <option value="C7"  {{ old('tipoPago') }} > Comodatos</option>
-                                        <option value="C8"  {{ old('tipoPago') }} > Arrendamientos</option>
-                                        <option value="C9"  {{ old('tipoPago') }} > Seguros</option>
-                                        <option value="C10" {{ old('tipoPago') }} > Convenios</option>
-                                        <option value="C11" {{ old('tipoPago') }} > Emprestitos</option>
-                                        <option value="C12" {{ old('tipoPago') }} > Otros.</option>
+                                        <option value="Para Nómina" {{ old('tipoPago') }} > Para Nómina</option>
+                                        <option value="Contribuciones Inherentes a la Nómina" {{ old('tipoPago') }} > Contribuciones Inherentes a la Nómina</option>
+                                        <option value="Prestaciones Sociales" {{ old('tipoPago') }} > Prestaciones Sociales</option>
+                                        <option value="Viáticos y Gastos de Transporte" {{ old('tipoPago') }} > Viáticos y Gastos de Transporte</option>
+                                        <option value="Serviciode la Deuda " {{ old('tipoPago') }} > Servicio de la Deuda</option>
+                                        <option value="Contratos de Prestación de Servicios"  {{ old('tipoPago') }} > Contratos de Prestación de Servicios</option>
+                                        <option value="Consultorías"  {{ old('tipoPago') }} > Consultorías</option>
+                                        <option value="Mantenimiento y/o Reparación"  {{ old('tipoPago') }} > Mantenimiento y/o Reparación</option>
+                                        <option value="Obra Pública"  {{ old('tipoPago') }} > Obra Pública</option>
+                                        <option value="Compra Ventas y/o Suministro"  {{ old('tipoPago') }} > Compra Ventas y/o Suministro</option>
+                                        <option value="Concesión"  {{ old('tipoPago') }} > Concesión</option>
+                                        <option value="Comodatos"  {{ old('tipoPago') }} > Comodatos</option>
+                                        <option value="Arrendamientos"  {{ old('tipoPago') }} > Arrendamientos</option>
+                                        <option value="Seguros"  {{ old('tipoPago') }} > Seguros</option>
+                                        <option value="Convenios" {{ old('tipoPago') }} > Convenios</option>
+                                        <option value="Emprestitos" {{ old('tipoPago') }} > Emprestitos</option>
+                                        <option value="Otros" {{ old('tipoPago') }} > Otros.</option>
                                     </select>
                                 </div>
                             </div>

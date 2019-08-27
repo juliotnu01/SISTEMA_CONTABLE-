@@ -167,6 +167,7 @@ class TrasaccionesController extends Controller
             ->where('estado','=','SI')
             ->get();
         $puc=Puc::all();
+        $niif=Niff::all();
         $centroCosto=Sede::all();
         $numDocs=Transacciones::select('numeroDoc','created_at')->get();
         $terceros=Persona::with('natural','juridica','empleado')->get();

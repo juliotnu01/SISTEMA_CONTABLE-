@@ -147,23 +147,23 @@
                                     <label for="">Tipo de Pago</label>
                                     <select  name= "tipoPago" id="tipoPago" class="select2 form-control custom-select" >
                                         <option {{ old('tipoPago', $trasacciones->tipoPago) == $trasacciones->tipoPago ? 'selected' : '[Seleccione una Opción]' }} value="{{$trasacciones->tipoPago}}">{{$trasacciones->tipoPago}}</option>
-                                        <option value="TP1" {{ old('tipoPago') }} > Para Nómina</option>
-                                        <option value="TP2" {{ old('tipoPago') }} > Contribuciones Inherentes a la Nómina</option>
-                                        <option value="TP3" {{ old('tipoPago') }} > Prestaciones Sociales</option>
-                                        <option value="TP4" {{ old('tipoPago') }} > Viáticos y Gastos de Transporte</option>
-                                        <option value="TP5" {{ old('tipoPago') }} > Servicio de la Deuda</option>
-                                        <option value="C1"  {{ old('tipoPago') }} > Contratos de Prestación de Servicios</option>
-                                        <option value="C2"  {{ old('tipoPago') }} > Consultorías</option>
-                                        <option value="C3"  {{ old('tipoPago') }} > Mantenimiento y/o Reparación</option>
-                                        <option value="C4"  {{ old('tipoPago') }} > Obra Pública</option>
-                                        <option value="C5"  {{ old('tipoPago') }} > Compra Ventas y/o Suministro</option>
-                                        <option value="C6"  {{ old('tipoPago') }} > Concesión</option>
-                                        <option value="C7"  {{ old('tipoPago') }} > Comodatos</option>
-                                        <option value="C8"  {{ old('tipoPago') }} > Arrendamientos</option>
-                                        <option value="C9"  {{ old('tipoPago') }} > Seguros</option>
-                                        <option value="C10" {{ old('tipoPago') }} > Convenios</option>
-                                        <option value="C11" {{ old('tipoPago') }} > Emprestitos</option>
-                                        <option value="C12" {{ old('tipoPago') }} > Otros.</option>
+                                        <option value="Para Nómina" {{ old('tipoPago') }} > Para Nómina</option>
+                                        <option value="Contribuciones Inherentes a la Nómina" {{ old('tipoPago') }} > Contribuciones Inherentes a la Nómina</option>
+                                        <option value="Prestaciones Sociales" {{ old('tipoPago') }} > Prestaciones Sociales</option>
+                                        <option value="Viáticos y Gastos de Transporte" {{ old('tipoPago') }} > Viáticos y Gastos de Transporte</option>
+                                        <option value="Serviciode la Deuda " {{ old('tipoPago') }} > Servicio de la Deuda</option>
+                                        <option value="Contratos de Prestación de Servicios"  {{ old('tipoPago') }} > Contratos de Prestación de Servicios</option>
+                                        <option value="Consultorías"  {{ old('tipoPago') }} > Consultorías</option>
+                                        <option value="Mantenimiento y/o Reparación"  {{ old('tipoPago') }} > Mantenimiento y/o Reparación</option>
+                                        <option value="Obra Pública"  {{ old('tipoPago') }} > Obra Pública</option>
+                                        <option value="Compra Ventas y/o Suministro"  {{ old('tipoPago') }} > Compra Ventas y/o Suministro</option>
+                                        <option value="Concesión"  {{ old('tipoPago') }} > Concesión</option>
+                                        <option value="Comodatos"  {{ old('tipoPago') }} > Comodatos</option>
+                                        <option value="Arrendamientos"  {{ old('tipoPago') }} > Arrendamientos</option>
+                                        <option value="Seguros"  {{ old('tipoPago') }} > Seguros</option>
+                                        <option value="Convenios" {{ old('tipoPago') }} > Convenios</option>
+                                        <option value="Emprestitos" {{ old('tipoPago') }} > Emprestitos</option>
+                                        <option value="Otros" {{ old('tipoPago') }} > Otros.</option>
                                     </select>
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                                         <tr>
                                             <th>CODIGO</th>
                                             <th>DOC REF</th>
-                                            <th>C DE C</th>
+                                            <th>CENTRO DE COSTO</th>
                                             <th>DEBITO</th>
                                             <th>CREDITO</th>
                                             <th>BASE</th>
@@ -243,33 +243,64 @@
                         &nbsp
                 </form>
                 </div>
-                <div class="row container">
-                    <div class="col-md-4">
+                <div class="row ">
+                    <div class="col-md-12">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 Plantilla Contable
                             </div>
-                            <div class="card-body">
-                                <table class="table">
+                            <div class="card-body" style="overflow:scroll;
+                                         height:330px;">
+                                <table id="TablaPro" class="table">
                                     <thead>
                                     <tr>
-                                        <th>Doc Referencia</th>
-                                        <th>Corriente no Corriente</th>
-                                        <th>Eliminar</th>
+                                        <th>DOC REF</th>
+                                        <th>CENTRO DE COSTO</th>
+                                        <th>DEBITO</th>
+                                        <th>CREDITO</th>
+                                        <th>BASE</th>
+                                        <th>NOTA</th>
+                                        <th>VALOR RETENIDO</th>
                                     </tr>
                                     </thead>
                                     @foreach($plantillaRetenciones as $item)
                                         <tbody>
-                                        <tr>
-                                            <th style="width: 10%;">{{$item->docReferencia}}</th>
-                                            <th style="width: 10%;">{{$item->coNoCo}}</th>
-                                            <th>
-                                                <form method="POST" id="deleteTipoDoc" action="{{route('transaccion.destroyPlantilla',$item->id)}}">
-                                                    {{method_field('DELETE')}}
-                                                    {{csrf_field()}}
-                                                    <button type="submit" class="btn btn-circle btn-sm btn-danger" ><i class="fa fa-times"></i></button>
-                                                </form>
-                                            </th>
+                                        <form class="user"  action="{{route('transaccion.updatePlantilla',$item->id)}}" method="post" id="puc"  name="puc">
+                                            {{csrf_field()}}
+                                            {{ method_field('put') }}
+                                            <input  type="hidden" style="width: 124px;"  value="{{$item->totalDebito}}" name="totalDebito">
+                                            <input  type="hidden" style="width: 124px;"  value="{{$item->totalCredito}}" name="totalCredito">
+                                            <input  type="hidden" style="width: 124px;"  value="{{$item->diferencia}}" name="diferencia">
+                                            <input  type="hidden" style="width: 124px;"  value="{{$item->codigoPUC}}" name="codigoPUC">
+                                            <input  type="hidden" style="width: 124px;"  value="{{$item->puc_id}}" name="puc_id">
+                                            <input  type="hidden" value="{{$item->retecionesDescuentos_id}}" name="retecionesDescuentos_id">
+                                            <input  type="hidden" value="{{$item->transacciones_id}}" name="transacciones_id">
+                                            <td><input  style="width: 124px;" type="text" value="{{$item->docReferencia}}" name="docReferencia"></td>
+                                            <td>
+                                                <select style="width:124px;" name="centroCosto_id" id="centroCosto_id" class="select2 form-control custom-select" >
+                                                    <option value="">[Seleccione una opcion]</option>
+
+                                                    @foreach($centroCosto as $centro)
+                                                        <option {{ old('tipoDocumento_id', $item->centroCosto_id) == $centro->id ? 'selected' : '' }} value="{{$centro->id}}">{{$centro->codigoCC}} - {{$centro->NombreCC}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td><input  style="width: 124px;" type="text" value="{{$item->debito}}" name="debito"></td>
+                                            <td><input  style="width: 124px;" type="text" value="{{$item->credito}}" name="credito"></td>
+                                            <td><input  style="width: 124px;" type="text" value="{{$item->base}}" name="base"></td>
+                                            <td><input  style="width: 124px;" type="text" value="{{$item->nota}}" name="nota"></td>
+                                            <td><input  style="width: 124px;" type="text" value="{{$item->valorRetenido}}" name="valorRetenido"></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-circle btn-sm btn-warning" ><i class="fa fa-edit"></i></button>
+                                            </td>
+                                        </form>
+                                        <td>
+                                            <form method="POST" id="deleteTipoDoc" action="{{route('transaccion.destroyPlantilla',$item->id)}}">
+                                                {{method_field('DELETE')}}
+                                                {{csrf_field()}}
+                                                <button type="submit" class="btn btn-circle btn-sm btn-danger" ><i class="fa fa-times"></i></button>
+                                            </form>
+                                        </td>
                                         </tr>
                                         </tbody>
                                     @endforeach
@@ -277,16 +308,16 @@
                             </div>
                         </div>
                     </div>
-                  {{--  <div class="col-md-8">
-                        @can('transaccion.destroy')
-                            <form method="POST" id="deleteTipoDoc"
-                                  action="{{route('transaccion.destroy',$trasacciones->id)}}">
-                                {{method_field('DELETE')}}
-                                {{csrf_field()}}
-                                <button type="submit" class="btn btn-danger btn-block">ELIMINAR</button>
-                            </form>
-                        @endcan
-                    </div>--}}
+                    {{--  <div class="col-md-8">
+                          @can('transaccion.destroy')
+                              <form method="POST" id="deleteTipoDoc"
+                                    action="{{route('transaccion.destroy',$trasacciones->id)}}">
+                                  {{method_field('DELETE')}}
+                                  {{csrf_field()}}
+                                  <button type="submit" class="btn btn-danger btn-block">ELIMINAR</button>
+                              </form>
+                          @endcan
+                      </div>--}}
                 </div>
             </div>
         </div>
@@ -427,42 +458,30 @@
             crossorigin="anonymous"></script>
     <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
     <script>
-
-
-        function sum() {
-
+        function sum(){
             let total = 0;
-            $('.debitos').each(function () {
+            $('.debitos').each(function() {
                 let value = parseFloat($(this).val());
                 if (!isNaN(value)) {
                     total += value;
                 }
+
             });
-            //suma=7+4
-            let totalD=parseFloat($('#totalDebito').data('value'));
-            let suma = total + totalD;
-            $('#totalDebito').val(suma);
-            //$('#totalDebito').html(suma);
 
+            $('#totalDebito').val(total);
         }
-
         function sumC(){
-
             let totalC = 0;
-            $('.credito').each(function () {
+            $('.credito').each(function() {
                 let value = parseFloat($(this).val());
                 if (!isNaN(value)) {
                     totalC += value;
                 }
+
             });
-            //suma=7+4
-            let totalCre=parseFloat($('#totalCredito').data('value'));
-            let suma = totalC + totalCre;
-            $('#totalCredito').val(suma);
-            //$('#totalDebito').html(suma);
 
+            $('#totalCredito').val(totalC);
         }
-
         function resta() {
             var debito = $('#totalDebito').val();
             var credito= $('#totalCredito').val();
@@ -494,22 +513,24 @@
                 var base =  $(this).parent().parent().find('.baseFinal').val();
                 var retenido =  $(this).parent().parent().find('.valorRetenido').val();
                 var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
-                var sel2 = $(this).parent().parent().find('.transacciones_id').val();
-                //alert(sel2)
+                var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
+                //alert(codigoPUC)
 
                 $('#ProSelected').append('<tr class="active">'+
-                    '<input type="hidden" name="transacciones_id[]" data-id="'+sel2+'" />' +
-                    '<input type="hidden" name="puc_id[]"/>' +
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>' +
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
-                    '<td><select style="width:100px;" name= "coNoCo[]" id="coNoCo" class="select2 form-control custom-select" >' +
-                    '<option value="">[Seleccione una Cuenta]</option>' +
-                    '<option value="Corrriente">Corrriente</option>' +
-                    '<option value="No Corrriente">No Corrriente</option>' +
+                    '<input type="hidden" name="transacciones_id[]" />'+
+                    '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
+                    '<input type="hidden" name="puc_id[]"/>'+
+                    '<td><input style="width: 28pc;" type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
+                    '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>'+
+                    '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
+                    '<option value="999">[Seleccione un Opcion]</option>'+
+                    '    @foreach($centroCosto as $item)'+
+                    '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
+                    '    @endforeach'+
                     '</select></td>' +
-                    '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>' +
-                    '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>' +
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>' +
+                    '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
+                    '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>'+
+                    '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>'+
                     '<td><input  type="text" class="form-control" style="width:100px;" name="codigoNIIIF[]" id="codigoNIIIF"  value="'+codigoNiff+'"/></td>' +
                     '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
                     '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido" value="'+retenido+'" /></td>' +
@@ -589,24 +610,29 @@
                 var base =  $(this).parent().parent().find('.baseFinal').val();
                 var retenido =  $(this).parent().parent().find('.valorRetenido').val();
                 var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
-                var sel2 = $(this).parent().parent().find('.transacciones_id').val();
+                var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
+                var sel3 = $(this).parent().parent().find('.transacciones_id').val();
                 //alert(sel2)
 
+
                 $('#ProSelected').append('<tr class="active">'+
-                    '<input type="hidden" name="transacciones_id[]" data-id="'+sel2+'" />' +
+                    '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
+                    '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
                     '<td>' +
-                    '<select onchange="niif()" name= "puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
-                    '<option value="" >[Seleccione una Cuenta]</option>'+
+                    '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
+                    '<option value="">[Seleccione una Cuenta]</option>'+
                     '    @foreach($puc as $item)'+
-                    '         {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled="disabled"' }}'+
-                    '         <option {{ $style }}  value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCuenta}} - {{$item->nombreCuenta}}</option>'+
-                    '   @endforeach'+
+                    '    {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled' }}'+
+                    '   <option  {{ $style }}  {{ old('puc_id', $item->puc_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">'+
+                    '    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}'+
+                    '            @endforeach'+
                     '</select></td>'+
                     '<td><input  type="text" class="form-control " style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
-                    '<td><select style="width:100px;" name= "coNoCo[]" id="coNoCo" class="select2 form-control custom-select" >' +
-                    '<option value="">[Seleccione una Cuenta]</option>' +
-                    '<option value="Corrriente">Corrriente</option>' +
-                    '<option value="No Corrriente">No Corrriente</option>' +
+                    '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
+                    '<option value="999">[Seleccione un Opcion]</option>'+
+                    '    @foreach($centroCosto as $item)'+
+                    '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
+                    '    @endforeach'+
                     '</select></td>' +
                     '<input  type="hidden" class="form-control " style="width:100px;" name="codigoPUC[]" id="codigoPUC"/>' +
                     '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>' +
@@ -622,7 +648,6 @@
                     '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido"/></td>' +
                     '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
                     '</tr>');
-
                 $('.debitos').keyup(function(){
                     let inps = $('.debitos');
                     let disabled = false;
@@ -678,6 +703,18 @@
 
                     $(this).closest('tr').remove();
                 });
+            });
+
+            $( "#puc_id" ).change(function() {
+                var tipoCuenta=  $('select[name="puc_id"] option:selected').text();
+                var cadena=tipoCuenta.indexOf('DETALLE')
+                if (cadena == -1){
+                    alert('Esta cuenta es de tipo Superior, no puede ser elejida');
+                    $('.btnEnviar').attr('disabled',true)
+                }else {
+                    $('.btnEnviar').attr('disabled',false)
+                }
+                //console.log(tipoCuenta);
             });
 
         });
