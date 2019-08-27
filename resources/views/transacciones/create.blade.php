@@ -4,15 +4,7 @@
     <div class="col-md-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">IMPORTAR PLANTILLA</h6>
-                <code>Antes de subir el excel recuende que solo debe tener los siguientes campos:
-                        <b>Numero Doc -
-                        Codigo PUC -
-                        Doc Referencia -
-                        Corriente o No Corriente -
-                        Debito -
-                        Credito</b>
-                </code>
+                <h6 class="m-0 font-weight-bold text-primary">IMPORTAR EXCEL</h6>
             </div>
             <div class="card-body">
                 <form action="{{ route('transaccion.import') }}" method="POST" enctype="multipart/form-data">
