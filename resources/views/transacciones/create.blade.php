@@ -10,7 +10,7 @@
                 <form action="{{ route('transaccion.import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="excel" class="">
-                    <button class="btn btn-success" style="float: right;">Importar Datos</button>
+                    <button class="btn btn-success" style="float: right;">Importar datos</button>
                     <a href="{{route('transaccion.plantilla')}}" style="margin-right: 8px;" class="btn btn-success  float-right">
                         <i class="fas fa-download"></i>
                     </a>
