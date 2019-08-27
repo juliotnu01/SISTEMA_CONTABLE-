@@ -25,17 +25,6 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <br>
-                                        <label for="">Descuento</label>
-                                        <label class="radio-inline">
-                                            <input type="radio" id="descuento" onclick="todos1()"  {{ $retencion->descuento=="1" ? 'checked':''}} {{old('descuento')=="1" ? 'checked='.'"'.'checked'.'"' : '' }} name="descuento" value="1">SI</label>
-                                        <label class="radio-inline">
-                                            <input type="radio" id="descuento" onclick="todos2()"  {{ $retencion->descuento=="2" ? 'checked':''}} {{old('descuento')=="2" ? 'checked='.'"'.'checked'.'"' : '' }} name="descuento" value="2">NO</label>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
                                     <div class="col-md-6">
                                         @foreach($empresa as $e)
                                             @if ($e->marco_normativo =='EMPRESA PUBLICA' || $e->marco_normativo =='ENTIDADES DEL GOBIERNO')
@@ -106,14 +95,14 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <label for="">Consumo</label>
+                                    <div class="col-md-3">
+                                        <label for="">Activo</label>
                                         <label class="radio-inline">
-                                            <input type="radio" id="consumo" {{ $retencion->consumo=="1" ? 'checked':''}} {{old('consumo')=="1" ? 'checked='.'"'.'checked'.'"' : '' }} name="consumo" value="1">SI</label>
+                                            <input type="radio" id="activo" {{ $retencion->activo=="1" ? 'checked':''}} {{old('activo')=="1" ? 'checked='.'"'.'checked'.'"' : '' }} name="activo" value="1">SI</label>
                                         <label class="radio-inline">
-                                            <input type="radio" id="consumo" {{ $retencion->consumo=="2" ? 'checked':''}} {{old('consumo')=="2" ? 'checked='.'"'.'checked'.'"' : '' }} name="consumo" value="2">NO</label>
+                                            <input type="radio" id="activo" {{ $retencion->activo=="2" ? 'checked':''}} {{old('activo')=="2" ? 'checked='.'"'.'checked'.'"' : '' }} name="activo" value="2">NO</label>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <label for="">Automatico</label>
                                         <label class="radio-inline">
                                             <input type="radio" id="automatico" {{ $retencion->automatico=="1" ? 'checked':''}} {{old('automatico')=="1" ? 'checked='.'"'.'checked'.'"' : '' }} name="automatico" value="1">SI</label>

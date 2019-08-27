@@ -5,6 +5,9 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="container">
+                        @if (Session::has('message'))
+                            <div class="alert alert-success">{{ Session::get('message') }}</div>
+                        @endif
                         @if ($errors->any())
                             <div class="alert-danger">
                                 <ul>
@@ -69,40 +72,40 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label for="">Día</label>
-                                        <select  name= "dia" id="dia" class="select2 form-control custom-select" >
-                                            <option {{ old('dia', $trasacciones->dia) == $trasacciones->dia ? 'selected' : '' }} value="{{$trasacciones->dia}}">{{$trasacciones->dia}}</option>
-                                            <option value="1" {{ old('dia') }}>1</option>
-                                            <option value="2" {{ old('dia') }}>2</option>
-                                            <option value="3" {{ old('dia') }}>3</option>
-                                            <option value="4" {{ old('dia') }}>4</option>
-                                            <option value="5" {{ old('dia') }}>5</option>
-                                            <option value="6" {{ old('dia') }}>6</option>
-                                            <option value="7" {{ old('dia') }}>7</option>
-                                            <option value="8" {{ old('dia') }}>8</option>
-                                            <option value="9" {{ old('dia') }}>9</option>
-                                            <option value="10" {{ old('dia') }}>10</option>
-                                            <option value="11" {{ old('dia') }}>11</option>
-                                            <option value="12" {{ old('dia') }}>12</option>
-                                            <option value="13" {{ old('dia') }}>13</option>
-                                            <option value="14" {{ old('dia') }}>14</option>
-                                            <option value="15" {{ old('dia') }}>15</option>
-                                            <option value="16" {{ old('dia') }}>16</option>
-                                            <option value="17" {{ old('dia') }}>17</option>
-                                            <option value="18" {{ old('dia') }}>18</option>
-                                            <option value="19" {{ old('dia') }}>19</option>
-                                            <option value="20" {{ old('dia') }}>20</option>
-                                            <option value="21" {{ old('dia') }}>21</option>
-                                            <option value="22" {{ old('dia') }}>22</option>
-                                            <option value="23" {{ old('dia') }}>23</option>
-                                            <option value="24" {{ old('dia') }}>24</option>
-                                            <option value="25" {{ old('dia') }}>25</option>
-                                            <option value="26" {{ old('dia') }}>26</option>
-                                            <option value="27" {{ old('dia') }}>27</option>
-                                            <option value="28" {{ old('dia') }}>28</option>
-                                            <option value="29" {{ old('dia') }}>29</option>
-                                            <option value="30" {{ old('dia') }}>30</option>
-                                            <option value="31" {{ old('dia') }}>31</option>
-                                        </select>
+                                    <select  name= "dia" id="dia" class="select2 form-control custom-select" >
+                                        <option {{ old('dia', $trasacciones->dia) == $trasacciones->dia ? 'selected' : '' }} value="{{$trasacciones->dia}}">{{$trasacciones->dia}}</option>
+                                        <option value="1" {{ old('dia') }}>1</option>
+                                        <option value="2" {{ old('dia') }}>2</option>
+                                        <option value="3" {{ old('dia') }}>3</option>
+                                        <option value="4" {{ old('dia') }}>4</option>
+                                        <option value="5" {{ old('dia') }}>5</option>
+                                        <option value="6" {{ old('dia') }}>6</option>
+                                        <option value="7" {{ old('dia') }}>7</option>
+                                        <option value="8" {{ old('dia') }}>8</option>
+                                        <option value="9" {{ old('dia') }}>9</option>
+                                        <option value="10" {{ old('dia') }}>10</option>
+                                        <option value="11" {{ old('dia') }}>11</option>
+                                        <option value="12" {{ old('dia') }}>12</option>
+                                        <option value="13" {{ old('dia') }}>13</option>
+                                        <option value="14" {{ old('dia') }}>14</option>
+                                        <option value="15" {{ old('dia') }}>15</option>
+                                        <option value="16" {{ old('dia') }}>16</option>
+                                        <option value="17" {{ old('dia') }}>17</option>
+                                        <option value="18" {{ old('dia') }}>18</option>
+                                        <option value="19" {{ old('dia') }}>19</option>
+                                        <option value="20" {{ old('dia') }}>20</option>
+                                        <option value="21" {{ old('dia') }}>21</option>
+                                        <option value="22" {{ old('dia') }}>22</option>
+                                        <option value="23" {{ old('dia') }}>23</option>
+                                        <option value="24" {{ old('dia') }}>24</option>
+                                        <option value="25" {{ old('dia') }}>25</option>
+                                        <option value="26" {{ old('dia') }}>26</option>
+                                        <option value="27" {{ old('dia') }}>27</option>
+                                        <option value="28" {{ old('dia') }}>28</option>
+                                        <option value="29" {{ old('dia') }}>29</option>
+                                        <option value="30" {{ old('dia') }}>30</option>
+                                        <option value="31" {{ old('dia') }}>31</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Comprobantes</label>
@@ -128,7 +131,7 @@
                                     <label for="">Tipo de Presupuestos</label>
                                     <select  name="tipoPresupuesto_id" id="tipoPresupuesto_id" class=" form-control custom-select" >
                                         @foreach($tipoPresupuestos as $item)
-                                             <option {{ old('tipoPresupuesto_id', $trasacciones->tipoPresupuesto_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">{{$item->nombrePresupuesto}}</option>
+                                            <option {{ old('tipoPresupuesto_id', $trasacciones->tipoPresupuesto_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">{{$item->nombrePresupuesto}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -225,16 +228,16 @@
 
                                         </tbody>
                                         <tfoot>
-                                            <td></td>
-                                            <td>
+                                        <td></td>
+                                        <td>
 
-                                            </td>
-                                            <td><b>Sumas Iguales:</b></td>
-                                            <td><input type="text" style="width:150px;" class="form-control form-control-user totalDebito" name="totalDebito" id="totalDebito" data-value="{{$trasacciones->totalDebito}}" value="{{$trasacciones->totalDebito}}"></td>
-                                            <td><input type="text" style="width:150px;" class="form-control form-control-user totalCredito" name="totalCredito" id="totalCredito" data-value="{{$trasacciones->totalCredito}}" value="{{$trasacciones->totalCredito}}"></td>
-                                            <td><input type="text" style="width:150px;" class="form-control form-control-user direfencia" name="diferencia" id="direfencia" data-value="{{$trasacciones->diferencia}}" value="{{$trasacciones->diferencia}}"></td>
-                                            <td></td>
-                                            <td></td>
+                                        </td>
+                                        <td><b>Sumas Iguales:</b></td>
+                                        <td><input type="text" style="width:150px;" class="form-control form-control-user totalDebito" name="totalDebito" id="totalDebito" data-value="{{$trasacciones->totalDebito}}" value="{{$trasacciones->totalDebito}}"></td>
+                                        <td><input type="text" style="width:150px;" class="form-control form-control-user totalCredito" name="totalCredito" id="totalCredito" data-value="{{$trasacciones->totalCredito}}" value="{{$trasacciones->totalCredito}}"></td>
+                                        <td><input type="text" style="width:150px;" class="form-control form-control-user direfencia" name="diferencia" id="direfencia" data-value="{{$trasacciones->diferencia}}" value="{{$trasacciones->diferencia}}"></td>
+                                        <td></td>
+                                        <td></td>
                                         </tfoot>
                                     </table>
                                 </div>
@@ -242,7 +245,7 @@
                             <button class="btn btn-primary btn-user btn-block btnEnviar" type="submit">EDITAR</button>
                         </div>
                         &nbsp
-                </form>
+                    </form>
                 </div>
                 <div class="row container">
                     <div class="col-md-12">
@@ -256,7 +259,7 @@
                                     <thead>
                                     <tr>
                                         <th>DOC REF</th>
-                                        <th>C DE C</th>
+                                        <th>CENTRO DE COSTO</th>
                                         <th>DEBITO</th>
                                         <th>CREDITO</th>
                                         <th>BASE</th>
@@ -268,8 +271,7 @@
                                         <tbody>
                                         <form class="user"  action="{{route('transaccion.updatePlantilla',$item->id)}}" method="post" id="puc"  name="puc">
                                             {{csrf_field()}}
-                                                {{ method_field('put') }}
-                                            <tr>
+                                            {{ method_field('put') }}
                                                 <input  type="hidden" style="width: 124px;"  value="{{$item->totalDebito}}" name="totalDebito">
                                                 <input  type="hidden" style="width: 124px;"  value="{{$item->totalCredito}}" name="totalCredito">
                                                 <input  type="hidden" style="width: 124px;"  value="{{$item->diferencia}}" name="diferencia">
@@ -277,47 +279,49 @@
                                                 <input  type="hidden" style="width: 124px;"  value="{{$item->puc_id}}" name="puc_id">
                                                 <input  type="hidden" value="{{$item->retecionesDescuentos_id}}" name="retecionesDescuentos_id">
                                                 <input  type="hidden" value="{{$item->transacciones_id}}" name="transacciones_id">
-                                                <th><input  style="width: 124px;" type="text" value="{{$item->docReferencia}}" name="docReferencia"></th>
-                                                <th>
-                                                    <select style="width:124px;" name= "coNoCo" id="coNoCo" class="select2 form-control custom-select" >' +
-                                                        <option value="{{$item->coNoCo}}">{{$item->coNoCo}}</option>
-                                                        <option value="Corrriente">Corrriente</option>
-                                                        <option value="No Corrriente">No Corrriente</option>
+                                                <td><input  style="width: 124px;" type="text" value="{{$item->docReferencia}}" name="docReferencia"></td>
+                                                <td>
+                                                    <select style="width:124px;" name="centroCosto_id" id="centroCosto_id" class="select2 form-control custom-select" >
+                                                        <option value="">[Seleccione una opcion]</option>
+
+                                                    @foreach($centroCosto as $centro)
+                                                            <option {{ old('tipoDocumento_id', $item->centroCosto_id) == $centro->id ? 'selected' : '' }} value="{{$centro->id}}">{{$centro->codigoCC}} - {{$centro->NombreCC}}</option>
+                                                        @endforeach
                                                     </select>
-                                                </th>
-                                                <th><input  style="width: 124px;" type="text" value="{{$item->debito}}" name="debito"></th>
-                                                <th><input  style="width: 124px;" type="text" value="{{$item->credito}}" name="credito"></th>
-                                                <th><input  style="width: 124px;" type="text" value="{{$item->base}}" name="base"></th>
-                                                <th><input  style="width: 124px;" type="text" value="{{$item->nota}}" name="nota"></th>
-                                                <th><input  style="width: 124px;" type="text" value="{{$item->valorRetenido}}" name="valorRetenido"></th>
-                                                <th>
+                                                </td>
+                                                <td><input  style="width: 124px;" type="text" value="{{$item->debito}}" name="debito"></td>
+                                                <td><input  style="width: 124px;" type="text" value="{{$item->credito}}" name="credito"></td>
+                                                <td><input  style="width: 124px;" type="text" value="{{$item->base}}" name="base"></td>
+                                                <td><input  style="width: 124px;" type="text" value="{{$item->nota}}" name="nota"></td>
+                                                <td><input  style="width: 124px;" type="text" value="{{$item->valorRetenido}}" name="valorRetenido"></td>
+                                                <td>
                                                     <button type="submit" class="btn btn-circle btn-sm btn-warning" ><i class="fa fa-edit"></i></button>
-                                                </th>
+                                                </td>
                                         </form>
-                                                <th>
-                                                    <form method="POST" id="deleteTipoDoc" action="{{route('transaccion.destroyPlantilla',$item->id)}}">
-                                                        {{method_field('DELETE')}}
-                                                        {{csrf_field()}}
-                                                        <button type="submit" class="btn btn-circle btn-sm btn-danger" ><i class="fa fa-times"></i></button>
-                                                    </form>
-                                                </th>
-                                            </tr>
+                                            <td>
+                                                <form method="POST" id="deleteTipoDoc" action="{{route('transaccion.destroyPlantilla',$item->id)}}">
+                                                    {{method_field('DELETE')}}
+                                                    {{csrf_field()}}
+                                                    <button type="submit" class="btn btn-circle btn-sm btn-danger" ><i class="fa fa-times"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     @endforeach
                                 </table>
                             </div>
                         </div>
                     </div>
-                  {{--  <div class="col-md-8">
-                        @can('transaccion.destroy')
-                            <form method="POST" id="deleteTipoDoc"
-                                  action="{{route('transaccion.destroy',$trasacciones->id)}}">
-                                {{method_field('DELETE')}}
-                                {{csrf_field()}}
-                                <button type="submit" class="btn btn-danger btn-block">ELIMINAR</button>
-                            </form>
-                        @endcan
-                    </div>--}}
+                    {{--  <div class="col-md-8">
+                          @can('transaccion.destroy')
+                              <form method="POST" id="deleteTipoDoc"
+                                    action="{{route('transaccion.destroy',$trasacciones->id)}}">
+                                  {{method_field('DELETE')}}
+                                  {{csrf_field()}}
+                                  <button type="submit" class="btn btn-danger btn-block">ELIMINAR</button>
+                              </form>
+                          @endcan
+                      </div>--}}
                 </div>
             </div>
         </div>
@@ -435,7 +439,7 @@
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
                                 <td><input  style="width: 80px;"  type="text" class="valorRetenido"></td>
                                 <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
-                                <input  type="hidden" class="codigoCuenta" name="codigoCuenta" id="codigoCuenta" value="{{$itemDescuento->codigoCuenta}}">
+                                <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$itemDescuento->codigoCuenta .'- '.$itemDescuento->nombreCuenta}}"/>
                                 <input type="hidden" class="transacciones_id"  name="transacciones_id" value="{{$itemDescuento->id}}"/>
                                 <td>
                                     <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
@@ -465,9 +469,7 @@
                 if (!isNaN(value)) {
                     total += value;
                 }
-
             });
-
             $('#totalDebito').val(total);
         }
         function sumC(){
@@ -477,18 +479,14 @@
                 if (!isNaN(value)) {
                     totalC += value;
                 }
-
             });
-
             $('#totalCredito').val(totalC);
         }
         function resta() {
             var debito = $('#totalDebito').val();
             var credito= $('#totalCredito').val();
-
             var direfencia= debito-credito;
             $('#direfencia').val(direfencia);
-
         }
         var productsId = [];
         $(document).ready(function() {
@@ -506,16 +504,13 @@
                 var total=parseFloat(porcentaje*base)/100;
                 $(tr).find('#valorRetenido').val(total.toFixed(2));
             });
-
             $('.agregarPlan').click(function(){
-
                 var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
                 var base =  $(this).parent().parent().find('.baseFinal').val();
                 var retenido =  $(this).parent().parent().find('.valorRetenido').val();
                 var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
                 var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
-                alert(sel2)
-
+                //alert(sel2)
                 $('#ProSelected').append('<tr class="active">'+
                     '<input type="hidden" name="transacciones_id[]" />'+
                     '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
@@ -535,7 +530,6 @@
                     '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido" value="'+retenido+'" /></td>' +
                     '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
                     '</tr>');
-
                 //var debito =  $(this).parent().parent().find('.baseFinal').val();
                 $('.debitos').keyup(function(){
                     let inps = $('.debitos');
@@ -558,11 +552,9 @@
                         $(this).parent().parent().find('.credito').css('display','block');
                         $(this).css('display','none')
                     }
-
                     sum();
                     resta();
                 });
-
                 $('.credito').keyup(function(){
                     let inps = $('.credito');
                     let disabled = false;
@@ -584,7 +576,6 @@
                     sumC();
                     resta();
                 });
-
                 $(function () {
                     $(document).on('click', '.borrar', function (event) {
                         var debito =  $(this).parent().parent().find('.debitos').val();
@@ -598,25 +589,20 @@
                         $('#totalCredito').val(restaCredito);
                         event.preventDefault();
                         $(this).closest('tr').remove();
-
                     });
                 });
             });
-
             $('.agregarPlanBasico').click(function () {
-
                 var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
                 var base =  $(this).parent().parent().find('.baseFinal').val();
                 var retenido =  $(this).parent().parent().find('.valorRetenido').val();
                 var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
                 var sel2 = $(this).parent().parent().find('.transacciones_id').val();
-                //alert(sel2)
-
-
+                //alert(codigoPUC)
                 $('#ProSelected').append('<tr class="active">'+
                     '<input type="hidden" name="transacciones_id[]" data-id="'+sel2+'" />' +
                     '<td>' +
-                    '<select onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
+                    '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
                     '<option value="">[Seleccione una Cuenta]</option>'+
                     '    @foreach($puc as $item)'+
                     '         {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled="disabled"' }}'+
@@ -664,11 +650,9 @@
                         $(this).parent().parent().find('.credito').css('display','block');
                         $(this).css('display','none')
                     }
-
                     sum();
                     resta();
                 });
-
                 $('.credito').keyup(function(){
                     let inps = $('.credito');
                     let disabled = false;
@@ -691,15 +675,12 @@
                     resta();
                 });
             });
-
             $(function () {
                 $(document).on('click', '.borrar', function (event) {
                     event.preventDefault();
-
                     $(this).closest('tr').remove();
                 });
             });
-
             $( "#puc_id" ).change(function() {
                 var tipoCuenta=  $('select[name="puc_id"] option:selected').text();
                 var cadena=tipoCuenta.indexOf('DETALLE')
@@ -711,13 +692,11 @@
                 }
                 //console.log(tipoCuenta);
             });
-
         });
     </script>
     <script>
         $(document).ready(function() {
             $('.select2').select2();
-
         });
     </script>
     <script>

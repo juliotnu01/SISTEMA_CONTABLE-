@@ -52,27 +52,6 @@
                                         <label for="">Valor Base</label>
                                         <input type="text"  class="form-control form-control-user"  id="base" name="base"  value="{{$descuento->base}}" placeholder="0.00">
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group" style="margin-top: 40px;">
-                                            <label for="">Tipo Cuenta Bancaria</label>
-                                            <label class="radio-">
-                                                <input type="radio"  id="automatico"  name="automatico" value="SI"  {{ $descuento->automatico=="SI" ? 'checked=':''. old('automatico')=="SI" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
-                                            <label class="radio-">
-                                                <input type="radio" id="automatico" name="automatico"  value="NO" {{ $descuento->automatico=="NO" ? 'checked=':''. old('automatico')=="NO" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group" style="margin-top: 40px;">
-                                            <label for="">Tipo Cuenta Bancaria</label>
-                                            <label class="radio-inline">
-                                                <input type="radio"  id="activo"  name="activo" value="SI"  {{ $descuento->activo=="SI" ? 'checked=':''. old('activo')=="SI" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" id="activo" name="activo"  value="NO" {{ $descuento->activo=="NO" ? 'checked=':''. old('activo')=="NO" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                &nbsp
-                                <div class="row">
                                     <div class="col-md-8">
                                         <label for="">Cuenta CGC</label>
                                         <select  name= "puc_id" id="puc_id" class="select2 form-control custom-select" >
@@ -84,6 +63,27 @@
                                             @endforeach
 
                                         </select>
+                                    </div>
+                                </div>
+                                &nbsp
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group" style="margin-top: 40px;">
+                                            <label for="">Automatico</label>
+                                            <label class="radio-">
+                                                <input type="radio"  id="automatico"  name="automatico" value="SI"  {{ $descuento->automatico=="SI" ? 'checked=':''. old('automatico')=="SI" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
+                                            <label class="radio-">
+                                                <input type="radio" id="automatico" name="automatico"  value="NO" {{ $descuento->automatico=="NO" ? 'checked=':''. old('automatico')=="NO" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group" style="margin-top: 40px;">
+                                            <label for="">Activo</label>
+                                            <label class="radio-inline">
+                                                <input type="radio"  id="activo"  name="activo" value="SI"  {{ $descuento->activo=="SI" ? 'checked=':''. old('activo')=="SI" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
+                                            <label class="radio-inline">
+                                                <input type="radio" id="activo" name="activo"  value="NO" {{ $descuento->activo=="NO" ? 'checked=':''. old('activo')=="NO" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <br>

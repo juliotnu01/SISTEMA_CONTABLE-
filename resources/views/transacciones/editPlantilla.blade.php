@@ -223,7 +223,7 @@
                                         <tr>
                                             <th>CODIGO</th>
                                             <th>DOC REF</th>
-                                            <th>C DE C</th>
+                                            <th>CENTRO DE COSTO</th>
                                             <th>DEBITO</th>
                                             <th>CREDITO</th>
                                             <th>BASE</th>

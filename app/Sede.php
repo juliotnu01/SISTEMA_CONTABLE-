@@ -28,5 +28,10 @@ class Sede extends Model
     {
         return $this->hasMany(SubSede::class);
     }
+
+    public function plantillaContable()
+    {
+        return $this->hasMany(PlantillaContable::class);
+    }
 }
 

@@ -24,16 +24,6 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <label for="">Descuento</label>
-                                        <label class="radio-inline">
-                                            <input type="radio"  id="descuento" onclick="todos1()" name="descuento" value="1" {{ old('descuento')=="1" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
-                                        <label class="radio-inline">
-                                            <input type="radio" id="descuento" checked="checked" onclick="todos2()" name="descuento" value="2"  {{ old('descuento')=="2" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
                                     <div class="col-md-6">
                                         @foreach($empresa as $e)
                                             @if ($e->marco_normativo =='EMPRESA PUBLICA' || $e->marco_normativo =='ENTIDADES DEL GOBIERNO')
@@ -124,14 +114,14 @@
                                 <br>
                                 <div class="row">
 
-                                    <div class="col-md-2">
-                                        <label for="">Consumo</label>
+                                    <div class="col-md-3">
+                                        <label for="">Activo</label>
                                         <label class="radio-inline">
-                                            <input type="radio"  id="consumo" name="consumo" value="1" {{ old('consumo')=="1" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
+                                            <input type="radio"  id="activo" name="activo" value="1" {{ old('activo')=="1" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
                                         <label class="radio-inline">
-                                            <input type="radio" id="consumo" name="consumo" value="2"  {{ old('consumo')=="2" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
+                                            <input type="radio" id="activo" name="activo" value="2"  {{ old('activo')=="2" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <label for="">Automatico</label>
                                         <label class="radio-inline">
                                             <input type="radio"  id="automatico" name="automatico" value="1" {{ old('automatico')=="1" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>

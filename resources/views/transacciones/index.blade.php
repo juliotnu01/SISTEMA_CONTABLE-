@@ -35,10 +35,10 @@
                                             <th>Soporte</th>
                                             <th>Tipo Presupuesto</th>
                                             <th>Valor de la Transacción</th>
-                                            <th>Editar</th>
-                                            <th>Duplicar</th>
-                                            <th>Imprimir</th>
-                                            <th>Eliminar</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tfoot>
@@ -66,17 +66,17 @@
                                                 <td>{{$item->valortransaccion }}</td>
                                                 <td>
                                                     @can('transaccion.edit')
-                                                        <a href="{{route('transaccion.edit',$item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                        <a  title="EDITAR" href="{{route('transaccion.edit',$item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                                     @endcan
                                                 </td>
                                                 <td>
                                                     @can('transaccion.duplicate')
-                                                        <a href="{{route('transaccion.duplicate',$item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-clone"></i></a>
+                                                        <a  title="DUPLICAR" href="{{route('transaccion.duplicate',$item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-clone"></i></a>
 
                                                     @endcan
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('transaccion.printTrans',$item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-print"></i></a>
+                                                    <a  title="IMPRIMIR" href="{{route('transaccion.printTrans',$item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-print"></i></a>
                                                 </td>
                                                 <td>
                                                     @can('transaccion.destroy')
@@ -85,7 +85,7 @@
                                                               action="{{route('transaccion.destroy',$item->id)}}">
                                                             {{method_field('DELETE')}}
                                                             {{csrf_field()}}
-                                                            <button type="submit"  onclick="return confirm('¿Esta seguro de eliminar este registro?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                            <button  title="ELIMINAR" type="submit"  onclick="return confirm('¿Esta seguro de eliminar este registro?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                                         </form>
                                                     @endcan
                                                 </td>

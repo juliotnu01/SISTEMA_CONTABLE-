@@ -26,10 +26,10 @@ class CierresController extends Controller
         $cierre -> anio=$request->anio;
         //dd($request->cierre_id);
         $cierre->save();
-        $cierreCon = $request->cierres_id;
+        $cierreCon = $request->cierre_id;
         foreach($cierreCon as $key => $value) {
             $cierre->cieresConcepto()->create([
-                'cierres_id' => $request->cierres_id[$key],
+                'cierre_id' => $request->cierre_id[$key],
                 'nombreConcepto' => $request->nombreConcepto[$key],
                 'puc_id' => $request->puc_id[$key],
             ]);
@@ -41,11 +41,11 @@ class CierresController extends Controller
     {
         $cierres=Cierres::with('cieresConcepto')->findOrFail($id);
         $puc=Puc::all();
-        //$conceptos=ConceptosCierres::where('cierres_id','=',$id)->get();
+        //$conceptos=ConceptosCierres::where('cierre_id','=',$id)->get();
         $conceptos=DB::table('conceptos_cierres')
             ->join('pucs', 'conceptos_cierres.puc_id', '=', 'pucs.id')
             ->select('conceptos_cierres.id','conceptos_cierres.nombreConcepto','pucs.codigoCuenta')
-            ->where('conceptos_cierres.cierres_id','=',$id)
+            ->where('conceptos_cierres.cierre_id','=',$id)
             ->get();
         //dd($conceptos);
         return view('cierres.edit',compact('cierres','puc','conceptos'));
@@ -56,10 +56,10 @@ class CierresController extends Controller
         $cierre -> anio=$request->anio;
         //dd($request->cierre_id);
         $cierre->update();
-        $cierreCon = $request->cierres_id;
+        $cierreCon = $request->cierre_id;
         foreach($cierreCon as $key => $value) {
             $cierre->cieresConcepto()->create([
-                'cierres_id' => $request->cierres_id[$key],
+                'cierre_id' => $request->cierre_id[$key],
                 'nombreConcepto' => $request->nombreConcepto[$key],
                 'puc_id' => $request->puc_id[$key],
             ]);

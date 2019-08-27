@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlantillaContable extends Model
 {
-    protected $fillable=['docReferencia', 'coNoCo', 'debito', 'credito', 'nota','base', 'codigoPUC',
-        'codigoNIIIF','transacciones_id', 'transaccionesDescuento_id','valorRetenido','puc_id'];
+    protected $fillable=['docReferencia','debito', 'credito', 'nota','base', 'codigoPUC',
+        'codigoNIIIF','transacciones_id','centroCosto_id','transaccionesDescuento_id','valorRetenido','puc_id'];
 
     public function transaccion()
     {
@@ -24,6 +24,9 @@ class PlantillaContable extends Model
         return $this->belongsTo(Puc::class, 'puc_id');
     }
 
-
+    public function centroCostos()
+    {
+        return $this->belongsTo(Sede::class, 'centroCosto_id');
+    }
 
 }

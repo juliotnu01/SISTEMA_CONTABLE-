@@ -76,7 +76,7 @@
                 '  <option value="Utilidad">Utilidad</option>' +
                 '  <option value="Pérdida">Pérdida</option>' +
                 '</select></td>' +
-                '<input type="hidden" name="cierres_id[]"/>' +
+                '<input type="hidden" name="cierre_id[]"/>' +
                 '<td>' +
                 '<select  name="puc_id[]" id="puc_id" class="select2 form-control custom-select" style="width: 100%; height:36px;" >'+
                 '<option value="">[Seleccione una Cuenta]</option>'+

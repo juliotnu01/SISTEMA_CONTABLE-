@@ -19,9 +19,9 @@
                     @csrf
                     <input type="file" name="excel" class="">
                     <button class="btn btn-success" style="float: right;">Importar Datos</button>
-                    {{--<a href="{{route('transaccion.plantilla')}}" style="margin-right: 8px;" class="btn btn-success  float-right">
+                    <a href="{{route('transaccion.plantilla')}}" style="margin-right: 8px;" class="btn btn-success  float-right">
                         <i class="fas fa-download"></i>
-                    </a>--}}
+                    </a>
                 </form>
             </div>
             @if (Session::has('email'))
@@ -273,7 +273,7 @@
                                         <tr>
                                             <th>CODIGO</th>
                                             <th>DOC REF</th>
-                                            <th>C DE C</th>
+                                            <th>CENTRO DE COSTO</th>
                                             <th>DEBITO</th>
                                             <th>CREDITO</th>
                                             <th>BASE</th>
@@ -356,7 +356,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table" id="dataTableSinSelect" width="100%" cellspacing="0">
+                <table class="table" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
                         <th>Tipo de Retencion</th>
@@ -378,7 +378,7 @@
                             <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
                             <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
                             <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
-                            <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}}"/>
+                            <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
                             <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
                             <td>
                                 <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
@@ -422,7 +422,7 @@
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
                                 <td><input  style="width: 80px;"  type="text" class="valorRetenido"></td>
                                 <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
-                                <input  type="hidden" class="codigoCuenta" name="codigoPUC" id="codigoCuenta" value="{{$itemDescuento->codigoCuenta}}">
+                                <input  type="hidden" class="codigoCuenta" name="codigoPUC" id="codigoCuenta" value="{{$itemDescuento->codigoCuenta}} - {{$itemDescuento->nombreCuenta}}">
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
                                     <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
                                 <td>
@@ -501,18 +501,19 @@
                 var retenido =  $(this).parent().parent().find('.valorRetenido').val();
                 var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
                 var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
-                alert(sel2)
+                //alert(codigoPUC)
 
                 $('#ProSelected').append('<tr class="active">'+
                     '<input type="hidden" name="transacciones_id[]" />'+
                     '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
                     '<input type="hidden" name="puc_id[]"/>'+
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
+                    '<td><input style="width: 28pc;" type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
                     '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>'+
-                    '<td><select style="width:100px;" name= "coNoCo[]" id="coNoCo" class="select2 form-control custom-select" >'+
-                    '<option value="">[Seleccione una Cuenta]</option>'+
-                    '<option value="Corrriente">Corrriente</option>'+
-                    '<option value="No Corrriente">No Corrriente</option>'+
+                    '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
+                    '<option value="999">[Seleccione un Opcion]</option>'+
+                    '    @foreach($centroCosto as $item)'+
+                    '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
+                    '    @endforeach'+
                     '</select></td>' +
                     '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
                     '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>'+
@@ -596,25 +597,29 @@
                 var base =  $(this).parent().parent().find('.baseFinal').val();
                 var retenido =  $(this).parent().parent().find('.valorRetenido').val();
                 var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
-                var sel2 = $(this).parent().parent().find('.transacciones_id').val();
+                var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
+                var sel3 = $(this).parent().parent().find('.transacciones_id').val();
                 //alert(sel2)
 
 
                 $('#ProSelected').append('<tr class="active">'+
-                    '<input type="hidden" name="transacciones_id[]" data-id="'+sel2+'" />' +
+                    '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
+                    '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
                     '<td>' +
-                    '<select onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
+                    '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
                     '<option value="">[Seleccione una Cuenta]</option>'+
                     '    @foreach($puc as $item)'+
-                    '         {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled="disabled"' }}'+
-                    '         <option {{ $style }}  value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCuenta}} - {{$item->nombreCuenta}}</option>'+
-                    '   @endforeach'+
+                    '    {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled' }}'+
+                    '   <option  {{ $style }}  {{ old('puc_id', $item->puc_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">'+
+                    '    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}'+
+                    '            @endforeach'+
                     '</select></td>'+
                     '<td><input  type="text" class="form-control " style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
-                    '<td><select style="width:100px;" name= "coNoCo[]" id="coNoCo" class="select2 form-control custom-select" >' +
-                    '<option value="">[Seleccione una Cuenta]</option>' +
-                    '<option value="Corrriente">Corrriente</option>' +
-                    '<option value="No Corrriente">No Corrriente</option>' +
+                    '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
+                    '<option value="999">[Seleccione un Opcion]</option>'+
+                    '    @foreach($centroCosto as $item)'+
+                    '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
+                    '    @endforeach'+
                     '</select></td>' +
                     '<input  type="hidden" class="form-control " style="width:100px;" name="codigoPUC[]" id="codigoPUC"/>' +
                     '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>' +

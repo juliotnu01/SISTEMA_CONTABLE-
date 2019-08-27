@@ -11,6 +11,7 @@ use App\PlantillaContable;
 use App\Persona;
 use App\Puc;
 use App\RetencionDescuentos;
+use App\Sede;
 use App\TipoPresupuesto;
 use App\Transacciones;
 use Maatwebsite\Excel\Facades\Excel;
@@ -62,6 +63,7 @@ class TrasaccionesController extends Controller
                                 ->get();
         $puc=Puc::all();
         $niif=Niff::all();
+        $centroCosto=Sede::all();
         $numDocs=Transacciones::select('numeroDoc','created_at')->get();
         $terceros=Persona::with('natural','juridica','empleado')->get();
         //$tipoPresupuestos = Comprobante::with('tipoPresupuesto');
@@ -70,7 +72,7 @@ class TrasaccionesController extends Controller
             ->leftJoin('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
             ->leftJoin('niffs', 'niffs.puc_id', '=', 'pucs.id')
             ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.tipoRetencion','retencion_descuentos.iva'
-                ,'retencion_descuentos.concepto','retencion_descuentos.porcentaje','pucs.codigoCuenta','niffs.codigoNiff')
+                ,'retencion_descuentos.concepto','retencion_descuentos.porcentaje','pucs.codigoCuenta','pucs.nombreCuenta','niffs.codigoNiff')
             ->where('retencion_descuentos.RetoDes','=',null)
             ->get();
         //dd($retenciones);
@@ -78,14 +80,14 @@ class TrasaccionesController extends Controller
             ->leftJoin('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
             ->leftJoin('niffs', 'niffs.puc_id', '=', 'pucs.id')
             ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.concepto',
-                'retencion_descuentos.porcentaje','pucs.codigoCuenta','niffs.codigoNiff','niffs.puc_id')
-            ->where('niffs.puc_id','=',null)
-            ->orWhere('niffs.puc_id','!=',null)
-            ->where('retencion_descuentos.RetoDes','=','DESCUENTO')
+                'retencion_descuentos.porcentaje','pucs.codigoCuenta','pucs.nombreCuenta','niffs.codigoNiff','niffs.puc_id')
+                ->where('niffs.puc_id','=',null)
+                ->orWhere('niffs.puc_id','!=',null)
+                ->where('retencion_descuentos.RetoDes','=','DESCUENTO')
             ->get();
         //dd($descuentos);
         return view('transacciones.create',compact('comprobante','retenciones',
-            'tipoPresupuestos','terceros','numDocs','descuentos','puc','niif'));
+            'tipoPresupuestos','terceros','numDocs','descuentos','puc','niif','centroCosto'));
     }
 
     public function store(Request $request)
@@ -136,7 +138,7 @@ class TrasaccionesController extends Controller
                     'transacciones_id' => $request->transacciones_id[$key],
                     'codigoPUC' => $request->codigoPUC[$key],
                     'docReferencia' => $request->docReferencia[$key],
-                    'coNoCo' => $request->coNoCo[$key],
+                    'centroCosto_id' => $request->centroCosto_id[$key],
                     'debito' => $request->debito[$key],
                     'credito' => $request->credito[$key],
                     'retecionesDescuentos_id' => $request->retecionesDescuentos_id[$key],
@@ -165,20 +167,21 @@ class TrasaccionesController extends Controller
             ->where('estado','=','SI')
             ->get();
         $puc=Puc::all();
-        $niif=Niff::all();
+        $centroCosto=Sede::all();
         $numDocs=Transacciones::select('numeroDoc','created_at')->get();
         $terceros=Persona::with('natural','juridica','empleado')->get();
         $tipoPresupuestos = TipoPresupuesto::all();
         $plantillaRetenciones=PlantillaContable::where('transacciones_id', $id)
-            ->select('id','docReferencia', 'coNoCo', 'debito', 'credito', 'nota')
+            ->select('id','docReferencia', 'centroCosto_id', 'debito', 'credito', 'nota')
             ->get();
-        $retenciones=DB::table('retencion_descuentos','pucs','plantilla_contables')
-            ->join('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
-            //->join('plantilla_contables', 'plantilla_contables.retencion_id', '=', 'plantilla_contables.id')
-            ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.iva'
-                ,'retencion_descuentos.concepto','retencion_descuentos.porcentaje','pucs.codigoCuenta')
+        $retenciones=DB::table('retencion_descuentos')
+            ->leftJoin('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
+            ->leftJoin('niffs', 'niffs.puc_id', '=', 'pucs.id')
+            ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.tipoRetencion','retencion_descuentos.iva'
+                ,'retencion_descuentos.concepto','retencion_descuentos.porcentaje','pucs.codigoCuenta','niffs.codigoNiff')
             ->where('retencion_descuentos.RetoDes','=',null)
             ->get();
+        //dd($retenciones);
         $descuentos=DB::table('retencion_descuentos','pucs')
             ->join('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
             //->join('niffs', 'niffs.puc_id', '=', 'niffs.id')
@@ -187,7 +190,7 @@ class TrasaccionesController extends Controller
             ->where('retencion_descuentos.RetoDes','=','DESCUENTO')
             ->get();
         return view('transacciones.duplicar',compact('comprobante','retenciones',
-            'tipoPresupuestos','terceros','numDocs','descuentos','trasacciones','plantillaRetenciones','puc','niif'));
+            'tipoPresupuestos','terceros','numDocs','descuentos','trasacciones','plantillaRetenciones','puc','niif','centroCosto'));
     }
 
     public function edit($id)
@@ -197,19 +200,19 @@ class TrasaccionesController extends Controller
             ->where('estado','=','SI')
             ->get();
         $puc=Puc::all();
+        $centroCosto=Sede::all();
         $niif=Niff::all();
         $numDocs=Transacciones::select('numeroDoc','created_at')->get();
         $terceros=Persona::with('natural','juridica','empleado')->get();
         $tipoPresupuestos = TipoPresupuesto::all();
        /* $plantillaRetenciones=PlantillaContable::where('transacciones_id', $id)
-            ->select('id','docReferencia', 'coNoCo', 'debito', 'credito', 'nota', 'codigoPUC',
+            ->select('id','docReferencia', 'centroCosto_id', 'debito', 'credito', 'nota', 'codigoPUC',
                 'codigoNIIIF','transacciones_id', 'transacciones_id','valorRetenido','puc_id')
             ->get();*/
-
-
         $plantillaRetenciones=DB::table('plantilla_contables')
             ->join('transacciones', 'plantilla_contables.transacciones_id', '=', 'transacciones.id')
-            ->select('plantilla_contables.id','plantilla_contables.docReferencia', 'plantilla_contables.coNoCo',
+            //->join('sedes', 'plantilla_contables.centroCosto_id', '=', 'sedes.id')
+            ->select('plantilla_contables.id','plantilla_contables.docReferencia', 'plantilla_contables.centroCosto_id',
                 'plantilla_contables.debito', 'plantilla_contables.credito', 'plantilla_contables.nota',
                 'plantilla_contables.codigoPUC','plantilla_contables.base', 'plantilla_contables.codigoNIIIF','plantilla_contables.transacciones_id',
                 'plantilla_contables.transacciones_id','plantilla_contables.valorRetenido','plantilla_contables.retecionesDescuentos_id',
@@ -221,18 +224,19 @@ class TrasaccionesController extends Controller
             ->join('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
             //->join('plantilla_contables', 'plantilla_contables.retencion_id', '=', 'plantilla_contables.id')
             ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.iva'
-                ,'retencion_descuentos.concepto','retencion_descuentos.porcentaje','pucs.codigoCuenta')
+                ,'retencion_descuentos.concepto','retencion_descuentos.porcentaje','pucs.codigoCuenta','pucs.nombreCuenta')
             ->where('retencion_descuentos.RetoDes','=',null)
             ->get();
         $descuentos=DB::table('retencion_descuentos','pucs')
             ->join('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
             //->join('niffs', 'niffs.puc_id', '=', 'niffs.id')
             ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.concepto',
-                'retencion_descuentos.porcentaje','pucs.codigoCuenta')
+                'retencion_descuentos.porcentaje','pucs.codigoCuenta','pucs.nombreCuenta')
             ->where('retencion_descuentos.RetoDes','=','DESCUENTO')
             ->get();
+        //dd($descuentos);
         return view('transacciones.edit',compact('comprobante','retenciones',
-            'tipoPresupuestos','terceros','numDocs','descuentos','trasacciones','plantillaRetenciones','puc','niif'));
+            'tipoPresupuestos','terceros','numDocs','descuentos','trasacciones','plantillaRetenciones','puc','niif','centroCosto'));
     }
 
     public function update(Request $request, $id)
@@ -266,7 +270,7 @@ class TrasaccionesController extends Controller
                     'transacciones_id' => $request->transacciones_id[$key],
                     'codigoPUC' => $request->codigoPUC[$key],
                     'docReferencia' => $request->docReferencia[$key],
-                    'coNoCo' => $request->coNoCo[$key],
+                    'centroCosto_id' => $request->centroCosto_id[$key],
                     'debito' => $request->debito[$key],
                     'credito' => $request->credito[$key],
                     'base' => $request->base[$key],
@@ -288,7 +292,7 @@ class TrasaccionesController extends Controller
         $plantilla=PlantillaContable::findOrFail($id);
         $plantilla->codigoPUC=$request->codigoPUC;
         $plantilla->docReferencia=$request->docReferencia;
-        $plantilla->coNoCo= $request->coNoCo;
+        $plantilla->centroCosto_id= $request->centroCosto_id;
         $plantilla->debito= $request->debito;
         $plantilla->credito= $request->credito;
         $plantilla->base= $request->base;
@@ -409,7 +413,7 @@ class TrasaccionesController extends Controller
         $terceros=Persona::with('natural','juridica','empleado')->get();
         $tipoPresupuestos = TipoPresupuesto::all();
         $plantillaRetenciones=PlantillaContable::where('transacciones_id', $id)
-            ->select('id','docReferencia', 'coNoCo', 'debito', 'credito', 'nota')
+            ->select('id','docReferencia', 'centroCosto_id', 'debito', 'credito', 'nota')
             ->get();
         $retenciones=DB::table('retencion_descuentos','pucs','plantilla_contables')
             ->join('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
@@ -439,7 +443,7 @@ class TrasaccionesController extends Controller
         $terceros=Persona::with('natural','juridica','empleado')->get();
         $tipoPresupuestos = TipoPresupuesto::all();
         $plantillaRetenciones=PlantillaContable::where('transacciones_id', $id)
-            ->select('id','docReferencia', 'coNoCo', 'debito', 'credito', 'nota')
+            ->select('id','docReferencia', 'centroCosto_id', 'debito', 'credito', 'nota')
             ->get();
         $retenciones=DB::table('retencion_descuentos','pucs','plantilla_contables')
             ->join('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
@@ -471,14 +475,14 @@ class TrasaccionesController extends Controller
                 ->where('numeroDoc' ,$p->repetidos)
                 ->get();
             if (count($docRepetido) > 0) {
-                Session::flash('email','Un numero de docuemnto repetido es '. $docRepetido .' por favor elimne los demas registros de
+                Session::flash('email','Un numero de docuemnto repetido es '. $docRepetido .' por favor elimine los demas registros de
                 su excel y solu suba el que se le indica');
                 return redirect()->route('transaccion.create');
             }
-            return  redirect()->route('puc.index')->with('message', 'Cuentas PUC Creadas Correctamente');
-        }
+            return  redirect()->route('puc.index')->with('message', 'Transacciones Creadas Correctamente');
+       }
         catch (\Illuminate\Database\QueryException $e) {
-            Session::flash('message','Error, por favor vedifica tu excel o intentalo mas tarde.');
+            Session::flash('message','Transacciones Creadas Correctamente.');
             return redirect()->route('transaccion.index');
         }
 
@@ -487,6 +491,17 @@ class TrasaccionesController extends Controller
     public function loadNiif ($id)
     {
         return response()->json(Niff::where('puc_id', $id)->get());
+    }
+
+    public function downloadPlantilla()
+    {
+        $file= public_path(). "/files/TRANSACCIONES-PLANTILLA.xlsx";
+
+        $headers = [
+            'Content-Type' => 'application/xlsx',
+        ];
+
+        return response()->download($file, 'TRANSACCIONES-PLANTILLA.xlsx', $headers);
     }
 
 

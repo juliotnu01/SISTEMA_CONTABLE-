@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ConceptosCierres extends Model
 {
-    protected $fillable=['nombreConcepto','puc_id','cierres_id'];
+    protected $fillable=['nombreConcepto','puc_id','cierre_id'];
 
     public function puc() :BelongsTo
     {

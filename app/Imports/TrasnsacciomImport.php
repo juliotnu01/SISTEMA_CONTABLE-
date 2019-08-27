@@ -27,18 +27,17 @@ class TrasnsacciomImport implements ToCollection
             foreach ($rows as $row) {
                 $plantilla = Transacciones::create([
                     'numeroDoc' => $row[0],
-                    'totalDebito' => $row[4],
-                    'totalCredito' => $row[5],
-                    'diferencia' => $row[5]-$row[4],
+                    'totalDebito' => $row[3],
+                    'totalCredito' => $row[4],
+                    'diferencia' => $row[4]-$row[3],
                 ]);
                 //dd($row);
 
                 $plantilla->plantilaContable()->create([
                     'codigoPUC'=> $row[1],
                     'docReferencia'=> $row[2],
-                    'coNoCo'=> $row[3],
-                    'debito'=> $row[4],
-                    'credito'=> $row[5],
+                    'debito'=> $row[3],
+                    'credito'=> $row[4],
                     'base'=>0
                 ]);
             }

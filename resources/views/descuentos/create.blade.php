@@ -53,6 +53,20 @@
                                         <label for="">Valor Base</label>
                                         <input type="text"  class="form-control form-control-user"  id="base" name="base"  placeholder="0.00">
                                     </div>
+                                    <div class="col-md-8">
+                                        <label for="">Cuenta CGC</label>
+                                        <select  name= "puc_id" id="puc_id" class="select2 form-control custom-select" >
+                                            <option value="" >[Seleccione una Cuenta]</option>
+                                            @foreach($puc as $item)
+                                                {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled' }}
+                                                <option   {{ $style }} value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >
+                                                    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group" style="margin-top: 40px;">
                                             <label for="">Atomatico</label>
@@ -72,27 +86,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                &nbsp
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <label for="">Cuenta CGC</label>
-                                        <select  name= "puc_id" id="puc_id" class="select2 form-control custom-select" >
-                                            <option value="" >[Seleccione una Cuenta]</option>
-                                            @foreach($puc as $item)
-                                                {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled' }}
-                                                <option   {{ $style }} value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >
-                                                    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
                                 <br>
-
                                 <button class="btn btn-primary btn-user btn-block btnEnviar" type="submit">AGREGAR</button>
                             </div>
                             &nbsp
-                    
                     </form>
                 </div>
             </div>

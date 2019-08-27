@@ -18,11 +18,10 @@ class CreatePlantillaContablesTable extends Migration
 
 
             $table->string('docReferencia',20)->nullable();
-            $table->string('coNoCo',20)->nullable();
             $table->string('debito',20)->nullable();
             $table->string('credito',20)->nullable();
             $table->string('nota',200)->nullable();
-            $table->integer('codigoPUC')->nullable();
+            $table->string('codigoPUC',500)->nullable();
             $table->integer('codigoNIIIF')->nullable();
             $table->bigInteger('valorRetenido')->nullable();
             $table->bigInteger('base')->nullable();
@@ -31,10 +30,12 @@ class CreatePlantillaContablesTable extends Migration
             $table->integer('transacciones_id')->unsigned()->nullable();
             $table->integer('retecionesDescuentos_id')->unsigned()->nullable();
             $table->integer('puc_id')->unsigned()->nullable();
+            $table->integer('centroCosto_id')->unsigned()->nullable();
 
             $table->foreign('transacciones_id')->references('id')->on('transacciones')->onDelete('cascade');;
             $table->foreign('retecionesDescuentos_id')->references('id')->on('retencion_descuentos');
             $table->foreign('puc_id')->references('id')->on('pucs');
+            $table->foreign('centroCosto_id')->references('id')->on('sedes');
 
 
 

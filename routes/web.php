@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('personaEmpleado/{personaEmpleado}', 'PersonaEmpleadoController@update')->name('personaEmpleado.update')->middleware('permission:personaEmpleado.edit');
 
     //Route::get('personaEmpleado/{personaEmpleado}', 'PersonaEmpleadoController@show')->name('personaEmpleado.show')->middleware('permission:personaEmpleado.show');
-    
+
     Route::delete('personaEmpleado/{personaEmpleado}', 'PersonaEmpleadoController@destroy')->name('personaEmpleado.destroy')->middleware('permission:personaEmpleado.destroy');
 
     Route::get('personaEmpleado/{personaEmpleado}/edit', 'PersonaEmpleadoController@edit')->name('personaEmpleado.edit')->middleware('permission:personaEmpleado.edit');
@@ -85,16 +85,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('ciudades/{id}', 'CiudadesController@loadCiudades')->name('loadCiudades');
 
     Route::get('loadEmpleo/{id}', 'PersonaEmpleadoController@loadEmpleo')->name('loadEmpleo');
-    
+
     //Consorciados
     Route::get('consorciados', 'ConsorciosUnionesTemporalesContoroller@index')->name('consorciados.index')->middleware('permission:consorciados.index');
-    
+
     Route::get('consorciados/create', 'ConsorciosUnionesTemporalesContoroller@create')->name('consorciados.create')->middleware('permission:consorciados.create');
-    
+
     Route::post('consorciados/store', 'ConsorciosUnionesTemporalesContoroller@store')->name('consorciados.store')->middleware('permission:consorciados.create');
-    
+
     Route::put('consorciados/{consorciados}', 'ConsorciosUnionesTemporalesContoroller@update')->name('consorciados.update')->middleware('permission:consorciados.edit');
-    
+
     Route::get('consorciados/{consorciados}', 'ConsorciosUnionesTemporalesContoroller@show')->name('consorciados.show')->middleware('permission:consorciados.show');
 
     Route::get('consorciados/{consorciados}/edit', 'ConsorciosUnionesTemporalesContoroller@edit')->name('consorciados.edit')->middleware('permission:consorciados.edit');
@@ -107,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('ciudades/{id}', 'CiudadesController@loadCiudades')->name('loadCiudades');
-    
+
     Route::get('codigoCiiu/{id}', 'ActividadesCiiuController@loadActividades')->name('codigoCiiu');
 
 
@@ -172,7 +172,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('clasePersona/{clasePersona}/edit', 'ClasePersonaController@edit')->name('clasePersona.edit')->middleware('permission:clasePersona.edit');
 
-    /**CODIGO EMPLEO */    
+    /**CODIGO EMPLEO */
     Route::get('codigoEmpleo', 'CodigoEmpleoController@index')->name('codigoEmpleo.index')->middleware('permission:codigoEmpleo.index');
 
     Route::get('codigoEmpleo/create', 'CodigoEmpleoController@create')->name('codigoEmpleo.create')->middleware('permission:codigoEmpleo.create');
@@ -202,9 +202,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('nivelEmpleo/{nivelEmpleo}', 'NivelEmpleoController@destroy')->name('nivelEmpleo.destroy')->middleware('permission:nivelEmpleo.destroy');
 
     Route::get('nivelEmpleo/{nivelEmpleo}/edit', 'NivelEmpleoController@edit')->name('nivelEmpleo.edit')->middleware('permission:nivelEmpleo.edit');
- 
-    
-    /**REGIMEN TRIBUTARIO */    
+
+
+    /**REGIMEN TRIBUTARIO */
     Route::get('regimenTributario', 'RegimenTributarioController@index')->name('regimenTributario.index')->middleware('permission:regimenTributario.index');
 
     Route::get('regimenTributario/create', 'RegimenTributarioController@create')->name('regimenTributario.create')->middleware('permission:regimenTributario.create');
@@ -218,8 +218,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('regimenTributario/{regimenTributario}', 'RegimenTributarioController@destroy')->name('regimenTributario.destroy')->middleware('permission:regimenTributario.destroy');
 
     Route::get('regimenTributario/{regimenTributario}/edit', 'RegimenTributarioController@edit')->name('regimenTributario.edit')->middleware('permission:regimenTributario.edit');
- 
-    /**TIPO VINCULACION */    
+
+    /**TIPO VINCULACION */
     Route::get('tipoVinculacion', 'TipoVinculacionController@index')->name('tipoVinculacion.index')->middleware('permission:tipoVinculacion.index');
 
     Route::get('tipoVinculacion/create', 'TipoVinculacionController@create')->name('tipoVinculacion.create')->middleware('permission:tipoVinculacion.create');
@@ -233,8 +233,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('tipoVinculacion/{tipoVinculacion}', 'TipoVinculacionController@destroy')->name('tipoVinculacion.destroy')->middleware('permission:tipoVinculacion.destroy');
 
     Route::get('tipoVinculacion/{tipoVinculacion}/edit', 'TipoVinculacionController@edit')->name('tipoVinculacion.edit')->middleware('permission:tipoVinculacion.edit');
- 
-    /**UNIDAD EJECUTAR*/    
+
+    /**UNIDAD EJECUTAR*/
     Route::get('unidadEjecutar', 'EjecutaraController@index')->name('unidadEjecutar.index')->middleware('permission:unidadEjecutar.index');
 
     Route::get('unidadEjecutar/create', 'EjecutaraController@create')->name('unidadEjecutar.create')->middleware('permission:unidadEjecutar.create');
@@ -352,7 +352,7 @@ Route::middleware(['auth'])->group(function () {
 
     /**NIFF*/
     Route::get('niff', 'NiffController@index')->name('niff.index')->middleware('permission:niff.index');
-    
+
     Route::put('niff/{niff}', 'NiffController@update')->name('niff.update')->middleware('permission:niff.edit');
 
     Route::delete('niff/{niff}', 'NiffController@destroy')->name('niff.destroy')->middleware('permission:niff.destroy');
@@ -409,38 +409,25 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('transaccion/{transaccion}', 'TrasaccionesController@update')->name('transaccion.update')->middleware('permission:transaccion.edit');
 
-    Route::put('transaccionPlantilla/{transaccion}', 'TrasaccionesController@updatePlantilla')->name('transaccion.updatePlantilla')->middleware('permission:transaccion.updatePlantilla');
-
     Route::delete('transaccion/{transaccion}', 'TrasaccionesController@destroy')->name('transaccion.destroy')->middleware('permission:transaccion.destroy');
-
-    Route::get('transaccion/{id}', 'TipoPresupuestoController@loadTipoPresupuesto')->name('loadTipoPresupuesto');
-
-    //Route::delete('transaccion/{planConta}', 'TrasaccionesController@destroy')->name('transaccion.destroy')->middleware('permission:planConta.destroy');
-
-    Route::delete('transaccionPlantilla/{id}', 'TrasaccionesController@destroyPlantilla')->name('transaccion.destroyPlantilla')->middleware('permission:transaccion.destroyPlantilla');
-
-    Route::get('transaccion/{transaccion}/edit', 'TrasaccionesController@edit')->name('transaccion.edit')->middleware('permission:transaccion.edit');
-
-    Route::get('transaccion/{planConta}/print', 'TrasaccionesController@printTrans')->name('transaccion.printTrans')->middleware('permission:transaccion.printTrans');
-
-    Route::get('transaccion/{transaccion}/duplicate', 'TrasaccionesController@duplicate')->name('transaccion.duplicate')->middleware('permission:transaccion.duplicate');
-    //Route::get('transaccion/{transaccion}/duplicate', 'TrasaccionesController@duplicate')->name('transaccion.duplicate')->middleware('permission:transaccion.duplicate');
-
-    //Route::post('transaccion/{transaccion}/duplicate', 'TrasaccionesController@duplicate')->name('transaccion.duplicate')->middleware('permission:transaccion.duplicate');
-
-    Route::get('transaccion/{transaccion}/editPlantilla', 'TrasaccionesController@editPlantilla')->name('transaccion.editPlantilla')->middleware('permission:transaccion.editPlantilla');
-
-    Route::put('transaccion/{transaccion}', 'TrasaccionesController@update')->name('transaccion.update')->middleware('permission:transaccion.edit');
 
     Route::post('transaccion/import', 'TrasaccionesController@import')->name('transaccion.import')->middleware('permission:transaccion.import');
 
+    Route::get('transaccion/{transaccion}/duplicate', 'TrasaccionesController@duplicate')->name('transaccion.duplicate')->middleware('permission:transaccion.duplicate');
+
+    Route::get('transaccion/{planConta}/print', 'TrasaccionesController@printTrans')->name('transaccion.printTrans')->middleware('permission:transaccion.printTrans');
+
+    Route::put('transaccionPlantilla/{transaccion}', 'TrasaccionesController@updatePlantilla')->name('transaccion.updatePlantilla')->middleware('permission:transaccion.updatePlantilla');
+
+    Route::get('transaccion/{id}', 'TipoPresupuestoController@loadTipoPresupuesto')->name('loadTipoPresupuesto');
+
+    Route::delete('transaccionPlantilla/{id}', 'TrasaccionesController@destroyPlantilla')->name('transaccion.destroyPlantilla')->middleware('permission:transaccion.destroyPlantilla');
+
+    Route::get('transaccionPlantilla/plantilla', 'TrasaccionesController@downloadPlantilla')->name('transaccion.plantilla')->middleware('permission:transaccion.plantilla');
+
+    Route::put('transaccion/{transaccion}', 'TrasaccionesController@update')->name('transaccion.update')->middleware('permission:transaccion.edit');
+
     Route::get('transaccion/loadNiif/{id}', 'TrasaccionesController@loadNiif')->name('transaccion.loadNiif');
-
-    Route::get('transaccion/plantilla', 'planCuentasPUCController@downloadPlantillatrans')->name('transaccion.plantilla')->middleware('permission:transaccion.plantilla');
-
-    //Route::get('transaccion/plantilla', 'TrasaccionesController@downloadPlantilla')->name('transaccion.plantilla')->middleware('permission:transaccion.plantilla');
-
-
 
     /**DESCUENTOS*/
     Route::get('descuentos', 'DescuentoController@index')->name('descuentos.index')->middleware('permission:descuentos.index');

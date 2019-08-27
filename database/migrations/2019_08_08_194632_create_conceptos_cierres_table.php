@@ -22,7 +22,7 @@ class CreateConceptosCierresTable extends Migration
             $table->integer('cierre_id')->nullable()->unsigned();
 
             $table->foreign('puc_id')->references('id')->on('pucs');
-            $table->foreign('cierres_id')->references('id')->on('cierres');
+            $table->foreign('cierre_id')->references('id')->on('cierres');
 
             $table->timestamps();
         });
