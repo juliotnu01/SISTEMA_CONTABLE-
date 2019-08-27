@@ -220,18 +220,20 @@ class TrasaccionesController extends Controller
             ->where('plantilla_contables.transacciones_id','=',$id)
             ->get();
         //dd($plantillaRetenciones);
-        $retenciones=DB::table('retencion_descuentos','pucs','plantilla_contables')
-            ->join('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
-            //->join('plantilla_contables', 'plantilla_contables.retencion_id', '=', 'plantilla_contables.id')
-            ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.iva'
-                ,'retencion_descuentos.concepto','retencion_descuentos.porcentaje','pucs.codigoCuenta','pucs.nombreCuenta')
+        $retenciones=DB::table('retencion_descuentos')
+            ->leftJoin('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
+            ->leftJoin('niffs', 'niffs.puc_id', '=', 'pucs.id')
+            ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.tipoRetencion','retencion_descuentos.iva'
+                ,'retencion_descuentos.concepto','retencion_descuentos.porcentaje','pucs.codigoCuenta','pucs.nombreCuenta','niffs.codigoNiff')
             ->where('retencion_descuentos.RetoDes','=',null)
             ->get();
-        $descuentos=DB::table('retencion_descuentos','pucs')
-            ->join('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
-            //->join('niffs', 'niffs.puc_id', '=', 'niffs.id')
+        $descuentos= DB::table('retencion_descuentos','pucs')
+            ->leftJoin('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
+            ->leftJoin('niffs', 'niffs.puc_id', '=', 'pucs.id')
             ->select('retencion_descuentos.id','retencion_descuentos.base','retencion_descuentos.concepto',
-                'retencion_descuentos.porcentaje','pucs.codigoCuenta','pucs.nombreCuenta')
+                'retencion_descuentos.porcentaje','pucs.codigoCuenta','pucs.nombreCuenta','niffs.codigoNiff','niffs.puc_id')
+            ->where('niffs.puc_id','=',null)
+            ->orWhere('niffs.puc_id','!=',null)
             ->where('retencion_descuentos.RetoDes','=','DESCUENTO')
             ->get();
         //dd($descuentos);
@@ -503,6 +505,5 @@ class TrasaccionesController extends Controller
 
         return response()->download($file, 'TRANSACCIONES-PLANTILLA.xlsx', $headers);
     }
-
 
 }
