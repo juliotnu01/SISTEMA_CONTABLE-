@@ -66,7 +66,7 @@
                                         <div class="form-group">
                                             <label for="">Tipo de Cuenta</label>
                                             <select  onChange="tipoCuentas()" name= "tipoCuenta_id" id="tipoCuenta" class="form-control ">
-                                                <option value="999">[Seleccione una opción]</option>
+                                                <option value="">[Seleccione una opción]</option>
                                                 @foreach($tipoCuentas as $item)
                                                     <option value="{{$item->id}}" {{ old('tipoCuenta_id') == $item->id ? 'selected' : '' }}>{{$item->nombre}}</option>
                                                 @endforeach
@@ -337,7 +337,7 @@
                     nivel:{
                         digits:"ERROR",
                     },
-                    tipoCuenta_id{
+                    tipoCuenta_id:{
                         required: "Este campo es Obligatorio",
                     }
                 }

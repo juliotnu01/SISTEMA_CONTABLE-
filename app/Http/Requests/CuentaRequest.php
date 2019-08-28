@@ -16,22 +16,17 @@ class CuentaRequest extends FormRequest
 
     public function rules()
     {
-        //$this->cuenta = Puc::where([
-           // 'codigoCuenta' => $this->codigoSuperior.$this->codigoCuenta])->first();
-        //if($this->cuenta){
             return [
-                'codigoCuenta' => 'unique:pucs'
+                'codigoCuenta' => 'unique:pucs',
+                'CuentaCoNC' => 'required',
             ];
-       // }
-
-       // return [];
     }
 
     public function messages()
     {
-        //$cuentaExistente = $this->cuenta ? $this->cuenta->nombreCuenta : '';
         return [
-            'codigoCuenta.unique' => 'El codigo de la cuenta ya esta asignada'
+            'codigoCuenta.unique' => 'El codigo de la cuenta ya esta asignada',
+            'CuentaCoNC.required' => 'El tipo de la cuenta es obligatorio'
         ];
     }
 }

@@ -15,9 +15,9 @@ function municipios() {
 
 function tipoPresupuesto() {
     var presupuesto = $("#comprobante_id").val();
-    if (presupuesto != -1) {
+    if (presupuesto != '') {
         $.getJSON(route('loadTipoPresupuesto', {id: presupuesto}), function (data) {
-            var html_selct = '<option value="-1">[Seleccione una Opción]</option>';
+            var html_selct = '<option value="">[Seleccione una Opción]</option>';
             for (var i = 0; i < data.length; ++i) {
                 var activarDescuento = data[i].activarDescuentos;
                 html_selct += '<option value="' + data[i].id + '">' + data[i].nombrePresupuesto + '</option>';
