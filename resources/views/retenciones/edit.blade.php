@@ -85,10 +85,12 @@
                                     <div class="col-md-9">
                                         <label for="">Cuenta CGC</label>
                                         <select  name= "puc_id" id="puc_id" class="select2 form-control custom-select" >
+                                            <option value="" >[Seleccione una Cuenta]</option>
                                             @foreach($puc as $item)
-                                                {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled' }}
-                                                <option  {{ $style }}  {{ old('puc_id', $retencion->puc_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">
+                                                {{ $style = $item->tipoCuenta_id == 1 ? '' :  'disabled="disabled"' }}
+                                                <option   {{ $style }} {{old('puc_id', $retencion->puc_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">
                                                     {{$item->codigoCuenta}} - {{$item->nombreCuenta}}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>

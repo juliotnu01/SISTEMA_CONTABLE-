@@ -622,7 +622,7 @@
                     '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
                     '<option value="">[Seleccione una Cuenta]</option>'+
                     '    @foreach($puc as $item)'+
-                    '    {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled' }}'+
+                    '    {{ $style = $item->tipoCuenta_id == 1 ? '' : 'disabled="disabled" }}'+
                     '   <option  {{ $style }}  {{ old('puc_id', $item->puc_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">'+
                     '    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}'+
                     '            @endforeach'+

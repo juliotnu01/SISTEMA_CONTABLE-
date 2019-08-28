@@ -57,11 +57,11 @@
                                         <select  name= "puc_id" id="puc_id" class="select2 form-control custom-select" >
                                             <option value="" >[Seleccione una Cuenta]</option>
                                             @foreach($puc as $item)
-                                                {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled' }}
-                                                <option  {{ $style }}  {{ old('puc_id', $descuento->puc_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">
+                                                {{ $style = $item->tipoCuenta_id == 1 ? '' :  'disabled="disabled"' }}
+                                                <option   {{ $style }} {{old('puc_id', $descuento->puc_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">
                                                     {{$item->codigoCuenta}} - {{$item->nombreCuenta}}
+                                                </option>
                                             @endforeach
-
                                         </select>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                         <div class="form-group" style="margin-top: 40px;">
                                             <label for="">Automatico</label>
                                             <label class="radio-">
-                                                <input type="radio"  id="automatico"  name="automatico" value="SI"  {{ $descuento->automatico=="SI" ? 'checked=':''. old('automatico')=="SI" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
+                                                <input  type="radio"  id="automatico"  name="automatico" value="SI"  {{ $descuento->automatico=="SI" ? 'checked=':''. old('automatico')=="SI" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
                                             <label class="radio-">
                                                 <input type="radio" id="automatico" name="automatico"  value="NO" {{ $descuento->automatico=="NO" ? 'checked=':''. old('automatico')=="NO" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
                                         </div>

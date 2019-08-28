@@ -76,7 +76,7 @@
                                 <td>
                                     <label for="">Año</label>
                                     <input type="text" class="form-control form-control-user" id="anio" name="anio"  placeholder="Año...">
-                                    <input type="hidden" name="cierre_id[]"/>
+                                    <input type="hidden" name="cierres_id[]"/>
                                 </td>
                             </tbody>
                         </table>
@@ -115,7 +115,7 @@
             '  <option value="Utilidades">Utilidades</option>' +
             '  <option value="Perdida">Perdida</option>' +
             '</select></td>' +
-            '<input type="hidden" name="cierre_id[]"/>' +
+            '<input type="hidden" name="cierres_id[]"/>' +
             '<td>'+'' +
             '<select name= "puc_id[]" id="puc_id" class="select2 form-control custom-select">'+
             '<option value="" >[Seleccione una Cuenta]</option>'+

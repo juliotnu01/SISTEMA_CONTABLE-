@@ -11,6 +11,6 @@ class Cierres extends Model
 
     public function cieresConcepto() :HasMany
     {
-        return $this->hasMany(ConceptosCierres::class);
+        return $this->hasMany(ConceptosCierres::class, 'cierres_id');
     }
 }

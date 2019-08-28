@@ -21,7 +21,7 @@
                             <div class="col-md-6">
                                 <label for="">Año</label>
                                 <input type="text" class="form-control form-control-user" id="anio" name="anio"  placeholder="Año...">
-                                <input type="hidden" name="cierre_id[]"/>
+                                <input type="hidden" name="cierres_id[]"/>
                             </div>
                         </div>
                         &nbsp
@@ -76,16 +76,16 @@
                 '  <option value="Utilidad">Utilidad</option>' +
                 '  <option value="Pérdida">Pérdida</option>' +
                 '</select></td>' +
-                '<input type="hidden" name="cierre_id[]"/>' +
+                '<input type="hidden" name="cierres_id[]"/>' +
                 '<td>' +
-                '<select  name="puc_id[]" id="puc_id" class="select2 form-control custom-select" style="width: 100%; height:36px;" >'+
+                '<select style="width: 100%; height:36px;"  onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
                 '<option value="">[Seleccione una Cuenta]</option>'+
                 '    @foreach($puc as $item)'+
-                '        {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled="disabled"' }}'+
-                '       <option {{ $style }} value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >'+
-                '       {{$item->codigoCuenta}} - {{$item->nombreCuenta}}'+
-                '       </option>'+
-                '   @endforeach'+
+                '    {{ $style = $item->tipoCuenta_id == 1 ? '' :  'disabled="disabled"' }}'+
+                '<option   {{ $style }} value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >'+
+                '    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}'+
+                '</option>'+
+                '@endforeach'+
                 '</select></td>'+
                 '</tr>');
 
