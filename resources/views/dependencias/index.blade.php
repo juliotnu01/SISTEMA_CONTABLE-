@@ -40,9 +40,6 @@
                                 <td>{{$item->nombre}}</td>
                                 <td>
                                      @can('dependecias.index')
-                                        <a href="{{route('dependecias.show',$item->id)}}"><i class="fa fa-eye"></i></a>
-                                     @endcan
-                                     @can('dependecias.index')
                                         <a href="{{route('dependecias.edit',$item->id)}}"><i class="fa fa-edit"></i><a>
                                      @endcan
                                 </td>

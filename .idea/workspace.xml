@@ -7,25 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bffc6f30-8596-46b3-951e-3506738c421b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Cierres.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cierres.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ConceptosCierres.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ConceptosCierres.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CierresController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CierresController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cierres/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cierres/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cierres/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cierres/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cierres/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cierres/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/descuentos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/descuentos/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/descuentos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/descuentos/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/retenciones/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/retenciones/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/retenciones/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/retenciones/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/sedes/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sedes/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/sedes/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sedes/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/subSede/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/subSede/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/subSede/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/subSede/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/transacciones/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transacciones/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/transacciones/duplicar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transacciones/duplicar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/transacciones/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transacciones/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dependencias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dependencias/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,19 +43,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/cierres/create.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="89" column="25" lean-forward="true" selection-start-line="69" selection-start-column="15" selection-end-line="89" selection-end-column="25" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/resources/views/dependencias/edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/cierres/edit.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/dependencias/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="139" column="25" selection-start-line="139" selection-start-column="25" selection-end-line="139" selection-end-column="25" />
+            <state relative-caret-position="461">
+              <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -159,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CuentaInstitucionalController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_22_172206_create_pucs_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_05_153709_create_retencion_descuentos_table.php" />
@@ -210,6 +187,7 @@
         <option value="$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cierres/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cierres/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/dependencias/index.blade.php" />
       </list>
     </option>
   </component>
@@ -370,7 +348,7 @@
               <item name="contable" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="cierres" type="462c0819:PsiDirectoryNode" />
+              <item name="dependencias" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -734,12 +712,12 @@
       <workItem from="1566916091368" duration="9076000" />
       <workItem from="1566933927179" duration="12345000" />
       <workItem from="1566953117589" duration="1758000" />
-      <workItem from="1567002246140" duration="3562000" />
+      <workItem from="1567002246140" duration="3850000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1854911000" />
+    <option name="totallyTimeSpent" value="1855199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1885" y="-48" width="1856" height="1022" extended-state="0" />
@@ -761,7 +739,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5019455" side_tool="true" weight="0.21621622" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3277405" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="11" weight="0.32921347" />
-      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="12" sideWeight="0.49805447" weight="0.33427763" />
+      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="12" sideWeight="0.49805447" weight="0.33408323" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24958217" />
@@ -808,14 +786,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Desktop/planCuentasPUCController.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="34" column="68" lean-forward="true" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/index.blade.php" />
     <entry file="file://$USER_HOME$/Desktop/create.blade.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php">
@@ -1151,17 +1121,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/cierres/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/cierres/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
+          <caret line="135" column="62" selection-start-line="135" selection-start-column="62" selection-end-line="135" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cierres/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
           <caret line="89" column="25" lean-forward="true" selection-start-line="69" selection-start-column="15" selection-end-line="89" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/cierres/edit.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/dependencias/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dependencias/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="139" column="25" selection-start-line="139" selection-start-column="25" selection-end-line="139" selection-end-column="25" />
+        <state relative-caret-position="461">
+          <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
         </state>
       </provider>
     </entry>
