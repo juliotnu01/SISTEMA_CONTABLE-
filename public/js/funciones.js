@@ -35,6 +35,8 @@ function tipoPresupuesto() {
     }
 }
 
+
+
 function niif() {
     var puc = $(".puc_idD").val();
     if (puc) {

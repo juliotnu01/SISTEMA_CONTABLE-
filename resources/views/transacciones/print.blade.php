@@ -13,6 +13,8 @@
             margin: 0;
             padding: 0.8rem !important;
             color: #929497;
+            margin-right: 2cm;
+            margin-left: 3cm;
         }
         table{
             padding: 0;
@@ -150,11 +152,11 @@
                 <td>
                     <table class="bill-table text-center">
                         <tr>
-                            <td  class=""><h1>{{$item->comprobante->nombreSoporte}}</h1></td>
+                            <td  class=""><h3>{{$item->comprobante->nombreSoporte}}</h3></td>
                         </tr>
                         <tr class="noPadding">
                             <td  class="text-center" colspan="2">
-                                <h3>{{$item->comprobante->abreviatura .''.$item->comprobante->id }}</h3>
+                                <h1>{{$item->comprobante->abreviatura .''.$item->comprobante->id }}</h1>
                             </td>
                         </tr>
                     </table>
@@ -191,9 +193,9 @@
         </tr>
     </table>
     <hr class="w80  hr">
-    <table class="fz11 clientDates" style="width: 95%; margin: auto;">
+    <table>
         <tr>
-            <td  class="normal"><h3>MOVIMIENTO CONTABLE</h3></td>
+            <th  class="normal"><h3>MOVIMIENTO CONTABLE</h3></th>
         </tr>
     </table>
     <table class="collapse text-center" style="width: 95%; margin: auto;">
@@ -206,28 +208,28 @@
         </thead>
         <tbody>
         @foreach($retenciones as $item)
-            <tr  class="info-products">
+            <tr class="bg-blue">
                 @if ($item->puc_id)
-                    <td> <span>{{$item->codigoCuenta}}</span> </td>
+                <th  style="border: solid; color: #000; background-color: #F2F8F9;"> <span>{{$item->codigoCuenta}}-{{$item->nombreCuenta}}</span></th>
                 @else
-                    <td> <span>{{$item->codigoPUC}}</span> </td>
+                <th  style="border: solid; color: #000; background-color: #F2F8F9;"> <span>{{$item->codigoPUC}}</span> </th>
                 @endif
-                <td class="precio-day-container pt-0.5"><span>{{$item->debito}}</span></td>
-                <td class="precio-total-container"><span>{{$item->credito}} </span></td>
+                <th  style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->debito}}</span></th>
+                <th  style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->credito}} </span></th>
             </tr>
         @endforeach
         </tbody>
         <tfoot>
         @foreach($totales as $item)
             <tr>
-                <td> <span>Sumas Totales</span> </td>
-                <td class="precio-total-container"><span>{{$item->totalDebito}} </span></td>
-                <td class="precio-day-container pt-0.5"><span>{{$item->totalCredito}}</span></td>
+                <th> <span>Sumas Totales</span> </th>
+                <th class="precio-total-container"><span>{{$item->totalDebito}} </span></th>
+                <th class="precio-day-container pt-0.5"><span>{{$item->totalCredito}}</span></th>
             </tr>
         @endforeach
         </tfoot>
     </table>
-    <table class="fz11 clientDates" style="width: 95%; margin: auto;">
+    <table  style="width: 95%; margin: auto;">
         <tr>
             <td  class="normal"><h3>OBSERVACIONES</h3></td>
         </tr>
@@ -249,10 +251,10 @@
         <tbody>
         @foreach($movimientoContableDos as $item)
             <tr class="info-products">
-                <td class="precio-day-container pt-0.5"><span>{{$item->nit}}</span></td>
-                <td class="precio-day-container pt-0.5"><span>{{$item->numeroCuenta}}</span></td>
-                <td class="precio-total-container"><span>{{$item->docReferencia}} </span></td>
-                <td class="precio-total-container"><span>{{$item->totalCredito}} </span></td>
+                <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->nit}}</span></th>
+                <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->numeroCuenta}}</span></th>
+                <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->docReferencia}} </span></th>
+                <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->totalCredito}} </span></th>
             </tr>
         @endforeach
         </tbody>
@@ -262,15 +264,15 @@
             <td  class="normal"><h3>DESCUENTOS, DEDUCCIONES, RETENCIONES PRO IMPUESTOS, TASAS Y CONTRIBUCIONES</h3></td>
         </tr>
     </table>
-    <table class="fz11 clientDates" style="width: 100%; margin: auto;">
+    <table  style="width: 100%; margin: auto;">
         <tr>
             <td>
-                <table >
+                <table>
                     @foreach($desRet as $item)
                         <tr class="info-products">
-                            <td class="precio-day-container pt-0.5"> <span>Descuento </span> {{$item->id}} </td>
-                            <td class="precio-day-container pt-0.5">{{$item->nombreSoporte }}</td>
-                            <td class="precio-day-container pt-0.5"> <span class="valorRetenido">{{$item->valorRetenido}}</span> </td>
+                            <th style="border: solid; color: #000; background-color: #F2F8F9;"> <span>Descuento </span> {{$item->id}} </th>
+                            <th style="border: solid; color: #000; background-color: #F2F8F9;">{{$item->nombreSoporte }}</th>
+                            <th style="border: solid; color: #000; background-color: #F2F8F9;"> <span class="valorRetenido">{{$item->valorRetenido}}</span> </th>
                         </tr>
                     @endforeach
                     <td class="precio-day-container "></td>

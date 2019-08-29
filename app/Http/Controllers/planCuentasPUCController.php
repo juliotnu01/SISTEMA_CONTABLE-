@@ -248,4 +248,8 @@ class planCuentasPUCController extends Controller
         return response()->download($file, 'PUC-PLANTILLA.xlsx', $headers);
     }
 
+    public function pucLoad()
+    {
+        return response()->json(Puc::select('id','codigoCuenta', 'nombreCuenta', 'tipoCuenta_id')->get());
+    }
 }

@@ -625,19 +625,25 @@
                 var sel3 = $(this).parent().parent().find('.transacciones_id').val();
                 //alert(sel2)
 
+                $.ajax({
+                    type: 'GET',
+                    url: '/puc/loadPuc',
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        data.forEach(element=>{
+                            $('.puc_idD').append($('<option>',{id:element.puc, value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
+                        });
 
+                    },error:function(){
+                        console.log(data);
+                    }
+                });
                 $('#ProSelected').append('<tr class="active">'+
                     '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
                     '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
                     '<td>' +
-                    '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
-                    '<option value="">[Seleccione una Cuenta]</option>'+
-                    '    @foreach($puc as $item)'+
-                    '    {{ $style = $item->tipoCuenta_id == 1 ? '' :  'disabled="disabled"' }}'+
-                    '<option   {{ $style }} value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >'+
-                    '    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}'+
-                    '</option>'+
-                    '@endforeach'+
+                    '<select onchange="niif()" style="width: 28pc;" name="puc_id[]" id="puc_id" class="selectPuc puc_idD form-control custom-select puc_id">'+
                     '</select></td>'+
                     '<td><input  type="text" class="form-control " style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
                     '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
@@ -660,6 +666,10 @@
                     '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido"/></td>' +
                     '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
                     '</tr>');
+
+                $('.selectPuc').select2({
+
+                });
                 $('.debitos').keyup(function(){
                     let inps = $('.debitos');
                     let disabled = false;

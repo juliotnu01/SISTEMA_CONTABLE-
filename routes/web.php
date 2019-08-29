@@ -429,6 +429,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('transaccion/loadNiif/{id}', 'TrasaccionesController@loadNiif')->name('transaccion.loadNiif');
 
+    Route::get('puc/loadPuc', 'planCuentasPUCController@pucLoad')->name('puc.pucLoad');
+
     /**DESCUENTOS*/
     Route::get('descuentos', 'DescuentoController@index')->name('descuentos.index')->middleware('permission:descuentos.index');
 

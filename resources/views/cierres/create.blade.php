@@ -66,6 +66,22 @@
             }
             console.log(i)
 
+            $.ajax({
+                type: 'GET',
+                url: '/puc/loadPuc',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    data.forEach(element=>{
+                        var tipoCuenta=(element.tipoCuenta_id);
+                        $('.puc_idD').append($('<option>',{id:element.puc, value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
+                    });
+
+                },error:function(){
+                    console.log(data);
+                }
+            });
+
             $('#concepto').append(
                 '<tr class="active">' +
                 '<td>'+
@@ -78,18 +94,11 @@
                 '</select></td>' +
                 '<input type="hidden" name="cierres_id[]"/>' +
                 '<td>' +
-                '<select style="width: 100%; height:36px;"  onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
-                '<option value="">[Seleccione una Cuenta]</option>'+
-                '    @foreach($puc as $item)'+
-                '    {{ $style = $item->tipoCuenta_id == 1 ? '' :  'disabled="disabled"' }}'+
-                '<option   {{ $style }} value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >'+
-                '    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}'+
-                '</option>'+
-                '@endforeach'+
+                '<select style="width: 60pc;" name="puc_id[]" id="puc_id" class="selectPuc puc_idD select2 form-control custom-select puc_id">'+
                 '</select></td>'+
                 '</tr>');
 
-
+            $('.selectPuc').select2();
         });
     </script>
 

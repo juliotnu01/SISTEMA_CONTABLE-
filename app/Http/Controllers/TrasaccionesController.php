@@ -61,7 +61,7 @@ class TrasaccionesController extends Controller
         $comprobante=Comprobante::select('id','abreviatura', 'nombreSoporte','activarDescuentos')
                                 ->where('estado','=','SI')
                                 ->get();
-        $puc=Puc::all();
+        $puc=Puc::select('id','codigoCuenta', 'nombreCuenta', 'tipoCuenta_id')->get();
         $niif=Niff::all();
         $centroCosto=Sede::all();
         $numDocs=Transacciones::select('numeroDoc','created_at')->get();
@@ -364,7 +364,7 @@ class TrasaccionesController extends Controller
             ->leftJoin('pucs', 'plantilla_contables.puc_id', '=', 'pucs.id')
             ->select('plantilla_contables.id','plantilla_contables.debito','plantilla_contables.credito',
                 'plantilla_contables.codigoPUC','transacciones.totalCredito','transacciones.totalDebito',
-                'plantilla_contables.puc_id','pucs.codigoCuenta')
+                'plantilla_contables.puc_id','pucs.codigoCuenta','pucs.nombreCuenta')
             ->where('transacciones.id','=',$id)
             ->get();
         //dd($retenciones);
@@ -505,6 +505,13 @@ class TrasaccionesController extends Controller
         ];
 
         return response()->download($file, 'TRANSACCIONES-PLANTILLA.xlsx', $headers);
+    }
+
+    public function pucLoad()
+    {
+        $data = Puc::select('id','codigoCuenta', 'nombreCuenta', 'tipoCuenta_id')->get();
+        dd($data);
+        return response()->json(Puc::all());
     }
 
 }

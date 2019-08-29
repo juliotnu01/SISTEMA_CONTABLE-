@@ -255,7 +255,7 @@
                             </div>
                             <br>
                             <h2>Plantilla Contable</h2>
-                            <button style="margin-top: -43px;float: right;" type="button" class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
+                            <button style="margin-top: -43px;float: right;" type="button"  class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
 
                             <div class="row"  id="numeroDocumentos">
                                 <div class="col-md-12" style="overflow:scroll;
@@ -431,274 +431,288 @@
             </div>
         </div>
     </div>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
-    <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
-    <script>
-        function sum(){
-            let total = 0;
-            $('.debitos').each(function() {
-                let value = parseFloat($(this).val());
-                if (!isNaN(value)) {
-                    total += value;
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
+
+<script>
+    function sum(){
+        let total = 0;
+        $('.debitos').each(function() {
+            let value = parseFloat($(this).val());
+            if (!isNaN(value)) {
+                total += value;
+            }
+
+        });
+
+        $('#totalDebito').val(total);
+    }
+    function sumC(){
+        let totalC = 0;
+        $('.credito').each(function() {
+            let value = parseFloat($(this).val());
+            if (!isNaN(value)) {
+                totalC += value;
+            }
+
+        });
+
+        $('#totalCredito').val(totalC);
+    }
+    function resta() {
+        var debito = $('#totalDebito').val();
+        var credito= $('#totalCredito').val();
+
+        var direfencia= debito-credito;
+        $('#direfencia').val(direfencia);
+
+    }
+    var productsId = [];
+    $(document).ready(function() {
+
+        $(document).on('change keyup','.base',function(){
+            var tr= $(this).parent().parent();//primer parent td segundo tr
+            var porcentaje=($(tr).find('#porcentaje').val());
+            var base=($(tr).find('#base').val());
+            console.log(porcentaje,base);
+            if(isNaN(porcentaje)){
+                porcentaje=0;
+            }
+            if(isNaN(base)){
+                base=0;
+            }
+            var total=parseFloat(porcentaje*base)/100;
+            $(tr).find('#valorRetenido').val(total.toFixed(2));
+        });
+
+        $('.agregarPlan').click(function(){
+
+            var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
+            var base =  $(this).parent().parent().find('.baseFinal').val();
+            var retenido =  $(this).parent().parent().find('.valorRetenido').val();
+            var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
+            var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
+            //alert(codigoPUC)
+
+            $('#ProSelected').append('<tr class="active">'+
+                '<input type="hidden" name="transacciones_id[]" />'+
+                '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
+                '<input type="hidden" name="puc_id[]"/>'+
+                '<td><input style="width: 28pc;" type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
+                '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>'+
+                '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
+                '<option value="999">[Seleccione un Opcion]</option>'+
+                '    @foreach($centroCosto as $item)'+
+                '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
+                '    @endforeach'+
+                '</select></td>' +
+                '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
+                '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>'+
+                '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>'+
+                '<td><input  type="text" class="form-control" style="width:100px;" name="codigoNIIIF[]" id="codigoNIIIF"  value="'+codigoNiff+'"/></td>' +
+                '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
+                '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido" value="'+retenido+'" /></td>' +
+                '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
+                '</tr>');
+
+            //var debito =  $(this).parent().parent().find('.baseFinal').val();
+            $('.debitos').keyup(function(){
+                let inps = $('.debitos');
+                let disabled = false;
+                let totalDebito=0;
+                for(i = 0; i < inps.length; i++) {
+                    let valor=$(this).val();
+                    totalDebito += valor;
+                    inp = inps[i].value;
+                    if(inp > 0){
+                        disabled = true;
+                    }
+                }
+                // Habilitar y deshabilitar el input
+                if(disabled == true){
+                    $(this).parent().parent().find('.credito').css('display','none');
+                    $(this).css('display','block')
+                }
+                else{
+                    $(this).parent().parent().find('.credito').css('display','block');
+                    $(this).css('display','none')
                 }
 
+                sum();
+                resta();
             });
 
-            $('#totalDebito').val(total);
-        }
-        function sumC(){
-            let totalC = 0;
-            $('.credito').each(function() {
-                let value = parseFloat($(this).val());
-                if (!isNaN(value)) {
-                    totalC += value;
+            $('.credito').keyup(function(){
+                let inps = $('.credito');
+                let disabled = false;
+                for(i = 0; i < inps.length; i++) {
+                    inp = inps[i].value;
+                    if(inp > 0){
+                        disabled = true;
+                    }
                 }
-
-            });
-
-            $('#totalCredito').val(totalC);
-        }
-        function resta() {
-            var debito = $('#totalDebito').val();
-            var credito= $('#totalCredito').val();
-
-            var direfencia= debito-credito;
-            $('#direfencia').val(direfencia);
-
-        }
-        var productsId = [];
-        $(document).ready(function() {
-            $(document).on('change keyup','.base',function(){
-                var tr= $(this).parent().parent();//primer parent td segundo tr
-                var porcentaje=($(tr).find('#porcentaje').val());
-                var base=($(tr).find('#base').val());
-                console.log(porcentaje,base);
-                if(isNaN(porcentaje)){
-                    porcentaje=0;
+                // Habilitar y deshabilitar el boton #send
+                if(disabled == true){
+                    $(this).parent().parent().find('.debitos').css('display','none');
+                    $(this).css('display','block')
                 }
-                if(isNaN(base)){
-                    base=0;
+                else{
+                    $(this).parent().parent().find('.debitos').css('display','block');
+                    $(this).css('display','none')
                 }
-                var total=parseFloat(porcentaje*base)/100;
-                $(tr).find('#valorRetenido').val(total.toFixed(2));
-            });
-
-            $('.agregarPlan').click(function(){
-
-                var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
-                var base =  $(this).parent().parent().find('.baseFinal').val();
-                var retenido =  $(this).parent().parent().find('.valorRetenido').val();
-                var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
-                var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
-                //alert(codigoPUC)
-
-                $('#ProSelected').append('<tr class="active">'+
-                    '<input type="hidden" name="transacciones_id[]" />'+
-                    '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
-                    '<input type="hidden" name="puc_id[]"/>'+
-                    '<td><input style="width: 28pc;" type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>'+
-                    '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
-                    '<option value="999">[Seleccione un Opcion]</option>'+
-                    '    @foreach($centroCosto as $item)'+
-                    '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
-                    '    @endforeach'+
-                    '</select></td>' +
-                    '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
-                    '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>'+
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>'+
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="codigoNIIIF[]" id="codigoNIIIF"  value="'+codigoNiff+'"/></td>' +
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
-                    '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido" value="'+retenido+'" /></td>' +
-                    '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
-                    '</tr>');
-
-                //var debito =  $(this).parent().parent().find('.baseFinal').val();
-                $('.debitos').keyup(function(){
-                    let inps = $('.debitos');
-                    let disabled = false;
-                    let totalDebito=0;
-                    for(i = 0; i < inps.length; i++) {
-                        let valor=$(this).val();
-                        totalDebito += valor;
-                        inp = inps[i].value;
-                        if(inp > 0){
-                            disabled = true;
-                        }
-                    }
-                    // Habilitar y deshabilitar el input
-                    if(disabled == true){
-                        $(this).parent().parent().find('.credito').css('display','none');
-                        $(this).css('display','block')
-                    }
-                    else{
-                        $(this).parent().parent().find('.credito').css('display','block');
-                        $(this).css('display','none')
-                    }
-
-                    sum();
-                    resta();
-                });
-
-                $('.credito').keyup(function(){
-                    let inps = $('.credito');
-                    let disabled = false;
-                    for(i = 0; i < inps.length; i++) {
-                        inp = inps[i].value;
-                        if(inp > 0){
-                            disabled = true;
-                        }
-                    }
-                    // Habilitar y deshabilitar el boton #send
-                    if(disabled == true){
-                        $(this).parent().parent().find('.debitos').css('display','none');
-                        $(this).css('display','block')
-                    }
-                    else{
-                        $(this).parent().parent().find('.debitos').css('display','block');
-                        $(this).css('display','none')
-                    }
-                    sumC();
-                    resta();
-                });
-
-                $(function () {
-                    $(document).on('click', '.borrar', function (event) {
-                        var debito =  $(this).parent().parent().find('.debitos').val();
-                        var credito =  $(this).parent().parent().find('.credito').val();
-                        var totalDebito =$('#totalDebito').val();
-                        var totalCredito =$(this).parent().parent().find('#totalCredito').val();
-                        var direfencia =$(this).parent().parent().find('#direfencia').val();
-                        var restaDebito=debito-totalDebito;
-                        var restaCredito=debito-totalCredito;
-                        $('#totalDebito').val(restaDebito);
-                        $('#totalCredito').val(restaCredito);
-                        event.preventDefault();
-                        $(this).closest('tr').remove();
-
-                    });
-                });
-            });
-
-            $('.agregarPlanBasico').click(function () {
-
-                var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
-                var base =  $(this).parent().parent().find('.baseFinal').val();
-                var retenido =  $(this).parent().parent().find('.valorRetenido').val();
-                var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
-                var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
-                var sel3 = $(this).parent().parent().find('.transacciones_id').val();
-                //alert(sel2)
-
-
-                $('#ProSelected').append('<tr class="active">'+
-                    '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
-                    '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
-                    '<td>' +
-                    '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="puc_idD select2 form-control custom-select puc_id">'+
-                    '<option value="">[Seleccione una Cuenta]</option>'+
-                    '    @foreach($puc as $item)'+
-                    '    {{ $style = $item->tipoCuenta_id == 1 ? '' :  'disabled="disabled"' }}'+
-                    '<option   {{ $style }} value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >'+
-                    '    {{$item->codigoCuenta}} - {{$item->nombreCuenta}}'+
-                    '</option>'+
-                    '@endforeach'+
-                    '</select></td>'+
-                    '<td><input  type="text" class="form-control " style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
-                    '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
-                    '<option value="999">[Seleccione un Opcion]</option>'+
-                    '    @foreach($centroCosto as $item)'+
-                    '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
-                    '    @endforeach'+
-                    '</select></td>' +
-                    '<input  type="hidden" class="form-control " style="width:100px;" name="codigoPUC[]" id="codigoPUC"/>' +
-                    '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>' +
-                    '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>' +
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"/></td>' +
-                    '<td><select style="width:100px;" name= "codigoNIIIF[]" id="codigoNIIIF" class="codigoNIIIFD select2 form-control custom-select" >' +
-                    '   @foreach($niif as $item)'+
-                    '       <option value="{{$item->codigoNIIIF}}" {{ old('codigoNIIIF') == $item->codigoNIIIF ? 'selected' : '' }} >{{$item->codigoNiff}}</option>'+
-                    '   @endforeach'+
-                    '</select>'+
-                    '</td>' +
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
-                    '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido"/></td>' +
-                    '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
-                    '</tr>');
-                $('.debitos').keyup(function(){
-                    let inps = $('.debitos');
-                    let disabled = false;
-                    let totalDebito=0;
-                    for(i = 0; i < inps.length; i++) {
-                        let valor=$(this).val();
-                        totalDebito += valor;
-                        inp = inps[i].value;
-                        if(inp > 0){
-                            disabled = true;
-                        }
-                    }
-                    // Habilitar y deshabilitar el input
-                    if(disabled == true){
-                        $(this).parent().parent().find('.credito').css('display','none');
-                        $(this).css('display','block')
-                    }
-                    else{
-                        $(this).parent().parent().find('.credito').css('display','block');
-                        $(this).css('display','none')
-                    }
-
-                    sum();
-                    resta();
-                });
-
-                $('.credito').keyup(function(){
-                    let inps = $('.credito');
-                    let disabled = false;
-                    for(i = 0; i < inps.length; i++) {
-                        inp = inps[i].value;
-                        if(inp > 0){
-                            disabled = true;
-                        }
-                    }
-                    // Habilitar y deshabilitar el boton #send
-                    if(disabled == true){
-                        $(this).parent().parent().find('.debitos').css('display','none');
-                        $(this).css('display','block')
-                    }
-                    else{
-                        $(this).parent().parent().find('.debitos').css('display','block');
-                        $(this).css('display','none')
-                    }
-                    sumC();
-                    resta();
-                });
+                sumC();
+                resta();
             });
 
             $(function () {
                 $(document).on('click', '.borrar', function (event) {
+                    var debito =  $(this).parent().parent().find('.debitos').val();
+                    var credito =  $(this).parent().parent().find('.credito').val();
+                    var totalDebito =$('#totalDebito').val();
+                    var totalCredito =$(this).parent().parent().find('#totalCredito').val();
+                    var direfencia =$(this).parent().parent().find('#direfencia').val();
+                    var restaDebito=debito-totalDebito;
+                    var restaCredito=debito-totalCredito;
+                    $('#totalDebito').val(restaDebito);
+                    $('#totalCredito').val(restaCredito);
                     event.preventDefault();
-
                     $(this).closest('tr').remove();
+
                 });
             });
+        });
 
-            $( "#puc_id" ).change(function() {
-                var tipoCuenta=  $('select[name="puc_id"] option:selected').text();
-                var cadena=tipoCuenta.indexOf('DETALLE')
-                if (cadena == -1){
-                    alert('Esta cuenta es de tipo Superior, no puede ser elejida');
-                    $('.btnEnviar').attr('disabled',true)
-                }else {
-                    $('.btnEnviar').attr('disabled',false)
+
+
+        $('.agregarPlanBasico').click(function () {
+
+            var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
+            var base =  $(this).parent().parent().find('.baseFinal').val();
+            var retenido =  $(this).parent().parent().find('.valorRetenido').val();
+            var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
+            var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
+            var sel3 = $(this).parent().parent().find('.transacciones_id').val();
+            //alert(sel2)
+            $.ajax({
+                type: 'GET',
+                url: '/puc/loadPuc',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    data.forEach(element=>{
+                        //if (element.tipoCuenta_id===1)
+                        //{
+                            $('.puc_idD').append($('<option>',{id:element.puc, value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
+                        //}
+                    });
+
+                },error:function(){
+                    console.log(data);
                 }
-                //console.log(tipoCuenta);
             });
 
+            $('#ProSelected').append('<tr class="active">'+
+                '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
+                '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
+                '<td>' +
+                '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class=" puc_idD select2 form-control custom-select puc_id">'+
+                '</select>'+
+                '</td>'+
+                '<td><input  type="text" class="form-control " style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
+                '<td> ' +
+                '<select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
+                '<option value="999">[Seleccione un Opcion]</option>'+
+                '    @foreach($centroCosto as $item)'+
+                '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
+                '    @endforeach'+
+                '</select></td>' +
+                '<input  type="hidden" class="form-control " style="width:100px;" name="codigoPUC[]" id="codigoPUC"/>' +
+                '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>' +
+                '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>' +
+                '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"/></td>' +
+                '<td><select style="width:100px;" name= "codigoNIIIF[]" id="codigoNIIIF" class="codigoNIIIFD select2 form-control custom-select" >' +
+                '   @foreach($niif as $item)'+
+                '       <option value="{{$item->codigoNIIIF}}" {{ old('codigoNIIIF') == $item->codigoNIIIF ? 'selected' : '' }} >{{$item->codigoNiff}}</option>'+
+                '   @endforeach'+
+                '</select>'+
+                '</td>' +
+                '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
+                '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido"/></td>' +
+                '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
+                '</tr>');
+
+
+
+            $('.selectPuc').select2({
+
+            });
+
+            $('.debitos').keyup(function(){
+                let inps = $('.debitos');
+                let disabled = false;
+                let totalDebito=0;
+                for(i = 0; i < inps.length; i++) {
+                    let valor=$(this).val();
+                    totalDebito += valor;
+                    inp = inps[i].value;
+                    if(inp > 0){
+                        disabled = true;
+                    }
+                }
+                // Habilitar y deshabilitar el input
+                if(disabled == true){
+                    $(this).parent().parent().find('.credito').css('display','none');
+                    $(this).css('display','block')
+                }
+                else{
+                    $(this).parent().parent().find('.credito').css('display','block');
+                    $(this).css('display','none')
+                }
+
+                sum();
+                resta();
+            });
+
+            $('.credito').keyup(function(){
+                let inps = $('.credito');
+                let disabled = false;
+                for(i = 0; i < inps.length; i++) {
+                    inp = inps[i].value;
+                    if(inp > 0){
+                        disabled = true;
+                    }
+                }
+                // Habilitar y deshabilitar el boton #send
+                if(disabled == true){
+                    $(this).parent().parent().find('.debitos').css('display','none');
+                    $(this).css('display','block')
+                }
+                else{
+                    $(this).parent().parent().find('.debitos').css('display','block');
+                    $(this).css('display','none')
+                }
+                sumC();
+                resta();
+            });
         });
-    </script>
+
+        $(function () {
+            $(document).on('click', '.borrar', function (event) {
+                event.preventDefault();
+
+                $(this).closest('tr').remove();
+            });
+        });
+
+
+
+    });
+</script>
+<script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.select2').select2();
