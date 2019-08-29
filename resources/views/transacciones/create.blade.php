@@ -619,7 +619,7 @@
                 '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
                 '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
                 '<td>' +
-                '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class=" puc_idD select2 form-control custom-select puc_id">'+
+                '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="selectPuc puc_idD select2 form-control custom-select puc_id">'+
                 '</select>'+
                 '</td>'+
                 '<td><input  type="text" class="form-control " style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
