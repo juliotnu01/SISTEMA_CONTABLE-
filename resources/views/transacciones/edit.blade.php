@@ -212,6 +212,7 @@
                                 <div class="col-md-3">
                                     <label for="">Valor de transacción</label>
                                     <input type="text"  class="form-control form-control-user"  value="{{$trasacciones->valortransaccion}}" id="valortransaccion" name="valortransaccion"  placeholder="valor de transaccion...">
+                                    <input type="hidden"  class="form-control form-control-user"  id="valortransaccionLetras" value="{{old('valortransaccionLetras').$trasacciones->valortransaccionLetras}}" name="valortransaccionLetras">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor Base</label>

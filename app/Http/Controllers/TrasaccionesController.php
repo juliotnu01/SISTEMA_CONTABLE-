@@ -207,6 +207,7 @@ class TrasaccionesController extends Controller
     public function edit($id)
     {
         $trasacciones = Transacciones::findOrFail($id);
+        //dd($trasacciones);
         $comprobante = Comprobante::select('id', 'abreviatura', 'nombreSoporte', 'activarDescuentos')
             ->where('estado', '=', 'SI')
             ->get();
@@ -259,6 +260,7 @@ class TrasaccionesController extends Controller
     public function update(Request $request, $id)
     {
         $trans=Transacciones::findOrFail($id);
+       // dd($request->all());
         $debito=$request->debito;
         $credito=$request->credito;
         //dd($debito, );
@@ -269,7 +271,7 @@ class TrasaccionesController extends Controller
         $trans->numeroDoc= $request->numeroDoc;
         $trans->codigoPresupuesto= $request->codigoPresupuesto;
         $trans->valortransaccion= $request->valortransaccion;
-        $trans->valortransaccionLetras= $request->valortransaccionLetras;
+        $trans->valortransaccionLetras = $request->valortransaccionLetras;
         $trans->valorBase= $request->valorBase;
         $trans->revelacion= $request->revelacion;
         $trans->tercero_id= $request->tercero_id;
