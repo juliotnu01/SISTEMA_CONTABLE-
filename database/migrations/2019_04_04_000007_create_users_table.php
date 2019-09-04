@@ -13,13 +13,13 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('personaNatural_id')->unsigned()->nullable();
-            $table->integer('personaEmpleado_id')->unsigned()->nullable();
+            $table->string('nombreCompleto',200)->nullable();
+            $table->integer('persona_id')->unsigned()->nullable();
 
             $table->rememberToken();
 
-            $table->foreign('personaNatural_id')->references('id')->on('personas_naturales');
-            $table->foreign('personaEmpleado_id')->references('id')->on('personas_empleados');
+            $table->foreign('persona_id')->references('id')->on('personas');
+
             $table->timestamps();
         });
     }

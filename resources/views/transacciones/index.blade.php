@@ -72,7 +72,6 @@
                                                 <td>
                                                     @can('transaccion.duplicate')
                                                         <a  title="DUPLICAR" href="{{route('transaccion.duplicate',$item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-clone"></i></a>
-
                                                     @endcan
                                                 </td>
                                                 <td>
@@ -108,13 +107,12 @@
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                         <thead>
                                         <tr>
                                             <th style="width: 100px">Numero Doc</th>
                                             <th style="width: 15%;">Fecha</th>
-                                            <th style="width: 80px">Base</th>
-                                            <th style="width: 10px"></th>
+                                            <th style="width: 15%">Valor de la Transacción</th>
                                             <th style="width: 10px"></th>
                                         </tr>
                                         </thead>
@@ -123,7 +121,7 @@
                                             <tr>
                                                 <td style="width: 100px">{{$item->numeroDoc}}</td>
                                                 <td style="width: 15%;">{{$item->anio.'/'.$item->mes.'/'.$item->dia}}</td>
-                                                <td style="width: 80px">{{$item->valorBase}}</td>
+                                                <td style="width: 80px">{{$item->valortransaccion}}</td>
                                                 <td style="width: 10px">
                                                     @can('transaccion.edit')
                                                         <a href="{{route('transaccion.edit',$item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
@@ -158,40 +156,28 @@
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered display dataTable_width_auto" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered display dataTable_width_auto" id="" width="100%" cellspacing="0">
                                         <thead>
                                         <tr>
-                                            <th>Numero Doc</th>
+                                            <th style="width: 100px">Numero Doc</th>
                                             <th style="width: 15%;">Fecha</th>
-                                            <th style="width: 20%;">Tercero</th>
-                                            <th>Soporte</th>
-                                            <th>Tipo Presupuesto</th>
-                                            <th>Base</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <th style="width: 15%">Valor de la Transacción</th>
+                                            <th style="width: 10px"></th>
+                                            <th style="width: 10px"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($trasaccionesPlantilla as $item)
                                             <tr>
-                                                <td>{{$item->numeroDoc}}</td>
+                                                <td style="width: 100px">{{$item->numeroDoc}}</td>
                                                 <td style="width: 15%;">{{$item->anio.'/'.$item->mes.'/'.$item->dia}}</td>
-                                                <td style="width: 20%;">{{$item->nombre1.' '.$item->nombre2.' '.$item->apellido.' '.$item->apellido2}}</td>
-                                                <td>{{$item->nombreSoporte}}</td>
-                                                <td>{{$item->nombrePresupuesto}}</td>
-                                                <td>{{$item->valorBase}}</td>
-                                                <td>
+                                                <td style="width: 80px">{{$item->valortransaccion}}</td>
+                                                <td style="width: 10px">
                                                     @can('transaccion.edit')
-                                                        <a href="{{route('transaccion.editPlantilla',$item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{route('transaccion.edit',$item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                                     @endcan
                                                 </td>
-                                                <td>
-                                                    @can('transaccion.duplicate')
-                                                        <a href="{{route('transaccion.duplicate',$item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-clone"></i></a>
-                                                    @endcan
-                                                </td>
-                                                <td>
+                                                <td style="width: 10px">
                                                     @can('transaccion.destroy')
                                                         <form method="POST" id="deleteRetencion"
                                                               action="{{route('transaccion.destroy',$item->id)}}">

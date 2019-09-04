@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Persona;
 use App\PersonasEmpleados;
 use App\PersonasNaturales;
 use App\User;
@@ -16,21 +17,21 @@ class UserController extends Controller
     public function index()
     {
         $users=User::all();
-
         return view('user.index',compact('users'));
     }
-
     public function create()
     {
-        $perNatural=PersonasNaturales::all();
+        //$perNatural=PersonasNaturales::all();
+        $persona=Persona::where('juridica_id','=',null)->get();
         $roles = Role::get();
         //dd($permissions);
-        $perEmpleado=PersonasEmpleados::all();
-        return view('user.create',compact('perEmpleado','perNatural','roles'));
+        //$perEmpleado=PersonasEmpleados::all();
+        return view('user.create',compact('roles','persona'));
     }
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $this->validate($request,[
             'email' => 'required|unique:users|email',
             'password' => 'required|max:10|min:4',
@@ -38,8 +39,8 @@ class UserController extends Controller
 
         $users=User::create([
             'email'=> $request['email'],
-            'personaNatural_id'=> $request['personaNatural_id'],
-            'personaEmpleado_id'=> $request['personaEmpleado_id'],
+            'persona_id'=> $request['persona_id'],
+            'nombreCompleto'=> $request['nombreCompleto'],
             'password'=> bcrypt($request['password']),
         ]);
         $users->roles()->sync($request->get('roles'));
@@ -70,8 +71,8 @@ class UserController extends Controller
         $users=User::find($id);
 
         $users->email= $request->email;
-        $users->personaNatural_id= $request->personaNatural_id;
-        $users->personaEmpleado_id= $request->personaEmpleado_id;
+        $users->persona_id= $request->persona_id;
+        $users->nombreCompleto= $request->nombreCompleto;
         //dd($personajuridica);
         $users->roles()->sync($request->get('roles'));
         $users->save();

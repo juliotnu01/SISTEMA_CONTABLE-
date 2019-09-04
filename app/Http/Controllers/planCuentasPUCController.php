@@ -252,4 +252,9 @@ class planCuentasPUCController extends Controller
     {
         return response()->json(Puc::select('id','codigoCuenta', 'nombreCuenta', 'tipoCuenta_id')->get());
     }
+
+    public function pucLoadPrueba($id)
+    {
+        return response()->json(Puc::select('tipoCuenta_id')->where('id','=',$id)->get());
+    }
 }

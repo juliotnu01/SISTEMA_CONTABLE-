@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlantillaContable extends Model
 {
-    protected $fillable=['docReferencia','debito', 'credito', 'nota','base', 'codigoPUC',
-        'codigoNIIIF','transacciones_id','centroCosto_id','transaccionesDescuento_id','valorRetenido','puc_id'];
+    protected $fillable=['docReferencia','debito', 'credito', 'nota','base', 'codigoNIIIF','transacciones_id',
+        'centroCosto_id','transaccionesDescuento_id','valorRetenido','puc_id'];
 
     public function transaccion()
     {

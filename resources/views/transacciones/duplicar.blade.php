@@ -203,13 +203,14 @@
                             </div>
                             &nbsp
                             <h2>Plantilla Contable</h2>
-                            <button style="margin-top: -43px;float: right;" type="button" class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
-                            <div class="row"  id="numeroDocumentos">
+                            <button style="margin-top: -43px;float: right;" type="button"  class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
+                            <div class="row"  id="numeroDocumentos"readonly="readonly" >
                                 <div class="col-md-12" style="overflow:scroll;
-                                         height:330px;">
+                                     height: 330px;">
                                     <table id="TablaPro" class="table">
                                         <thead>
                                         <tr>
+                                            <th>CODIGO GUIA</th>
                                             <th>CODIGO</th>
                                             <th>DOC REF</th>
                                             <th>CENTRO DE COSTO</th>
@@ -221,24 +222,23 @@
                                         </tr>
                                         </thead>
                                         <tbody id="ProSelected">
-
                                         </tbody>
                                         <tfoot>
-                                            <td></td>
-                                            <td>
-
-                                            </td>
-                                            <td><b>Sumas Iguales:</b></td>
-                                            <td><input type="text" style="width:150px;" class="form-control form-control-user totalDebito" name="totalDebito" id="totalDebito" data-value="{{$trasacciones->totalDebito}}" value="{{$trasacciones->totalDebito}}"></td>
-                                            <td><input type="text" style="width:150px;" class="form-control form-control-user totalCredito" name="totalCredito" id="totalCredito" data-value="{{$trasacciones->totalCredito}}" value="{{$trasacciones->totalCredito}}"></td>
-                                            <td><input type="text" style="width:150px;" class="form-control form-control-user direfencia" name="diferencia" id="direfencia" data-value="{{$trasacciones->diferencia}}" value="{{$trasacciones->diferencia}}"></td>
-                                            <td></td>
-                                            <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b>Sumas Iguales:</b></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalDebito" id="totalDebito"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalCredito" id="totalCredito"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="diferencia" id="direfencia"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         </tfoot>
                                     </table>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-user btn-block btnEnviar" type="submit">EDITAR</button>
+                            <button class="btn btn-primary btn-user btn-block enviar" type="submit">EDITAR</button>
                         </div>
                         &nbsp
                 </form>
@@ -260,7 +260,6 @@
                                         <th>CREDITO</th>
                                         <th>BASE</th>
                                         <th>NOTA</th>
-                                        <th>VALOR RETENIDO</th>
                                     </tr>
                                     </thead>
                                     @foreach($plantillaRetenciones as $item)
@@ -275,6 +274,7 @@
                                             <input  type="hidden" style="width: 124px;"  value="{{$item->puc_id}}" name="puc_id">
                                             <input  type="hidden" value="{{$item->retecionesDescuentos_id}}" name="retecionesDescuentos_id">
                                             <input  type="hidden" value="{{$item->transacciones_id}}" name="transacciones_id">
+                                            <input  type="hidden" value="{{$item->valorRetenido}}" name="valorRetenido">
                                             <td><input  style="width: 124px;" type="text" value="{{$item->docReferencia}}" name="docReferencia"></td>
                                             <td>
                                                 <select style="width:124px;" name="centroCosto_id" id="centroCosto_id" class="select2 form-control custom-select" >
@@ -289,7 +289,6 @@
                                             <td><input  style="width: 124px;" type="text" value="{{$item->credito}}" name="credito"></td>
                                             <td><input  style="width: 124px;" type="text" value="{{$item->base}}" name="base"></td>
                                             <td><input  style="width: 124px;" type="text" value="{{$item->nota}}" name="nota"></td>
-                                            <td><input  style="width: 124px;" type="text" value="{{$item->valorRetenido}}" name="valorRetenido"></td>
                                             <td>
                                                 <button type="submit" class="btn btn-circle btn-sm btn-warning" ><i class="fa fa-edit"></i></button>
                                             </td>
@@ -364,7 +363,7 @@
     </div>
     <div class="modal fade" id="Revelaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width: 200%;!important;margin-left: -200px;!important;">
+            <div class="modal-content" style="width: 245%;!important;margin-left: -300px;!important;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Retenciones</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -372,13 +371,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                    <table class="table" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
+                            <th>Tipo de Retencion</th>
                             <th>Concepto</th>
-                            <th>%</th>
-                            <th>IVA</th>
                             <th>Base</th>
+                            <th>IVA</th>
+                            <th>% de Retencion</th>
                             <th>Vr.Retenido</th>
                             <th></th>
                         </tr>
@@ -386,13 +386,15 @@
                         <tbody>
                         @foreach($retenciones as $item)
                             <tr>
-                                <td><input  style="width: 90px;" class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                                <td><input  style="width: 50px;"  type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
-                                <td><input  style="width: 30px;" type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
-                                <td style="width: 59px;"><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
-                                <td style="width: 59px;"><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
-                                <input type="hidden" class="transacciones_id"  name="transacciones_id" value="{{$item->id}}"/>
-                                <td style="display:none;"><input  name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}}"/><td>
+                                <td>{{$item->tipoRetencion}}</td>
+                                <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
+                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
+                                <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
+                                <td><input type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
+                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
+                                <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
+                                <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
+                                <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
                                 <td>
                                     <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
                                 </td>
@@ -421,7 +423,7 @@
                         <thead>
                         <tr>
                             <th>Concepto</th>
-                            <th>%</th>
+                            <th>% Dcto</th>
                             {{--<th>IVA</th>
                             <th>Base</th>--}}
                             <th>Vr.Retenido</th>
@@ -435,8 +437,8 @@
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
                                 <td><input  style="width: 80px;"  type="text" class="valorRetenido"></td>
                                 <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
-                                <input  type="hidden" class="codigoCuenta" name="codigoCuenta" id="codigoCuenta" value="{{$itemDescuento->codigoCuenta}}">
-                                <input type="hidden" class="transacciones_id"  name="transacciones_id" value="{{$itemDescuento->id}}"/>
+                                <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
+                                    <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
                                 <td>
                                     <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
                                 </td>
@@ -488,6 +490,13 @@
 
             var direfencia= debito-credito;
             $('#direfencia').val(direfencia);
+            var dif=$('#direfencia').val();
+            console.log(dif);
+            if (dif!=0){
+                $('.enviar').prop("disabled", true)
+            }else{
+                $('.enviar').prop("disabled", false)
+            }
 
         }
         var productsId = [];

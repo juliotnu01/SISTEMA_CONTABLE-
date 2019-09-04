@@ -10,7 +10,7 @@
 
                         <div class="card shadow mb-4" id="datosBasicos" >
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">EDITAR DE DEPENDENCIA</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">EDITAR USUARIO {{$users->email}}</h6>
                             </div>
                             &nbsp
                             <div class="container">

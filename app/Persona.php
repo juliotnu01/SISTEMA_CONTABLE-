@@ -49,4 +49,9 @@ class Persona extends Model
     {
         return $this->hasMany(Dependencia::class);
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

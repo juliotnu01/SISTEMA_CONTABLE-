@@ -127,7 +127,6 @@
         .bill-table td{
             margin-left: 0;
             text-align: center !important;
-            width: 100% !important;
         }
         .imagenMaquina{
             width: auto;
@@ -152,12 +151,8 @@
                 <td>
                     <table class="bill-table text-center">
                         <tr>
-                            <td  class=""><h3>{{$item->comprobante->nombreSoporte}}</h3></td>
-                        </tr>
-                        <tr class="noPadding">
-                            <td  class="text-center" colspan="2">
-                                <h1>{{$item->comprobante->abreviatura .''.$item->comprobante->id }}</h1>
-                            </td>
+                            <td><h1 style="margin-left: 78px;">{{$item->abreviatura .''.$item->id }}</h1></td>
+                            <td><h3>{{$item->nombreSoporte}}</h3></td>
                         </tr>
                     </table>
                 </td>
@@ -176,7 +171,8 @@
                         </tr>
                         <tr>
                             <td>A favor de:</td>
-                            <td> <span>{{$item->terceros->nombre1}}</span> </td>
+                            <td> <span>{{$item->nombre1}} {{$item->nombre2}} {{$item->apellido}} {{$item->apellido2}}</span> </td>
+                            <td> <span style="margin-left: 80px;">NIT/CC: {{$item->numeroDocumento}}{{$item->nit}}</span> </td>
                             {{--<td> <span>{{$trasacciones->nombre1 .' '. $trasacciones->nombre2 .' '. $trasacciones->apellido .' '. $trasacciones->apellido2 }}</span> </td>--}}
                         </tr>
                         <tr>
@@ -185,7 +181,7 @@
                         </tr>
                         <tr>
                             <td>Por Valor de:</td>
-                            <td> <span>{{$item->valortransaccion }}</span> </td>
+                            <td> <span>${{$item->valortransaccion }}</span> <span id="valorNumeros">{{$item->valortransaccionLetras }}</span> </td>
                         </tr>
                     @endforeach
                 </table>
@@ -209,11 +205,7 @@
         <tbody>
         @foreach($retenciones as $item)
             <tr class="bg-blue">
-                @if ($item->puc_id)
                 <th  style="border: solid; color: #000; background-color: #F2F8F9;"> <span>{{$item->codigoCuenta}}-{{$item->nombreCuenta}}</span></th>
-                @else
-                <th  style="border: solid; color: #000; background-color: #F2F8F9;"> <span>{{$item->codigoPUC}}</span> </th>
-                @endif
                 <th  style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->debito}}</span></th>
                 <th  style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->credito}} </span></th>
             </tr>
@@ -240,7 +232,6 @@
         @endforeach
     </table>
     <hr>
-
     <table class="text-center collapse">
         <tr class="">
             <td  style="border: outset; color: #000;"><b>Bancos</b></td>
@@ -292,23 +283,22 @@
         </tr>
         <tbody>
         <tr class="info-products">
-            <td class="precio-day-container" style="height: 50px;"></td>
-            <td class="precio-day-container" style="height: 50px;"></td>
-            <td class="precio-day-container" style="height: 50px;"></td>
-            <td class="precio-day-container" style="height: 50px;"></td>
+            <td class="precio-day-container" style="border: outset;color: #000;height: 50px;"></td>
+            <td class="precio-day-container" style="border: outset;color: #000;height: 50px;"></td>
+            <td class="precio-day-container" style="border: outset;color: #000;height: 50px;"></td>
+            <td class="precio-day-container" style="border: outset;color: #000;height: 50px;"></td>
         </tr>
         </tbody>
         <tfoot>
         <tr class="info-products">
+            <td class="precio-day-container">{{auth()->user()->nombreCompleto}}</td>
             <td class="precio-day-container"></td>
-            <td class="precio-day-container"></td>
-            <td class="precio-day-container"><span style="margin-left:30px">CC/NIT</span></td>
-            <td class="precio-day-container"></td>
+            <td class="precio-day-container"><span style="margin-left:30px"></span></td>
+            <td class="precio-day-container"><span style="margin-left: -300px;">CC/NIT</span></td>
         </tr>
         </tfoot>
     </table>
 </div>
-
 <script !src="">
     function imprimir() {
         confirm("Desea imprimir este reporte?");

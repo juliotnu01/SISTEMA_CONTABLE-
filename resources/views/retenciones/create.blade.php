@@ -103,7 +103,7 @@
                                         <select  name= "puc_id" id="puc_id" class="select2 form-control custom-select" >
                                             <option value="" >[Seleccione una Cuenta]</option>
                                             @foreach($puc as $item)
-                                                {{ $style = $item->tipoCuenta_id == 1 ? '' :  'disabled="disabled"' }}
+                                                {{ $style = $item->tipoCuenta_id == 2 ? '' :  'disabled="disabled"' }}
                                                 <option   {{ $style }} value="{{$item->id}}" {{ old('puc_id') == $item->id ? 'selected' : '' }} >
                                                     {{$item->codigoCuenta}} - {{$item->nombreCuenta}}
                                                 </option>

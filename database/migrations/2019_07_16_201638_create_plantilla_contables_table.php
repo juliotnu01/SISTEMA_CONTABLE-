@@ -21,7 +21,6 @@ class CreatePlantillaContablesTable extends Migration
             $table->string('debito',20)->nullable();
             $table->string('credito',20)->nullable();
             $table->string('nota',200)->nullable();
-            $table->string('codigoPUC',500)->nullable();
             $table->integer('codigoNIIIF')->nullable();
             $table->bigInteger('valorRetenido')->nullable();
             $table->bigInteger('base')->nullable();

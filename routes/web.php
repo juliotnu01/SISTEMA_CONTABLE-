@@ -411,6 +411,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('transaccion/{transaccion}', 'TrasaccionesController@destroy')->name('transaccion.destroy')->middleware('permission:transaccion.destroy');
 
+    Route::get('transaccion/export/{id}', 'TrasaccionesController@export')->name('transaccion.export')->middleware('permission:transaccion.import');
+
     Route::post('transaccion/import', 'TrasaccionesController@import')->name('transaccion.import')->middleware('permission:transaccion.import');
 
     Route::get('transaccion/{transaccion}/duplicate', 'TrasaccionesController@duplicate')->name('transaccion.duplicate')->middleware('permission:transaccion.duplicate');
@@ -430,6 +432,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('transaccion/loadNiif/{id}', 'TrasaccionesController@loadNiif')->name('transaccion.loadNiif');
 
     Route::get('puc/loadPuc', 'planCuentasPUCController@pucLoad')->name('puc.pucLoad');
+
+    Route::get('puc/loadPucPrueba/{id}', 'planCuentasPUCController@pucLoadPrueba')->name('puc.pucLoadPrueba');
 
     /**DESCUENTOS*/
     Route::get('descuentos', 'DescuentoController@index')->name('descuentos.index')->middleware('permission:descuentos.index');

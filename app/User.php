@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable,ShinobiTrait;
 
     protected $fillable = [
-        'email', 'password','persona_id','personaEmpleado_id'
+        'email', 'password','persona_id','nombreCompleto'
     ];
 
     protected $hidden = [
@@ -29,11 +29,6 @@ class User extends Authenticatable
     public function persona()
     {
         return $this->belongsTo(Persona::class);
-    }
-
-    public function tipoPersonaE()
-    {
-        return $this->belongsTo(PersonasEmpleados::class);
     }
 
 }

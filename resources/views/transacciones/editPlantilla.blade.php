@@ -214,13 +214,14 @@
                             </div>
                             &nbsp
                             <h2>Plantilla Contable</h2>
-                            <button style="margin-top: -43px;float: right;" type="button" class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
+                            <button style="margin-top: -43px;float: right;" type="button"  class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
                             <div class="row"  id="numeroDocumentos">
                                 <div class="col-md-12" style="overflow:scroll;
-                                         height:330px;">
+                                     height: 330px;">
                                     <table id="TablaPro" class="table">
                                         <thead>
                                         <tr>
+                                            <th>CODIGO GUIA</th>
                                             <th>CODIGO</th>
                                             <th>DOC REF</th>
                                             <th>CENTRO DE COSTO</th>
@@ -232,24 +233,23 @@
                                         </tr>
                                         </thead>
                                         <tbody id="ProSelected">
-
                                         </tbody>
                                         <tfoot>
                                         <td></td>
-                                        <td>
-
-                                        </td>
+                                        <td></td>
+                                        <td></td>
                                         <td><b>Sumas Iguales:</b></td>
-                                        <td><input type="text" style="width:150px;" class="form-control form-control-user totalDebito" name="totalDebito" id="totalDebito" data-value="{{$trasacciones->totalDebito}}" value="{{$trasacciones->totalDebito}}"></td>
-                                        <td><input type="text" style="width:150px;" class="form-control form-control-user totalCredito" name="totalCredito" id="totalCredito" data-value="{{$trasacciones->totalCredito}}" value="{{$trasacciones->totalCredito}}"></td>
-                                        <td><input type="text" style="width:150px;" class="form-control form-control-user direfencia" name="diferencia" id="direfencia" data-value="{{$trasacciones->diferencia}}" value="{{$trasacciones->diferencia}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalDebito" id="totalDebito"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalCredito" id="totalCredito"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="diferencia" id="direfencia"></td>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         </tfoot>
                                     </table>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-user btn-block btnEnviar" type="submit">EDITAR</button>
+                            <button class="btn btn-primary btn-user btn-block enviar" type="submit">EDITAR</button>
                         </div>
                         &nbsp
                     </form>
@@ -271,7 +271,6 @@
                                         <th>CREDITO</th>
                                         <th>BASE</th>
                                         <th>NOTA</th>
-                                        <th>VALOR RETENIDO</th>
                                     </tr>
                                     </thead>
                                     @foreach($plantillaRetenciones as $item)
@@ -286,6 +285,7 @@
                                             <input  type="hidden" style="width: 124px;"  value="{{$item->puc_id}}" name="puc_id">
                                             <input  type="hidden" value="{{$item->retecionesDescuentos_id}}" name="retecionesDescuentos_id">
                                             <input  type="hidden" value="{{$item->transacciones_id}}" name="transacciones_id">
+                                            <input  type="hidden" value="{{$item->valorRetenido}}" name="valorRetenido">
                                             <td><input  style="width: 124px;" type="text" value="{{$item->docReferencia}}" name="docReferencia"></td>
                                             <td>
                                                 <select style="width:124px;" name="centroCosto_id" id="centroCosto_id" class="select2 form-control custom-select" >
@@ -300,7 +300,7 @@
                                             <td><input  style="width: 124px;" type="text" value="{{$item->credito}}" name="credito"></td>
                                             <td><input  style="width: 124px;" type="text" value="{{$item->base}}" name="base"></td>
                                             <td><input  style="width: 124px;" type="text" value="{{$item->nota}}" name="nota"></td>
-                                            <td><input  style="width: 124px;" type="text" value="{{$item->valorRetenido}}" name="valorRetenido"></td>
+
                                             <td>
                                                 <button type="submit" class="btn btn-circle btn-sm btn-warning" ><i class="fa fa-edit"></i></button>
                                             </td>
@@ -375,7 +375,7 @@
     </div>
     <div class="modal fade" id="Revelaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width: 200%;!important;margin-left: -200px;!important;">
+            <div class="modal-content" style="width: 245%;!important;margin-left: -300px;!important;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Retenciones</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -383,13 +383,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                    <table class="table" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
+                            <th>Tipo de Retencion</th>
                             <th>Concepto</th>
-                            <th>%</th>
-                            <th>IVA</th>
                             <th>Base</th>
+                            <th>IVA</th>
+                            <th>% de Retencion</th>
                             <th>Vr.Retenido</th>
                             <th></th>
                         </tr>
@@ -397,13 +398,15 @@
                         <tbody>
                         @foreach($retenciones as $item)
                             <tr>
-                                <td><input  style="width: 90px;" class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                                <td><input  style="width: 50px;"  type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
-                                <td><input  style="width: 30px;" type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
-                                <td style="width: 59px;"><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
-                                <td style="width: 59px;"><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
-                                <input type="hidden" class="transacciones_id"  name="transacciones_id" value="{{$item->id}}"/>
-                                <td style="display:none;"><input  name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}}"/><td>
+                                <td>{{$item->tipoRetencion}}</td>
+                                <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
+                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
+                                <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
+                                <td><input type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
+                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
+                                <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
+                                <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
+                                <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
                                 <td>
                                     <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
                                 </td>
@@ -432,7 +435,7 @@
                         <thead>
                         <tr>
                             <th>Concepto</th>
-                            <th>%</th>
+                            <th>% Dcto</th>
                             {{--<th>IVA</th>
                             <th>Base</th>--}}
                             <th>Vr.Retenido</th>
@@ -446,8 +449,8 @@
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
                                 <td><input  style="width: 80px;"  type="text" class="valorRetenido"></td>
                                 <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
-                                <input  type="hidden" class="codigoCuenta" name="codigoCuenta" id="codigoCuenta" value="{{$itemDescuento->codigoCuenta}}">
-                                <input type="hidden" class="transacciones_id"  name="transacciones_id" value="{{$itemDescuento->id}}"/>
+                                <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
+                                    <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
                                 <td>
                                     <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
                                 </td>
@@ -463,11 +466,10 @@
         </div>
     </div>
 
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
-    <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
     <script>
         function sum(){
             let total = 0;
@@ -499,10 +501,19 @@
 
             var direfencia= debito-credito;
             $('#direfencia').val(direfencia);
+            var dif=$('#direfencia').val();
+            console.log(dif);
+            if (dif!=0){
+                $('.enviar').prop("disabled", true)
+            }else{
+                $('.enviar').prop("disabled", false)
+            }
 
         }
+
         var productsId = [];
         $(document).ready(function() {
+
             $(document).on('change keyup','.base',function(){
                 var tr= $(this).parent().parent();//primer parent td segundo tr
                 var porcentaje=($(tr).find('#porcentaje').val());
@@ -531,7 +542,7 @@
                     '<input type="hidden" name="transacciones_id[]" />'+
                     '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
                     '<input type="hidden" name="puc_id[]"/>'+
-                    '<td><input style="width: 28pc;" type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
+                    '<td><input style="width: 8pc;" type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
                     '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>'+
                     '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
                     '<option value="999">[Seleccione un Opcion]</option>'+
@@ -615,6 +626,8 @@
                 });
             });
 
+
+
             $('.agregarPlanBasico').click(function () {
 
                 var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
@@ -624,7 +637,6 @@
                 var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
                 var sel3 = $(this).parent().parent().find('.transacciones_id').val();
                 //alert(sel2)
-
                 $.ajax({
                     type: 'GET',
                     url: '/puc/loadPuc',
@@ -632,21 +644,45 @@
                     success: function (data) {
                         console.log(data);
                         data.forEach(element=>{
-                            $('.puc_idD').append($('<option>',{id:element.puc, value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
+                            $('.puc_idD').append($('<option>',{class:'pucs', value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
+
                         });
 
                     },error:function(){
                         console.log(data);
                     }
                 });
+                //console.log($("#puc_id").val())
+                $(document).change(function(){
+                    var id= $("#puc_id").val()
+                    $.ajax({
+                        type: 'GET',
+                        url: '/puc/loadPucPrueba/'+id,
+                        dataType: 'json',
+                        success: function (data) {
+                            data.forEach(element=>{
+                                if (element.tipoCuenta_id===1){
+                                    alert('esta cuenta es tipo Superior, por favor selecciona otra')
+                                }
+                            });
+                            //console.log(data);
+                        },error:function(){
+                            console.log(data);
+                        }
+                    });
+                    //console.log($("#puc_id").val())
+                });
+
                 $('#ProSelected').append('<tr class="active">'+
                     '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
                     '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
                     '<td>' +
-                    '<select onchange="niif()" style="width: 28pc;" name="puc_id[]" id="puc_id" class="selectPuc puc_idD form-control custom-select puc_id">'+
-                    '</select></td>'+
+                    '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="selectPuc puc_idD select2 form-control custom-select puc_id">'+
+                    '</select>'+
+                    '</td>'+
                     '<td><input  type="text" class="form-control " style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
-                    '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
+                    '<td> ' +
+                    '<select style="width:8pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
                     '<option value="999">[Seleccione un Opcion]</option>'+
                     '    @foreach($centroCosto as $item)'+
                     '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
@@ -667,9 +703,12 @@
                     '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
                     '</tr>');
 
+
+
                 $('.selectPuc').select2({
 
                 });
+
                 $('.debitos').keyup(function(){
                     let inps = $('.debitos');
                     let disabled = false;
@@ -727,20 +766,13 @@
                 });
             });
 
-            $( "#puc_id" ).change(function() {
-                var tipoCuenta=  $('select[name="puc_id"] option:selected').text();
-                var cadena=tipoCuenta.indexOf('DETALLE')
-                if (cadena == -1){
-                    alert('Esta cuenta es de tipo Superior, no puede ser elejida');
-                    $('.btnEnviar').attr('disabled',true)
-                }else {
-                    $('.btnEnviar').attr('disabled',false)
-                }
-                //console.log(tipoCuenta);
-            });
+
+
+
 
         });
     </script>
+    <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.select2').select2();

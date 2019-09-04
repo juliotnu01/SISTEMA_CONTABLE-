@@ -22,6 +22,7 @@ class CreateTransaccionesTable extends Migration
             $table->string('numeroDoc')->nullable()->unique();
             $table->string('codigoPresupuesto')->nullable()->unique();
             $table->bigInteger('valortransaccion')->nullable();
+            $table->string('valortransaccionLetras',200)->nullable();
             $table->bigInteger('valorBase')->nullable();
             $table->string('revelacion',200)->nullable();
             $table->string('detalle',50)->nullable();

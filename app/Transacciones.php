@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class  Transacciones extends Model
 {
-    protected $fillable=['anio','mes','dia', 'numeroDoc', 'valortransaccion','codigoPresupuesto','tipoPago','valorBase'
-        , 'revelacion', 'tercero_id', 'comprobante_id', 'tipoPresupuesto_id','plantilla','totalDebito', 'totalCredito',
-        'diferencia','detalle'];
+    protected $fillable=['anio','mes','dia', 'numeroDoc', 'valortransaccion','valortransaccionLetras','codigoPresupuesto',
+        'tipoPago','valorBase', 'revelacion', 'tercero_id', 'comprobante_id', 'tipoPresupuesto_id','plantilla','totalDebito'
+        ,'totalCredito','diferencia','detalle'];
 
     public function  terceros()
     {

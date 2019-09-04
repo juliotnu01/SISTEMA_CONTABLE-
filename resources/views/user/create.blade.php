@@ -9,47 +9,24 @@
                 <div class="card-body">
                     <form method="POST" id="terceros" action="{{ route('users.store') }}">
                         @csrf
-                            <div class="row" id="idActividads">
-                                <div class="form-group">
-                                    <div class="form-group" >
-                                        <label for="pago1" class="radio-inline">
-                                            <input name="pago1" class="tercero" type="radio" value="1"  {{ old(' TERCERO EMPLEADO')=="1" ? 'checked='.'"'.'checked'.'"' : ''}}/> TERCERO EMPLEADO</label>
-                                        <label for="tercero" class="radio-inline">
-                                            <input class="tercero" name="pago1" type="radio" value="2"  {{ old('TERCERO PERSONA NATURAL')=="2" ? 'checked='.'"'.'checked'.'"' : ''}}/>TERCERO PERSONA NATURAL</label>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
-                                <div class="col-md-12" id="perNaturales" style="display:none;" >
+                                <div class="col-md-12" id="perNaturales">
                                     <div class="form-group" >
-                                        <label for="">Personas Natural</label>
-                                        <select  name= "personaNatural_id" id="personaNatural_id" class=" form-control">
+                                        <label for="">Personas Natural/Empleados</label>
+                                        <select  name="persona_id" id="persona_id" class="persona form-control">
                                             <option value=""></option>
-                                            @foreach($perNatural as $tipo)
-                                                <option value="{{$tipo->id}}">{{$tipo->numeroDocumento}}</option>
+                                            @foreach($persona as $tipo)
+                                                <option value="{{$tipo->id}}">{{$tipo->nombre1}} {{$tipo->nombre2}} {{$tipo->apellido}} {{$tipo->apellido2}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12" id="perEmpleado" style="display:none;">
-                                    <div class="form-group" >
-                                        <label for="">Personas Empleados</label>
-                                        <select  name= "personaEmpleado_id" id="personaEmpleado_id" class=" form-control select">
-                                            <option value=""></option>
-                                            @foreach($perEmpleado as $tipos)
-                                                <option value="{{$tipos->id}}">{{$tipos->numeroDocumento}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        <div id="datosExtras" style="display:none;">
+                        <div id="datosExtras">
                             <div class="row" >
                                 <div class="col-md-12">
                                     <label for="email">Correo Electrónico</label>
-                                    <input id="email" type="email" value="{{old('email')}}" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" value="{{old('email')}}" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -68,6 +45,7 @@
                                         @endif
                                 </div>
                             </div>
+                            <input id="nombreCompleto" type="hidden" class="form-control" name="nombreCompleto">
                             <div class="row">
                                 <div class="col-md-12">
                                     <ul class="list-unstyled">
@@ -103,53 +81,16 @@
     $(document).ready(function() {
         $('.select2').select2();
         $('.selectpicker').selectpicker();
-    });
-</script>
-<script !src="">
-    $(document).ready(function() {
-        $("input[type=radio]").click(function(event){
-            var valor = $(event.target).val();
-            if(valor =="1"){
-                $("#perNaturales").hide();
-                $("#perEmpleado").show();
-                $("#datosExtras").show();
-            } else if (valor == "2") {
-                $("#perNaturales").show();
-                $("#perEmpleado").hide();
-                $("#datosExtras").show();
-            } else {
-                // Otra cosa
-            }
+
+
+
+        $('.persona').on('change', function () {
+            var nombre=$('.persona').text();
+            console.log(nombre);
+            $('#nombreCompleto').val(nombre);
         });
-    });
 
-</script>
-<script>
-$(function() {
-    $( "#terceros" ).validate({
-        rules: {
-            email:{
-                email: true,
-                required:true,
-            },
-            password:{
-                required:true,
-                minlength:4,
-                maxlength:10,
-            },
-        },
-        messages: {
-            email:{
-                email:"Este campo debe ser un correo electronico",
-                required: "Este campo es Obligatorio",
-            },
-            password: {
-                required: "Este campo es Obligatorio",
-                minlength: "La contraseña debe ser mayor a 4 digitos",
-                maxlength: "La contraseña debe ser mayor a 10 digitos",
-            },
-        }
-    });
 
-});
+
+    });
 </script>

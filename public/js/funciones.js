@@ -39,6 +39,8 @@ function tipoPresupuesto() {
 
 function niif() {
     var puc = $(".puc_idD").val();
+    console.log(puc)
+
     if (puc) {
         $.getJSON(route('transaccion.loadNiif', {id: puc}), function (data) {
             var html_selct='';
