@@ -37,19 +37,23 @@ class TrasaccionesController extends Controller
             ->get();
 
         $trasaccionesFaltan = DB::table('transacciones')
-            ->select('transacciones.id', 'transacciones.anio', 'transacciones.mes', 'transacciones.dia',
-                'transacciones.numeroDoc', 'transacciones.valorBase')
-            ->where('transacciones.tercero_id', '=', null)
-            ->get();
-
-        $trasaccionesPlantilla = DB::table('transacciones')
             ->join('personas', 'transacciones.tercero_id', '=', 'personas.id')
             ->join('tipo_presupuestos', 'transacciones.tipoPresupuesto_id', '=', 'tipo_presupuestos.id')
             ->join('comprobantes', 'transacciones.comprobante_id', '=', 'comprobantes.id')
             ->select('transacciones.id', 'transacciones.anio', 'transacciones.mes', 'transacciones.dia',
-                'transacciones.numeroDoc', 'personas.nombre1', 'personas.nombre2', 'personas.apellido', 'personas.apellido2',
+                'transacciones.numeroDoc', 'transacciones.valortransaccion', 'transacciones.valortransaccionLetras', 'personas.nombre1', 'personas.nombre2', 'personas.apellido', 'personas.apellido2',
                 'comprobantes.nombreSoporte', 'tipo_presupuestos.nombrePresupuesto', 'transacciones.valorBase')
-            ->where('transacciones.plantilla', '=', 'SI')
+            ->where('transacciones.plantilla', '=', 'NO')
+            ->get();
+
+        $trasaccionesPlantilla =DB::table('transacciones')
+            ->join('personas', 'transacciones.tercero_id', '=', 'personas.id')
+            ->join('tipo_presupuestos', 'transacciones.tipoPresupuesto_id', '=', 'tipo_presupuestos.id')
+            ->join('comprobantes', 'transacciones.comprobante_id', '=', 'comprobantes.id')
+            ->select('transacciones.id', 'transacciones.anio', 'transacciones.mes', 'transacciones.dia',
+                'transacciones.numeroDoc', 'transacciones.valortransaccion', 'transacciones.valortransaccionLetras', 'personas.nombre1', 'personas.nombre2', 'personas.apellido', 'personas.apellido2',
+                'comprobantes.nombreSoporte', 'tipo_presupuestos.nombrePresupuesto', 'transacciones.valorBase')
+            ->where('transacciones.plantilla', '=', 'NO')
             ->get();
 
         $tipoPresupuesnto = TipoPresupuesto::all();
