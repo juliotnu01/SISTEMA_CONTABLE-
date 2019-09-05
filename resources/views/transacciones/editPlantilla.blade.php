@@ -848,7 +848,7 @@
                     '<td><input style="width: 8pc;" type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
                     '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>'+
                     '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
-                    '<option value="999">[Seleccione un Opcion]</option>'+
+                    '<option value="1">[Seleccione un Opcion]</option>'+
                     '    @foreach($centroCosto as $item)'+
                     '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
                     '    @endforeach'+
@@ -986,7 +986,7 @@
                     '<td><input  type="text" class="form-control " style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>' +
                     '<td> ' +
                     '<select style="width:8pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
-                    '<option value="999">[Seleccione un Opcion]</option>'+
+                    '<option value="1">[Seleccione un Opcion]</option>'+
                     '    @foreach($centroCosto as $item)'+
                     '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
                     '    @endforeach'+
