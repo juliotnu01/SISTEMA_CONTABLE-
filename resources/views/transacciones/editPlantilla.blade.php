@@ -205,10 +205,10 @@
                                     <input type="text"  class="form-control form-control-user"  value="{{$trasacciones->valorBase}}" id="valorBase" name="valorBase"  placeholder="Valor Base...">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" style="margin-top: 40px;" class="btn btn-primary " data-toggle="modal" data-target="#Revelaciones">
+                                    <button type="button" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Revelaciones">
                                         Retenciones
                                     </button>
-                                    <button type="button" style="margin-top: 40px;" class="btn btn-primary " data-toggle="modal" data-target="#Descuentos">
+                                    <button type="button" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Descuentos">
                                         Descuentos
                                     </button>
                                 </div>
@@ -255,17 +255,19 @@
                         &nbsp
                     </form>
                 </div>
-                <div class="row ">
+                <div class="row">
                     <div class="col-md-12">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
+                        <div class=" shadow mb-4">
+                            <div class="py-3">
                                 Plantilla Contable
                             </div>
-                            <div class="card-body" style="overflow:scroll;
+                            <div class="" style="overflow:scroll;
                                          height:330px;">
                                 <table id="TablaPro" class="table">
                                     <thead>
                                     <tr>
+                                        <th>CODIGO PUC ACTUAL</th>
+                                        <th>CODIGO PUC CAMBIO</th>
                                         <th>DOC REF</th>
                                         <th>CENTRO DE COSTO</th>
                                         <th>DEBITO</th>
@@ -282,16 +284,22 @@
                                             <input  type="hidden" style="width: 124px;"  value="{{$item->totalDebito}}" name="totalDebito">
                                             <input  type="hidden" style="width: 124px;"  value="{{$item->totalCredito}}" name="totalCredito">
                                             <input  type="hidden" style="width: 124px;"  value="{{$item->diferencia}}" name="diferencia">
-                                            <input  type="hidden" style="width: 124px;"  value="{{$item->codigoPUC}}" name="codigoPUC">
-                                            <input  type="hidden" style="width: 124px;"  value="{{$item->puc_id}}" name="puc_id">
+                                            <input  type="hidden" style="width: 124px;"  value="{{$item->codigoNIIIF}}" name="codigoNIIIF">
+                                            <input  type="hidden" value="{{$item->valorRetenido}}" name="valorRetenido">
                                             <input  type="hidden" value="{{$item->retecionesDescuentos_id}}" name="retecionesDescuentos_id">
                                             <input  type="hidden" value="{{$item->transacciones_id}}" name="transacciones_id">
-                                            <input  type="hidden" value="{{$item->valorRetenido}}" name="valorRetenido">
-                                            <td><input  style="width: 124px;" type="text" value="{{$item->docReferencia}}" name="docReferencia"></td>
+                                            <input  type="hidden" value="{{$item->debito}}" name="debitoTemporal">
+                                            <input  type="hidden" value="{{$item->credito}}" name="creditoTemporal">
+                                            <td>
+                                                <input  type="text" style="width: 22pc;" disabled="disabled" value="{{$item->codigoCuenta}} {{$item->nombreCuenta}}">
+                                            </td>
+                                            <td>
+                                                <select style="width: 28pc;" onchange="niif()" name="puc_id" id="puc_id" class="selectPuc puc_idD select2 form-control custom-select puc_id"></select>
+                                            </td>
+                                            <td><input  style="width: 124px;" type="text" name="docReferencia" value="{{$item->docReferencia}}"></td>
                                             <td>
                                                 <select style="width:124px;" name="centroCosto_id" id="centroCosto_id" class="select2 form-control custom-select" >
                                                     <option value="">[Seleccione una opcion]</option>
-
                                                     @foreach($centroCosto as $centro)
                                                         <option {{ old('tipoDocumento_id', $item->centroCosto_id) == $centro->id ? 'selected' : '' }} value="{{$centro->id}}">{{$centro->codigoCC}} - {{$centro->NombreCC}}</option>
                                                     @endforeach
@@ -301,7 +309,6 @@
                                             <td><input  style="width: 124px;" type="text" value="{{$item->credito}}" name="credito"></td>
                                             <td><input  style="width: 124px;" type="text" value="{{$item->base}}" name="base"></td>
                                             <td><input  style="width: 124px;" type="text" value="{{$item->nota}}" name="nota"></td>
-
                                             <td>
                                                 <button type="submit" class="btn btn-circle btn-sm btn-warning" ><i class="fa fa-edit"></i></button>
                                             </td>
@@ -310,6 +317,11 @@
                                             <form method="POST" id="deleteTipoDoc" action="{{route('transaccion.destroyPlantilla',$item->id)}}">
                                                 {{method_field('DELETE')}}
                                                 {{csrf_field()}}
+                                                <input  type="hidden" value="{{$item->totalDebito}}" name="totalDebito">
+                                                <input  type="hidden" value="{{$item->totalCredito}}" name="totalCredito">
+                                                <input  type="hidden" value="{{$item->diferencia}}" name="diferencia">
+                                                <input  type="hidden" value="{{$item->debito}}" name="debito">
+                                                <input  type="hidden" value="{{$item->credito}}" name="credito">
                                                 <button type="submit" class="btn btn-circle btn-sm btn-danger" ><i class="fa fa-times"></i></button>
                                             </form>
                                         </td>
@@ -403,8 +415,8 @@
                                 <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
                                 <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
                                 <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
-                                <td><input type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
-                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
+                                <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
+                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
                                 <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
                                 <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
@@ -448,7 +460,7 @@
                             <tr>
                                 <td class="nameConcept">{{$itemDescuento->concepto}}</td>
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
-                                <td><input  style="width: 80px;"  type="text" class="valorRetenido"></td>
+                                <td><input  style="width: 80px;"  type="text" name="valorRetenido"></td>
                                 <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
                                     <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
@@ -739,6 +751,15 @@
         }//NumeroALetras()
     </script>
     <script>
+        $('.botonesDesRet').click(function(){
+
+            var porcentaje =  $('.base').val();
+            var base =  $('.porcentaje').val();
+            var total=parseFloat(porcentaje*base)/100;
+            console.log(total);
+            $('.valorRetenido').val(total.toFixed(2));
+
+        });
         function sum(){
             let total = 0;
             $('.debitos').each(function() {
@@ -1058,8 +1079,7 @@
                         required: true,
                     },
                     dia:{
-                        digits:true,
-                        maxlength:2,
+                        required: true,
                     },
                     tercero_id:{
                         required: true,
@@ -1071,6 +1091,9 @@
                         required: true,
                     },
                     numeroDoc:{
+                        required: true,
+                    },
+                    tipoPago:{
                         required: true,
                     },
                     detalle:{
@@ -1093,12 +1116,14 @@
                     anio:{
                         required: "Este campo es Obligatorio",
                     },
+                    tipoPago:{
+                        required: "Este campo es Obligatorio",
+                    },
                     mes:{
                         required: "Este campo es Obligatorio",
                     },
                     dia:{
-                        digits: "Este campo solo recive digitos",
-                        maxlength: "Este campo solo recive hasta 2 digitos"
+                        required: "Este campo es Obligatorio",
                     },
                     tercero_id:{
                         required: "Este campo es Obligatorio",

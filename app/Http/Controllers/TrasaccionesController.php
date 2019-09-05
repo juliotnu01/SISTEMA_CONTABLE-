@@ -105,8 +105,7 @@ class TrasaccionesController extends Controller
 
         $erros = \Validator::make($request->all(), [
 
-            'numeroDoc' => 'unique:transacciones',
-            'codigoPresupuesto' => 'unique:transacciones',
+            'numeroDoc' => 'unique:transacciones'
         ]);
 
         if ($erros->fails()) {
@@ -166,28 +165,40 @@ class TrasaccionesController extends Controller
 
     public function duplicate(Request $request, $id)
     {
-        $trans = Transacciones::findOrFail($id);
         $trasacciones = Transacciones::findOrFail($id);
+        //dd($trasacciones);
         $comprobante = Comprobante::select('id', 'abreviatura', 'nombreSoporte', 'activarDescuentos')
             ->where('estado', '=', 'SI')
             ->get();
         $puc = Puc::all();
-        $niif = Niff::all();
         $centroCosto = Sede::all();
+        $niif = Niff::all();
         $numDocs = Transacciones::select('numeroDoc', 'created_at')->get();
         $terceros = Persona::with('natural', 'juridica', 'empleado')->get();
         $tipoPresupuestos = TipoPresupuesto::all();
-        $plantillaRetenciones = PlantillaContable::where('transacciones_id', $id)
-            ->select('id', 'docReferencia', 'centroCosto_id', 'debito', 'credito', 'nota')
+        /* $plantillaRetenciones=PlantillaContable::where('transacciones_id', $id)
+             ->select('id','docReferencia', 'centroCosto_id', 'debito', 'credito', 'nota', 'codigoPUC',
+                 'codigoNIIIF','transacciones_id', 'transacciones_id','valorRetenido','puc_id')
+             ->get();*/
+        $plantillaRetenciones = DB::table('plantilla_contables')
+            ->join('transacciones', 'plantilla_contables.transacciones_id', '=', 'transacciones.id')
+            ->leftJoin('pucs', 'plantilla_contables.puc_id', '=', 'pucs.id')
+            ->select('plantilla_contables.id', 'plantilla_contables.docReferencia', 'plantilla_contables.centroCosto_id',
+                'plantilla_contables.debito', 'plantilla_contables.credito', 'plantilla_contables.nota',
+                'plantilla_contables.base', 'plantilla_contables.codigoNIIIF', 'plantilla_contables.transacciones_id',
+                'plantilla_contables.transacciones_id', 'plantilla_contables.valorRetenido', 'plantilla_contables.retecionesDescuentos_id',
+                'puc_id', 'transacciones.totalDebito', 'transacciones.totalCredito', 'transacciones.diferencia',
+                'pucs.codigoCuenta', 'pucs.nombreCuenta')
+            ->where('plantilla_contables.transacciones_id', '=', $id)
             ->get();
+        //dd($plantillaRetenciones);
         $retenciones = DB::table('retencion_descuentos')
             ->leftJoin('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
             ->leftJoin('niffs', 'niffs.puc_id', '=', 'pucs.id')
             ->select('retencion_descuentos.id', 'retencion_descuentos.base', 'retencion_descuentos.tipoRetencion', 'retencion_descuentos.iva'
-                , 'retencion_descuentos.concepto', 'retencion_descuentos.porcentaje', 'pucs.codigoCuenta', 'niffs.codigoNiff')
+                , 'retencion_descuentos.concepto', 'retencion_descuentos.porcentaje', 'pucs.codigoCuenta', 'pucs.nombreCuenta', 'niffs.codigoNiff')
             ->where('retencion_descuentos.RetoDes', '=', null)
             ->get();
-        //dd($retenciones);
         $descuentos = DB::table('retencion_descuentos')
             ->leftJoin('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
             ->leftJoin('niffs', 'niffs.puc_id', '=', 'pucs.id')

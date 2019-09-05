@@ -9,6 +9,7 @@
     <list default="true" id="bffc6f30-8596-46b3-951e-3506738c421b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/transacciones/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transacciones/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/transacciones/duplicar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transacciones/duplicar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/transacciones/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transacciones/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php" afterDir="false" />
@@ -46,39 +47,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
-              <folding>
-                <element signature="e#40#60#0#PHP" expanded="true" />
-                <element signature="e#7541#9640#0#PHP" />
-                <element signature="e#12995#15148#0#PHP" />
-                <element signature="e#15154#17801#0#PHP" />
-                <element signature="e#17807#18046#0#PHP" />
-                <element signature="e#18052#18800#0#PHP" />
-                <element signature="e#18806#22439#0#PHP" />
-                <element signature="e#22445#24221#0#PHP" />
-                <element signature="e#24227#26038#0#PHP" />
-                <element signature="e#26044#26163#0#PHP" />
-                <element signature="e#26169#26672#0#PHP" />
-                <element signature="e#26678#26788#0#PHP" />
-                <element signature="e#26794#27080#0#PHP" />
-                <element signature="e#27086#27277#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/transacciones/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="214" selection-start-line="214" selection-end-line="215" />
+            <state relative-caret-position="411">
+              <caret line="814" column="17" lean-forward="true" selection-start-line="814" selection-start-column="17" selection-end-line="814" selection-end-column="17" />
               <folding>
-                <element signature="e#2121#4591#0#HTML" />
-                <element signature="e#5451#8629#0#HTML" />
+                <element signature="e#60#27884#0#HTML" />
+                <element signature="e#27908#29668#0#HTML" />
+                <element signature="e#29673#32811#0#HTML" />
+                <element signature="e#32816#35381#0#HTML" />
+                <element signature="e#36150#41856#0#HTML" />
               </folding>
             </state>
           </provider>
@@ -87,13 +66,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/transacciones/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="431" selection-start-line="431" selection-end-line="697" selection-end-column="9" />
+            <state relative-caret-position="684">
+              <caret line="728" column="5" lean-forward="true" selection-start-line="696" selection-start-column="4" selection-end-line="728" selection-end-column="5" />
               <folding>
-                <element signature="e#21178#22786#0#HTML" />
-                <element signature="e#22787#25733#0#HTML" />
-                <element signature="e#25734#28128#0#HTML" />
-                <element signature="e#28873#34047#0#HTML" />
+                <element signature="e#21055#22663#0#HTML" />
+                <element signature="e#22664#25617#0#HTML" />
+                <element signature="e#25618#28011#0#HTML" />
+                <element signature="e#28756#33930#0#HTML" />
               </folding>
             </state>
           </provider>
@@ -102,22 +81,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/transacciones/duplicar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="771">
-              <caret line="728" column="13" selection-start-line="728" selection-start-column="13" selection-end-line="728" selection-end-column="13" />
+            <state relative-caret-position="486">
+              <caret line="733" selection-start-line="733" selection-end-line="734" />
+              <caret line="743" selection-start-line="743" selection-end-line="744" />
               <folding>
-                <element signature="e#32959#38133#0#HTML" />
+                <element signature="e#3206#19311#0#HTML" />
+                <element signature="e#19351#25072#0#HTML" />
+                <element signature="e#25140#26748#0#HTML" />
+                <element signature="e#25361#25675#0#HTML" />
+                <element signature="e#26749#29702#0#HTML" />
+                <element signature="e#29703#32096#0#HTML" />
+                <element signature="e#32959#38665#0#HTML" />
+                <element signature="e#52906#57123#0#HTML" />
+                <element signature="e#52936#55969#0#HTML" />
+                <element signature="e#55917#55964#0#HTML" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="463" column="45" selection-start-line="463" selection-start-column="45" selection-end-line="463" selection-end-column="45" />
+            <state relative-caret-position="199">
+              <caret line="186" column="46" selection-start-line="185" selection-start-column="39" selection-end-line="186" selection-end-column="46" />
               <folding>
-                <element signature="e#33934#39108#0#HTML" />
+                <element signature="e#40#60#0#PHP" expanded="true" />
+                <element signature="e#5513#8109#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -134,14 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tipoCuenta_id</find>
-      <find>agregarPlan</find>
-      <find>centroCosto_id</find>
-      <find>fz11 clientDates</find>
-      <find>all</find>
-      <find>Código y Cuenta P.G.C.P</find>
-      <find>asd asdas asd</find>
-      <find>config</find>
       <find>valor r</find>
       <find>centavos</find>
       <find>terceros-&gt;</find>
@@ -154,7 +136,6 @@
       <find>puc</find>
       <find>pucs</find>
       <find>niif()</find>
-      <find>codigoPUC</find>
       <find>act</find>
       <find>base</find>
       <find>(porcentaje*base</find>
@@ -164,6 +145,15 @@
       <find>valortransaccion</find>
       <find>valortransaccionLetras;</find>
       <find>valortransaccionLetras</find>
+      <find>botonesDesRete</find>
+      <find>Retenciones</find>
+      <find>obtenerBase</find>
+      <find>valorRetenido</find>
+      <find>botonesDesRet</find>
+      <find>nombreCuenta</find>
+      <find>codigoPUC</find>
+      <find>sumas</find>
+      <find>sumas i</find>
     </findStrings>
     <replaceStrings>
       <replace>planConta</replace>
@@ -248,13 +238,13 @@
         <option value="$PROJECT_DIR$/app/Transacciones.php" />
         <option value="$PROJECT_DIR$/resources/views/transacciones/print.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/retenciones/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/transacciones/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/transacciones/export.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/transacciones/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/transacciones/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php" />
-        <option value="$PROJECT_DIR$/resources/views/transacciones/duplicar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php" />
+        <option value="$PROJECT_DIR$/resources/views/transacciones/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/transacciones/duplicar.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/transacciones/edit.blade.php" />
       </list>
     </option>
   </component>
@@ -385,9 +375,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1884" />
+    <option name="x" value="-1890" />
     <option name="y" value="-42" />
-    <option name="width" value="1854" />
+    <option name="width" value="1860" />
     <option name="height" value="1021" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -806,18 +796,20 @@
       <workItem from="1567519343225" duration="4233000" />
       <workItem from="1567543407580" duration="2138000" />
       <workItem from="1567555367926" duration="10356000" />
-      <workItem from="1567606225707" duration="4783000" />
+      <workItem from="1567606225707" duration="5066000" />
+      <workItem from="1567626248080" duration="6181000" />
+      <workItem from="1567640606684" duration="7740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1982462000" />
+    <option name="totallyTimeSpent" value="1996666000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1884" y="-42" width="1854" height="1021" extended-state="0" />
+    <frame x="-1890" y="-42" width="1860" height="1021" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49433428" visible="true" weight="0.15830547" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49433428" visible="true" weight="0.16111112" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.5056657" side_tool="true" weight="0.19395973" />
@@ -952,13 +944,6 @@
             <element signature="e#8070#9781#0#PHP" />
             <element signature="e#9787#10053#0#PHP" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_05_195618_create_transacciones_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="24" column="50" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -1233,69 +1218,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/transacciones/edit.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="214" selection-start-line="214" selection-end-line="215" />
+        <state relative-caret-position="270">
+          <caret line="257" column="11" lean-forward="true" selection-start-line="257" selection-start-column="11" selection-end-line="344" selection-end-column="22" />
           <folding>
-            <element signature="e#2121#4591#0#HTML" />
-            <element signature="e#5451#8629#0#HTML" />
+            <element signature="e#20080#27164#0#HTML" />
+            <element signature="e#25870#27478#0#HTML" />
+            <element signature="e#26091#26405#0#HTML" />
+            <element signature="e#27479#30432#0#HTML" />
+            <element signature="e#30433#32826#0#HTML" />
+            <element signature="e#33960#39666#0#HTML" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+        <state relative-caret-position="199">
+          <caret line="186" column="46" selection-start-line="185" selection-start-column="39" selection-end-line="186" selection-end-column="46" />
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
-            <element signature="e#7541#9640#0#PHP" />
-            <element signature="e#12995#15148#0#PHP" />
-            <element signature="e#15154#17801#0#PHP" />
-            <element signature="e#17807#18046#0#PHP" />
-            <element signature="e#18052#18800#0#PHP" />
-            <element signature="e#18806#22439#0#PHP" />
-            <element signature="e#22445#24221#0#PHP" />
-            <element signature="e#24227#26038#0#PHP" />
-            <element signature="e#26044#26163#0#PHP" />
-            <element signature="e#26169#26672#0#PHP" />
-            <element signature="e#26678#26788#0#PHP" />
-            <element signature="e#26794#27080#0#PHP" />
-            <element signature="e#27086#27277#0#PHP" />
+            <element signature="e#5513#8109#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/transacciones/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="431" selection-start-line="431" selection-end-line="697" selection-end-column="9" />
+        <state relative-caret-position="684">
+          <caret line="728" column="5" lean-forward="true" selection-start-line="696" selection-start-column="4" selection-end-line="728" selection-end-column="5" />
           <folding>
-            <element signature="e#21178#22786#0#HTML" />
-            <element signature="e#22787#25733#0#HTML" />
-            <element signature="e#25734#28128#0#HTML" />
-            <element signature="e#28873#34047#0#HTML" />
+            <element signature="e#21055#22663#0#HTML" />
+            <element signature="e#22664#25617#0#HTML" />
+            <element signature="e#25618#28011#0#HTML" />
+            <element signature="e#28756#33930#0#HTML" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/transacciones/duplicar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="771">
-          <caret line="728" column="13" selection-start-line="728" selection-start-column="13" selection-end-line="728" selection-end-column="13" />
+        <state relative-caret-position="486">
+          <caret line="733" selection-start-line="733" selection-end-line="734" />
+          <caret line="743" selection-start-line="743" selection-end-line="744" />
           <folding>
-            <element signature="e#32959#38133#0#HTML" />
+            <element signature="e#3206#19311#0#HTML" />
+            <element signature="e#19351#25072#0#HTML" />
+            <element signature="e#25140#26748#0#HTML" />
+            <element signature="e#25361#25675#0#HTML" />
+            <element signature="e#26749#29702#0#HTML" />
+            <element signature="e#29703#32096#0#HTML" />
+            <element signature="e#32959#38665#0#HTML" />
+            <element signature="e#52906#57123#0#HTML" />
+            <element signature="e#52936#55969#0#HTML" />
+            <element signature="e#55917#55964#0#HTML" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/transacciones/editPlantilla.blade.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_05_195618_create_transacciones_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="463" column="45" selection-start-line="463" selection-start-column="45" selection-end-line="463" selection-end-column="45" />
+        <state relative-caret-position="513">
+          <caret line="29" column="37" lean-forward="true" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/transacciones/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="814" column="17" lean-forward="true" selection-start-line="814" selection-start-column="17" selection-end-line="814" selection-end-column="17" />
           <folding>
-            <element signature="e#33934#39108#0#HTML" />
+            <element signature="e#60#27884#0#HTML" />
+            <element signature="e#27908#29668#0#HTML" />
+            <element signature="e#29673#32811#0#HTML" />
+            <element signature="e#32816#35381#0#HTML" />
+            <element signature="e#36150#41856#0#HTML" />
           </folding>
         </state>
       </provider>

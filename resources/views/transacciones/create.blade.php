@@ -3,9 +3,6 @@
 <div class="row"  id="">
     <div class="col-md-12">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">IMPORTAR EXCEL</h6>
-            </div>
 
             @if (Session::has('email'))
                 <div class="alert alert-danger">{{ Session::get('email') }}</div>
@@ -184,7 +181,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Tipo de Pago</label>
-                                    <select  name= "tipoPago" id="tipoPago" class="select2 form-control custom-select" >
+                                    <select  name="tipoPago" id="tipoPago" class="select2 form-control custom-select" >
                                         <option value="" >[Seleccione una Opción]</option>
                                         <option value="Para Nómina" {{ old('tipoPago') }} > Para Nómina</option>
                                         <option value="Contribuciones Inherentes a la Nómina" {{ old('tipoPago') }} > Contribuciones Inherentes a la Nómina</option>
@@ -234,7 +231,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor Base</label>
-                                    <input type="text"  class="form-control form-control-user"  id="valorBase" value="{{old('valorBase')}}" name="valorBase"  placeholder="Valor Base...">
+                                    <input type="text"  class="form-control form-control-user" onblur="obtenerBase()" id="valorBase" value="{{old('valorBase')}}" name="valorBase"  placeholder="Valor Base...">
                                 </div>
                                 <div class="col-md-3">
                                     <button type="button" disabled="disabled" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Revelaciones">
@@ -360,8 +357,8 @@
                             <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
                             <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
                             <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
-                            <td><input type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
-                            <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
+                            <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
+                            <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
                             <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
                             <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
                             <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
@@ -405,7 +402,7 @@
                         <tr>
                             <td class="nameConcept">{{$itemDescuento->concepto}}</td>
                             <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
-                            <td><input  style="width: 80px;"  type="text" class="valorRetenido"></td>
+                            <td><input  style="width: 80px;"  type="text" name="valorRetenido"></td>
                             <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
                             <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
                                 <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
@@ -721,7 +718,6 @@
     function resta() {
         var debito = $('#totalDebito').val();
         var credito= $('#totalCredito').val();
-
         var direfencia= debito-credito;
         $('#direfencia').val(direfencia);
         var dif=$('#direfencia').val();
@@ -732,9 +728,17 @@
         }
     }
 
+    $('.botonesDesRet').click(function(){
+
+        var porcentaje =  $('.base').val();
+        var base =  $('.porcentaje').val();
+        var total=parseFloat(porcentaje*base)/100;
+        console.log(total);
+        $('.valorRetenido').val(total.toFixed(2));
+
+    });
     var productsId = [];
     $(document).ready(function() {
-
         $(document).on('change keyup','.base',function(){
             var tr= $(this).parent().parent();//primer parent td segundo tr
             var porcentaje=($(tr).find('#porcentaje').val());
@@ -749,16 +753,13 @@
             var total=parseFloat(porcentaje*base)/100;
             $(tr).find('#valorRetenido').val(total.toFixed(2));
         });
-
         $('.agregarPlan').click(function(){
-
             var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
             var base =  $(this).parent().parent().find('.baseFinal').val();
             var retenido =  $(this).parent().parent().find('.valorRetenido').val();
             var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
             var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
             //alert(codigoPUC)
-
             //var debito =  $(this).parent().parent().find('.baseFinal').val();
             $('.debitos').keyup(function(){
                 let inps = $('.debitos');
@@ -781,11 +782,9 @@
                     $(this).parent().parent().find('.credito').css('display','block');
                     $(this).css('display','none')
                 }
-
                 sum();
                 resta();
             });
-
             $('.credito').keyup(function(){
                 let inps = $('.credito');
                 let disabled = false;
@@ -807,7 +806,6 @@
                 sumC();
                 resta();
             });
-
             $.ajax({
                 type: 'GET',
                 url: '/puc/loadPuc',
@@ -816,9 +814,7 @@
                     //console.log(data);
                     data.forEach(element=>{
                         $('.puc_idD').append($('<option>',{class:'pucs', value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
-
                     });
-
                 },error:function(){
                     console.log(data);
                 }
@@ -843,7 +839,6 @@
                 });
                 //console.log($("#puc_id").val())
             });
-
             $('#ProSelected').append('<tr class="active">'+
                 '<input type="hidden" name="transacciones_id[]" />'+
                 '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
@@ -866,7 +861,6 @@
                 '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
                 '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
                 '</tr>');
-
             $(function () {
                 $(document).on('click', '.borrar', function (event) {
                     var debito =  $(this).parent().parent().find('.debitos').val();
@@ -880,19 +874,12 @@
                     $('#totalCredito').val(restaCredito);
                     event.preventDefault();
                     $(this).closest('tr').remove();
-
                 });
             });
-
             $('.selectPuc').select2({
-
             });
         });
-
-
-
         $('.agregarPlanBasico').click(function () {
-
             var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
             var base =  $(this).parent().parent().find('.baseFinal').val();
             var retenido =  $(this).parent().parent().find('.valorRetenido').val();
@@ -908,34 +895,31 @@
                     //console.log(data);
                     data.forEach(element=>{
                         $('.puc_idD').append($('<option>',{class:'pucs', value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
-
                     });
-
                 },error:function(){
                     console.log(data);
                 }
             });
             //console.log($("#puc_id").val())
-           $(document).change(function(){
-               var id= $("#puc_id").val()
-               $.ajax({
-                   type: 'GET',
-                   url: '/puc/loadPucPrueba/'+id,
-                   dataType: 'json',
-                   success: function (data) {
-                       data.forEach(element=>{
-                           if (element.tipoCuenta_id===1){
+            $(document).change(function(){
+                var id= $("#puc_id").val()
+                $.ajax({
+                    type: 'GET',
+                    url: '/puc/loadPucPrueba/'+id,
+                    dataType: 'json',
+                    success: function (data) {
+                        data.forEach(element=>{
+                            if (element.tipoCuenta_id===1){
                                 alert('esta cuenta es tipo Superior, por favor selecciona otra')
-                           }
-                       });
-                       //console.log(data);
-                   },error:function(){
-                       console.log(data);
-                   }
-               });
-               //console.log($("#puc_id").val())
+                            }
+                        });
+                        //console.log(data);
+                    },error:function(){
+                        console.log(data);
+                    }
+                });
+                //console.log($("#puc_id").val())
             });
-
             $('#ProSelected').append('<tr class="active">'+
                 '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
                 '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
@@ -966,13 +950,8 @@
                 '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido"/></td>' +
                 '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
                 '</tr>');
-
-
-
             $('.selectPuc').select2({
-
             });
-
             $('.debitos').keyup(function(){
                 let inps = $('.debitos');
                 let disabled = false;
@@ -994,11 +973,9 @@
                     $(this).parent().parent().find('.credito').css('display','block');
                     $(this).css('display','none')
                 }
-
                 sum();
                 resta();
             });
-
             $('.credito').keyup(function(){
                 let inps = $('.credito');
                 let disabled = false;
@@ -1021,27 +998,25 @@
                 resta();
             });
         });
-
         $(function () {
             $(document).on('click', '.borrar', function (event) {
                 event.preventDefault();
-
                 $(this).closest('tr').remove();
-            });
         });
-
-
-
-
-
+        });
     });
 </script>
 <script>
-        $(document).ready(function() {
-            $('.select2').select2();
+    function obtenerBase() {
+        var valorBase = $('#valorBase').val();
+        console.log(valorBase)
+        $('#base').val(valorBase)
+    }
+    $(document).ready(function() {
+        $('.select2').select2();
 
-        });
-    </script>
+    });
+</script>
 <script>
         $(function() {
             $( "#puc" ).validate({
@@ -1053,8 +1028,7 @@
                         required: true,
                     },
                     dia:{
-                        digits:true,
-                        maxlength:2,
+                        required: true,
                     },
                     tercero_id:{
                         required: true,
@@ -1066,6 +1040,9 @@
                         required: true,
                     },
                     numeroDoc:{
+                        required: true,
+                    },
+                    tipoPago:{
                         required: true,
                     },
                     detalle:{
@@ -1088,12 +1065,14 @@
                     anio:{
                         required: "Este campo es Obligatorio",
                     },
+                    tipoPago:{
+                        required: "Este campo es Obligatorio",
+                    },
                     mes:{
                         required: "Este campo es Obligatorio",
                     },
                     dia:{
-                        digits: "Este campo solo recive digitos",
-                        maxlength: "Este campo solo recive hasta 2 digitos"
+                        required: "Este campo es Obligatorio",
                     },
                     tercero_id:{
                         required: "Este campo es Obligatorio",

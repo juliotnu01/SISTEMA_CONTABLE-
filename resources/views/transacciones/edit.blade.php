@@ -216,14 +216,14 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor Base</label>
-                                    <input type="text"  class="form-control form-control-user"  value="{{$trasacciones->valorBase}}" id="valorBase" name="valorBase"  placeholder="Valor Base...">
+                                    <input type="text"  class="form-control form-control-user" onblur="obtenerBase()"  value="{{$trasacciones->valorBase}}" id="valorBase" name="valorBase"  placeholder="Valor Base...">
                                     <input type="hidden"  class="form-control form-control-user"  value="{{$trasacciones->plantilla}}" id="plantilla" name="plantilla" >
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" style="margin-top: 40px;" class="btn btn-primary " data-toggle="modal" data-target="#Revelaciones">
+                                    <button type="button" disabled="disabled" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Revelaciones">
                                         Retenciones
                                     </button>
-                                    <button type="button" style="margin-top: 40px;" class="btn btn-primary " data-toggle="modal" data-target="#Descuentos">
+                                    <button type="button" disabled="disabled" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Descuentos">
                                         Descuentos
                                     </button>
                                 </div>
@@ -428,9 +428,9 @@
                             <tr>
                                 <td>{{$item->tipoRetencion}}</td>
                                 <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
+                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="'+valorBase+'"/></td>
                                 <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
-                                <td><input type="number" name="porcentaje" id="porcentaje" class="base" value="{{$item->porcentaje}}"/></td>
+                                <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
                                 <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido" id="valorRetenido"></td>
                                 <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
                                 <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
@@ -475,7 +475,7 @@
                             <tr>
                                 <td class="nameConcept">{{$itemDescuento->concepto}}</td>
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
-                                <td><input  style="width: 80px;"  type="text" class="valorRetenido"></td>
+                                <td><input  style="width: 80px;"  type="text" name="valorRetenido"></td>
                                 <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
                                     <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
@@ -806,285 +806,18 @@
         });
     </script>
     <script>
-
-        document.getElementById("valortransaccion").addEventListener("keyup",function(e){
-            document.getElementById("valortransaccionLetras").value=NumeroALetras(this.value);
-        });
-
-        function Unidades(num){
-
-
-
-            switch(num)
-
-            {
-
-                case 1: return "UN";
-
-                case 2: return "DOS";
-
-                case 3: return "TRES";
-
-                case 4: return "CUATRO";
-
-                case 5: return "CINCO";
-
-                case 6: return "SEIS";
-
-                case 7: return "SIETE";
-
-                case 8: return "OCHO";
-
-                case 9: return "NUEVE";
-
-            }
-
-
-
-            return "";
-
-        }
-
-        function Decenas(num){
-
-
-
-            decena = Math.floor(num/10);
-
-            unidad = num - (decena * 10);
-
-
-
-            switch(decena)
-
-            {
-
-                case 1:
-
-                    switch(unidad)
-
-                    {
-
-                        case 0: return "DIEZ";
-
-                        case 1: return "ONCE";
-
-                        case 2: return "DOCE";
-
-                        case 3: return "TRECE";
-
-                        case 4: return "CATORCE";
-
-                        case 5: return "QUINCE";
-
-                        default: return "DIECI" + Unidades(unidad);
-
-                    }
-
-                case 2:
-
-                    switch(unidad)
-
-                    {
-
-                        case 0: return "VEINTE";
-
-                        default: return "VEINTI" + Unidades(unidad);
-
-                    }
-
-                case 3: return DecenasY("TREINTA", unidad);
-
-                case 4: return DecenasY("CUARENTA", unidad);
-
-                case 5: return DecenasY("CINCUENTA", unidad);
-
-                case 6: return DecenasY("SESENTA", unidad);
-
-                case 7: return DecenasY("SETENTA", unidad);
-
-                case 8: return DecenasY("OCHENTA", unidad);
-
-                case 9: return DecenasY("NOVENTA", unidad);
-
-                case 0: return Unidades(unidad);
-
-            }
-
-        }//Unidades()
-
-        function DecenasY(strSin, numUnidades){
-
-            if (numUnidades > 0)
-
-                return strSin + " Y " + Unidades(numUnidades)
-
-
-
-            return strSin;
-
-        }//DecenasY()
-
-        function Centenas(num){
-
-            centenas = Math.floor(num / 100);
-
-            decenas = num - (centenas * 100);
-
-            switch(centenas)
-            {
-                case 1:
-
-                    if (decenas > 0)
-
-                        return "CIENTO " + Decenas(decenas);
-
-                    return "CIEN";
-
-                case 2: return "DOSCIENTOS " + Decenas(decenas);
-
-                case 3: return "TRESCIENTOS " + Decenas(decenas);
-
-                case 4: return "CUATROCIENTOS " + Decenas(decenas);
-
-                case 5: return "QUINIENTOS " + Decenas(decenas);
-
-                case 6: return "SEISCIENTOS " + Decenas(decenas);
-
-                case 7: return "SETECIENTOS " + Decenas(decenas);
-
-                case 8: return "OCHOCIENTOS " + Decenas(decenas);
-
-                case 9: return "NOVECIENTOS " + Decenas(decenas);
-
-            }
-
-            return Decenas(decenas);
-
-        }//Centenas()
-
-        function Seccion(num, divisor, strSingular, strPlural){
-
-            cientos = Math.floor(num / divisor)
-
-            resto = num - (cientos * divisor)
-
-            letras = "";
-
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + " " + strPlural;
-                else
-                    letras = strSingular;
-
-            if (resto > 0)
-
-                letras += "";
-
-            return letras;
-        }//Seccion()
-
-        function Miles(num){
-
-            divisor = 1000;
-
-            cientos = Math.floor(num / divisor)
-
-            resto = num - (cientos * divisor)
-
-            strMiles = Seccion(num, divisor, "MIL", "MIL");
-
-            strCentenas = Centenas(resto);
-
-            if(strMiles == "")
-
-                return strCentenas;
-
-            return strMiles + " " + strCentenas;
-
-            //return Seccion(num, divisor, "UN MIL", "MIL") + " " + Centenas(resto);
-
-        }//Miles()
-
-        function Millones(num){
-
-            divisor = 1000000;
-
-            cientos = Math.floor(num / divisor)
-
-            resto = num - (cientos * divisor)
-
-            strMillones = Seccion(num, divisor, "UN MILLON", "MILLONES");
-
-            strMiles = Miles(resto);
-
-            if(strMillones == "")
-
-                return strMiles;
-
-            return strMillones + " " + strMiles;
-
-        }//Millones()
-
-        function NumeroALetras(num,pesos){
-
-            var data = {
-
-                numero: num,
-
-                enteros: Math.floor(num),
-
-                pesos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-
-                letraspesos: "",
-
-            };
-
-            if(pesos == undefined || pesos==false) {
-
-                data.letrasMonedaPlural="PESOS";
-
-                data.letrasMonedaSingular="PESOS";
-
-            }else{
-
-                data.letrasMonedaPlural="PESOS";
-
-                data.letrasMonedaSingular="PESOS";
-
-            }
-
-            if (data.pesos > 0)
-
-                data.letraspesos = "CON " + NumeroALetras(data.pesos,true);
-
-            if(data.enteros == 0)
-
-                return "CERO " + data.letrasMonedaPlural + " " + data.letraspesos;
-
-            if (data.enteros == 1)
-
-                return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letraspesos;
-
-            else
-
-                return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letraspesos;
-
-        }//NumeroALetras()
-    </script>
-    <script>
         function sum(){
-            let total = 0;
+            let total =0;
             $('.debitos').each(function() {
                 let value = parseFloat($(this).val());
                 if (!isNaN(value)) {
-                    total += value;
+                    total =+value;
                 }
             });
             $('#totalDebito').val(total);
         }
         function sumC(){
-            let totalC = 0;
+            let totalC=0;
             $('.credito').each(function() {
                 let value = parseFloat($(this).val());
                 console.log('credito '+value);
@@ -1097,7 +830,6 @@
         function resta() {
             var debito = $('#totalDebito').val();
             var credito= $('#totalCredito').val();
-
             var direfencia= debito-credito;
             $('#direfencia').val(direfencia);
             var dif=$('#direfencia').val();
@@ -1107,6 +839,15 @@
                 $('.enviar').prop("disabled", false)
             }
         }
+        $('.botonesDesRet').click(function(){
+
+            var porcentaje =  $('.base').val();
+            var base =  $('.porcentaje').val();
+            var total=parseFloat(porcentaje*base)/100;
+            console.log(total);
+            $('.valorRetenido').val(total.toFixed(2));
+
+        });
         var productsId = [];
         $(document).ready(function() {
 
@@ -1405,16 +1146,14 @@
                 });
             });
 
-
-
-
-
         });
     </script>
     <script>
         $(document).ready(function() {
             $('.select2').select2();
-
+            var valorBase = $('#valorBase').val();
+            console.log(valorBase)
+            $('#base').val(valorBase)
         });
     </script>
     <script>
@@ -1428,8 +1167,7 @@
                         required: true,
                     },
                     dia:{
-                        digits:true,
-                        maxlength:2,
+                        required: true,
                     },
                     tercero_id:{
                         required: true,
@@ -1441,6 +1179,9 @@
                         required: true,
                     },
                     numeroDoc:{
+                        required: true,
+                    },
+                    tipoPago:{
                         required: true,
                     },
                     detalle:{
@@ -1463,12 +1204,14 @@
                     anio:{
                         required: "Este campo es Obligatorio",
                     },
+                    tipoPago:{
+                        required: "Este campo es Obligatorio",
+                    },
                     mes:{
                         required: "Este campo es Obligatorio",
                     },
                     dia:{
-                        digits: "Este campo solo recive digitos",
-                        maxlength: "Este campo solo recive hasta 2 digitos"
+                        required: "Este campo es Obligatorio",
                     },
                     tercero_id:{
                         required: "Este campo es Obligatorio",
@@ -1538,5 +1281,15 @@
         });
     </script>
 
+    <script>
+        function obtenerBase() {
+            var valorBase = $('#valorBase').val();
+            console.log(valorBase)
+            $('#base').val(valorBase)
+        }
+        $(document).ready(function() {
+            $('.select2').select2();
 
+        });
+    </script>
 @endsection
