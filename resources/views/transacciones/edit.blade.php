@@ -811,7 +811,7 @@
             $('.debitos').each(function() {
                 let value = parseFloat($(this).val());
                 if (!isNaN(value)) {
-                    total =+value;
+                    total +=value;
                 }
             });
             $('#totalDebito').val(total);
