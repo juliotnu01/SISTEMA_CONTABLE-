@@ -358,7 +358,7 @@
                             <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base" id="base"/></td>
                             <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
                             <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
-                            <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
+                            <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido valorR" name="valorRetenido"  id="valorRetenido"></td>
                             <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
                             <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
                             <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
@@ -402,11 +402,11 @@
                         <tr>
                             <td class="nameConcept">{{$itemDescuento->concepto}}</td>
                             <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
-                            <td><input  style="width: 80px;"  type="text" name="valorRetenido"></td>
+                            <td><input  style="width: 143px;"  type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
                             <input type="hidden" class="retecionesDescuentos_id"   value="{{$itemDescuento->id}}"/>
                             <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$itemDescuento->codigoCuenta}} - {{$itemDescuento->nombreCuenta}}"/>
                             <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
-                                <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
+                            <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
                             <td>
                                 <button class="btn btn-primary agregarPlan" id="agregarPlan"><i class="fa fa-save"></i></button>
                             </td>
@@ -735,7 +735,7 @@
         var porcentaje  =  $('.porcentaje').val();
         var total=parseFloat(base*porcentaje)/100;
         console.log(total);
-        $('.valorRetenido').val(total.toFixed(2));
+        $('.valorR').val(total.toFixed(2));
 
     });
     var productsId = [];
@@ -871,8 +871,8 @@
                 '</select></td>' +
                 '<td ><input style="display: none" type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
                 '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito" value="'+retenido+'"/></td>'+
-                '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>'+
-                '<td><input  type="text" class="form-control" style="width:100px;" name="codigoNIIIF[]" id="codigoNIIIF"  value="'+codigoNiff+'"/></td>' +
+                '<td><input  type="number" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>'+
+                '<td><input  type="number" class="form-control" style="width:100px;" name="codigoNIIIF[]" id="codigoNIIIF"  value="'+codigoNiff+'"/></td>' +
                 '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
                 '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
                 '</tr>');
@@ -954,7 +954,7 @@
                 '<input  type="hidden" class="form-control " style="width:100px;" name="codigoPUC[]" id="codigoPUC"/>' +
                 '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>' +
                 '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>' +
-                '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"/></td>' +
+                '<td><input  type="number" class="form-control" style="width:100px;" name="base[]" id="base"/></td>' +
                 '<td><select style="width:100px;" name= "codigoNIIIF[]" id="codigoNIIIF" class="codigoNIIIFD select2 form-control custom-select" >' +
                 '   @foreach($niif as $item)'+
                 '       <option value="{{$item->codigoNIIIF}}" {{ old('codigoNIIIF') == $item->codigoNIIIF ? 'selected' : '' }} >{{$item->codigoNiff}}</option>'+

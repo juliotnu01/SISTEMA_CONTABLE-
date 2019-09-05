@@ -216,7 +216,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor Base</label>
-                                    <input type="text"  class="form-control form-control-user" onblur="obtenerBase()"  value="{{$trasacciones->valorBase}}" id="valorBase" name="valorBase"  placeholder="Valor Base...">
+                                    <input type="text"  class="form-control form-control-user" onblur="obtenerBase()" id="valorBase"value="{{$trasacciones->valorBase}}" name="valorBase"  placeholder="Valor Base...">
                                     <input type="hidden"  class="form-control form-control-user"  value="{{$trasacciones->plantilla}}" id="plantilla" name="plantilla" >
                                 </div>
                                 <div class="col-md-3">
@@ -347,16 +347,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--  <div class="col-md-8">
-                          @can('transaccion.destroy')
-                              <form method="POST" id="deleteTipoDoc"
-                                    action="{{route('transaccion.destroy',$trasacciones->id)}}">
-                                  {{method_field('DELETE')}}
-                                  {{csrf_field()}}
-                                  <button type="submit" class="btn btn-danger btn-block">ELIMINAR</button>
-                              </form>
-                          @endcan
-                      </div>--}}
                 </div>
             </div>
         </div>
@@ -428,10 +418,10 @@
                             <tr>
                                 <td>{{$item->tipoRetencion}}</td>
                                 <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
+                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base" id="base"/></td>
                                 <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
                                 <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
-                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
+                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido valorR" name="valorRetenido"  id="valorRetenido"></td>
                                 <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
                                 <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
@@ -475,7 +465,7 @@
                             <tr>
                                 <td class="nameConcept">{{$itemDescuento->concepto}}</td>
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
-                                <td><input  style="width: 80px;"  type="text" name="valorRetenido"></td>
+                                <td><input  style="width: 143px;"  type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
                                 <input type="hidden" class="retecionesDescuentos_id"   value="{{$itemDescuento->id}}"/>
                                 <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$itemDescuento->codigoCuenta}} - {{$itemDescuento->nombreCuenta}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
@@ -840,13 +830,22 @@
                 $('.enviar').prop("disabled", false)
             }
         }
+        function obtenerBase() {
+            var valorBase = $('#valorBase').val();
+            console.log(valorBase)
+            $('.baseFinal').val(valorBase)
+        }
         $('.botonesDesRet').click(function(){
 
+            var valorBase = $('#valorBase').val();
+            $('.baseFinal').val(valorBase);
+
             var base=  $('.base').val();
+            console.log(base);
             var porcentaje  =  $('.porcentaje').val();
             var total=parseFloat(base*porcentaje)/100;
             console.log(total);
-            $('.valorRetenido').val(total.toFixed(2));
+            $('.valorR').val(total.toFixed(2));
 
         });
         var productsId = [];
@@ -1295,13 +1294,8 @@
             $('#mes').val("Diciembre");
         });
     </script>
-
     <script>
-        function obtenerBase() {
-            var valorBase = $('#valorBase').val();
-            console.log(valorBase)
-            $('#base').val(valorBase)
-        }
+
         $(document).ready(function() {
             $('.select2').select2();
 

@@ -4,7 +4,17 @@
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-body">
+                    <ol class="breadcrumb">
+                        <a href="{{route('transaccion.index')}}">Todas las transacciones / </a>
+                        <li> Editar Transaccion</li>
+                    </ol>
                     <div class="container">
+                        @if (Session::has('messageMalo'))
+                            <div class="alert alert-danger">{{ Session::get('messageMalo') }}</div>
+                        @endif
+                        @if (Session::has('message'))
+                            <div class="alert alert-success">{{ Session::get('message') }}</div>
+                        @endif
                         @if ($errors->any())
                             <div class="alert-danger">
                                 <ul>
@@ -14,60 +24,64 @@
                                 </ul>
                             </div>
                         @endif
-                        <div class="row">
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="enero">ENERO</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="febrero">FEBRERO</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="marzo">MARZO</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="abril">ABRIL</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="mayo">MAYO</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="junio">JUNIO</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="julio">JULIO</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="agosto">AGOS</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="septiembre">SEPTI</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm btn-block" id="octubre">OCTUB</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm" id="noviembre">NOVIE</button>
-                            </div>
-                            <div class="col-sm-4 col-md-1">
-                                <button class="btn btn-primary btn-sm" id="diciembre">DICIEM</button>
-                            </div>
+
+                        <div class="card-body">
+                            <form action="{{ route('transaccion.import') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="file" name="excel" class="">
+                                <button class="btn btn-success" style="float: right;">Importar datos</button>
+                                <a href="{{route('transaccion.export',$trasacciones->id)}}" style="margin-right: 8px;" class="btn btn-success  float-right">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                            </form>
+                        </div>
+                        &nbsp
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="enero">ENERO</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="febrero">FEBRERO</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="marzo">MARZO</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="abril">ABRIL</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="mayo">MAYO</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="junio">JUNIO</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="julio">JULIO</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="agosto">AGOS</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="septiembre">SEPTI</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm btn-block" id="octubre">OCTUB</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm" id="noviembre">NOVIE</button>
+                        </div>
+                        <div class="col-sm-4 col-md-1">
+                            <button class="btn btn-primary btn-sm" id="diciembre">DICIEM</button>
                         </div>
                     </div>
                     <form class="user"  action="{{route('transaccion.update',$trasacciones->id)}}" method="post" id="puc"  name="puc">
                         {{csrf_field()}}
                         {{ method_field('put') }}
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <br>
-                                    <label for="">Definir como plantilla</label>
-                                    <label class="radio-inline">
-                                        <input type="radio"  id="plantilla"  name="plantilla"  value="SI" {{ $trasacciones->plantilla== 'SI' ? 'checked' : '' }} {{ old('plantilla')=="SI" ? 'checked='.'"'.'checked'.'"' : '' }}>SI</label>
-                                    <label class="radio-inline">
-                                        <input type="radio" id="plantilla" name="plantilla" value="NO" {{ $trasacciones->plantilla== 'SI' ? 'checked' : '' }} {{ old('plantilla')=="NO" ? 'checked='.'"'.'checked'.'"' : '' }}>NO</label>
-                                </div>
-                            </div>
-                            &nbsp
                             <br>
                             <div class="row">
                                 <div class="col-md-2">
@@ -116,22 +130,22 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="">Tercero</label>
-                                    <select  name="tercero_id" id="tercero_id" class="select2 form-control custom-select" >
-                                        <option value="">[Seleccione una Opción]</option>
-                                        @foreach($terceros as $item)
-                                            <option {{ old('tercero_id', $trasacciones->tercero_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">{{$item->nombre1}} - {{$item->natural()->pluck('numeroDocumento')->implode(' / ')}} {{$item->empleado()->pluck('numeroDocumento')->implode(' / ')}} {{$item->juridica()->pluck('nit')->implode(' / ')}}</option>
+                                    <label for="">Comprobantes</label>
+                                    <select  onchange="tipoPresupuesto()" name= "comprobante_id" id="comprobante_id" class="select2 form-control custom-select" >
+                                        <option value="" >[Seleccione una Opción]</option>
+                                        @foreach($comprobante as $item)
+                                            <option {{ old('comprobante_id', $trasacciones->comprobante_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">{{$item->nombreSoporte}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="">Comprobantes</label>
-                                    <select  onchange="tipoPresupuesto()" name= "comprobante_id" id="comprobante_id" class="select2 form-control custom-select" >
-                                        <option value="" >[Seleccione una Opción]</option>
-                                        @foreach($comprobante as $item)
-                                            <option {{ old('comprobante_id', $trasacciones->comprobante_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">{{$item->nombreSoporte}}</option>
+                                    <label for="">Tercero</label>
+                                    <select  name="tercero_id" id="tercero_id" class="select2 form-control custom-select" >
+                                        <option value="">[Seleccione una Opción]</option>
+                                        @foreach($terceros as $item)
+                                            <option {{ old('tercero_id', $trasacciones->tercero_id) == $item->id ? 'selected' : '' }} value="{{$item->id}}">{{$item->nombre1}} - {{$item->natural()->pluck('numeroDocumento')->implode(' / ')}} {{$item->empleado()->pluck('numeroDocumento')->implode(' / ')}} {{$item->juridica()->pluck('nit')->implode(' / ')}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -202,13 +216,14 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor Base</label>
-                                    <input type="text"  class="form-control form-control-user"  value="{{$trasacciones->valorBase}}" id="valorBase" name="valorBase"  placeholder="Valor Base...">
+                                    <input type="text"  class="form-control form-control-user" onblur="obtenerBase()"  value="{{$trasacciones->valorBase}}" id="valorBase" name="valorBase"  placeholder="Valor Base...">
+                                    <input type="hidden"  class="form-control form-control-user"  value="{{$trasacciones->plantilla}}" id="plantilla" name="plantilla" >
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Revelaciones">
+                                    <button type="button" disabled="disabled" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Revelaciones">
                                         Retenciones
                                     </button>
-                                    <button type="button" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Descuentos">
+                                    <button type="button" disabled="disabled" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Descuentos">
                                         Descuentos
                                     </button>
                                 </div>
@@ -216,7 +231,7 @@
                             &nbsp
                             <h2>Plantilla Contable</h2>
                             <button style="margin-top: -43px;float: right;" type="button"  class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
-                            <div class="row"  id="numeroDocumentos">
+                            <div class="row"  id="numeroDocumentos" readonly="readonly" >
                                 <div class="col-md-12" style="overflow:scroll;
                                      height: 330px;">
                                     <table id="TablaPro" class="table">
@@ -240,9 +255,9 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>Sumas Iguales:</b></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalDebito" id="totalDebito"></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalCredito" id="totalCredito"></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="diferencia" id="direfencia"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalDebito" id="totalDebito" value="{{$trasacciones->totalDebito}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalCredito" id="totalCredito" value="{{$trasacciones->totalCredito}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="diferencia" id="direfencia" value="{{$trasacciones->diferencia}}"></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -413,10 +428,10 @@
                             <tr>
                                 <td>{{$item->tipoRetencion}}</td>
                                 <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
+                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base" id="base"/></td>
                                 <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
                                 <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
-                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
+                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido valorR" name="valorRetenido"  id="valorRetenido"></td>
                                 <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
                                 <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
@@ -460,7 +475,7 @@
                             <tr>
                                 <td class="nameConcept">{{$itemDescuento->concepto}}</td>
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
-                                <td><input  style="width: 80px;"  type="text" name="valorRetenido"></td>
+                                <td><input  style="width: 143px;"  type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
                                 <input type="hidden" class="retecionesDescuentos_id"   value="{{$itemDescuento->id}}"/>
                                 <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$itemDescuento->codigoCuenta}} - {{$itemDescuento->nombreCuenta}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
@@ -484,6 +499,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
     <script>
 
         document.getElementById("valortransaccion").addEventListener("keyup",function(e){
@@ -752,52 +768,95 @@
         }//NumeroALetras()
     </script>
     <script>
+        $( document ).ready(function() {
+            $.ajax({
+                type: 'GET',
+                url: '/puc/loadPuc',
+                dataType: 'json',
+                success: function (data) {
+                    //console.log(data);
+                    data.forEach(element=>{
+                        $('.puc_idD').append($('<option>',{class:'pucs', value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
+
+                    });
+
+                },error:function(){
+                    console.log(data);
+                }
+            });
+            //console.log($("#puc_id").val())
+            $(document).change(function(){
+                var id= $("#puc_id").val()
+                $.ajax({
+                    type: 'GET',
+                    url: '/puc/loadPucPrueba/'+id,
+                    dataType: 'json',
+                    success: function (data) {
+                        data.forEach(element=>{
+                            if (element.tipoCuenta_id===1){
+                                alert('esta cuenta es tipo Superior, por favor selecciona otra')
+                            }
+                        });
+                        //console.log(data);
+                    },error:function(){
+                        console.log(data);
+                    }
+                });
+                //console.log($("#puc_id").val())
+            });
+        });
+    </script>
+    <script>
         function sum(){
-            let total = 0;
+            let total =0;
             $('.debitos').each(function() {
                 let value = parseFloat($(this).val());
                 if (!isNaN(value)) {
-                    total += value;
+                    total +=value;
                 }
-
             });
-
             $('#totalDebito').val(total);
         }
         function sumC(){
-            let totalC = 0;
+            let totalC=0;
             $('.credito').each(function() {
                 let value = parseFloat($(this).val());
+                console.log('credito '+value);
                 if (!isNaN(value)) {
                     totalC += value;
                 }
-
             });
-
             $('#totalCredito').val(totalC);
         }
         function resta() {
             var debito = $('#totalDebito').val();
             var credito= $('#totalCredito').val();
-
             var direfencia= debito-credito;
             $('#direfencia').val(direfencia);
             var dif=$('#direfencia').val();
-            console.log(dif);
             if (dif!=0){
                 $('.enviar').prop("disabled", true)
             }else{
                 $('.enviar').prop("disabled", false)
             }
-
         }
+
+        function obtenerBase() {
+            var valorBase = $('#valorBase').val();
+            console.log(valorBase)
+            $('.baseFinal').val(valorBase)
+        }
+
         $('.botonesDesRet').click(function(){
+
+            var valorBase = $('#valorBase').val();
+            $('.baseFinal').val(valorBase);
 
             var base=  $('.base').val();
             var porcentaje  =  $('.porcentaje').val();
             var total=parseFloat(base*porcentaje)/100;
             console.log(total);
-            $('.valorRetenido').val(total.toFixed(2));
+            $('.valorR').val(total.toFixed(2));
 
         });
         var productsId = [];
@@ -814,7 +873,7 @@
                 if(isNaN(base)){
                     base=0;
                 }
-                var total=parseFloat(porcentaje*base)/100;
+                var total=parseFloat(base*porcentaje)/100;
                 $(tr).find('#valorRetenido').val(total.toFixed(2));
             });
 
@@ -840,27 +899,6 @@
                 var codigoNiff =  $(this).parent().parent().find('.codigoNiff').val();
                 var sel2 = $(this).parent().parent().find('.retecionesDescuentos_id').val();
                 //alert(codigoPUC)
-
-                $('#ProSelected').append('<tr class="active">'+
-                    '<input type="hidden" name="transacciones_id[]" />'+
-                    '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
-                    '<input type="hidden" name="puc_id[]"/>'+
-                    '<td><input style="width: 8pc;" type="text" class="form-control" style="width:100px;" name="codigoPUC[]" id="codigoPUC"  value="'+codigoPUC+'" /></td>'+
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>'+
-                    '<td> <select style="width:20pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
-                    '<option value="1">[Seleccione un Opcion]</option>'+
-                    '    @foreach($centroCosto as $item)'+
-                    '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
-                    '    @endforeach'+
-                    '</select></td>' +
-                    '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
-                    '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>'+
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>'+
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="codigoNIIIF[]" id="codigoNIIIF"  value="'+codigoNiff+'"/></td>' +
-                    '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
-                    '<td style="display: none"><input  type="number"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido" value="'+retenido+'" /></td>' +
-                    '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
-                    '</tr>');
 
                 //var debito =  $(this).parent().parent().find('.baseFinal').val();
                 $('.debitos').keyup(function(){
@@ -911,6 +949,65 @@
                     resta();
                 });
 
+                $.ajax({
+                    type: 'GET',
+                    url: '/puc/loadPuc',
+                    dataType: 'json',
+                    success: function (data) {
+                        //console.log(data);
+                        data.forEach(element=>{
+                            $('.puc_idD').append($('<option>',{class:'pucs', value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
+
+                        });
+
+                    },error:function(){
+                        console.log(data);
+                    }
+                });
+                //console.log($("#puc_id").val())
+                $(document).change(function(){
+                    var id= $("#puc_id").val()
+                    $.ajax({
+                        type: 'GET',
+                        url: '/puc/loadPucPrueba/'+id,
+                        dataType: 'json',
+                        success: function (data) {
+                            data.forEach(element=>{
+                                if (element.tipoCuenta_id===1){
+                                    alert('esta cuenta es tipo Superior, por favor selecciona otra')
+                                }
+                            });
+                            //console.log(data);
+                        },error:function(){
+                            console.log(data);
+                        }
+                    });
+                    //console.log($("#puc_id").val())
+                });
+
+                $('#ProSelected').append('<tr class="active">'+
+                    '<input type="hidden" name="transacciones_id[]" />'+
+                    '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
+                    '<input type="hidden"  class="form-control" style="width:100px;" name="valorRetenido[]" id="valorRetenido" value="'+retenido+'" />'+
+                    '<td><span>'+codigoPUC+'</span> </td>'+
+                    '<td>' +
+                    '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="selectPuc puc_idD select2 form-control custom-select puc_id">'+
+                    '</select>'+
+                    '<td><input  type="text" class="form-control" style="width:100px;" name="docReferencia[]" id="docReferencia"/></td>'+
+                    '<td> <select style="width:8pc;" name="centroCosto_id[]" id="centroCosto_id" class="select2 form-control custom-select" style="width: 100%; height:36px;">'+
+                    '<option value="1">[Seleccione un Opcion]</option>'+
+                    '    @foreach($centroCosto as $item)'+
+                    '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
+                    '    @endforeach'+
+                    '</select></td>' +
+                    '<td ><input style="display: none" type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
+                    '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito" value="'+retenido+'"/></td>'+
+                    '<td><input  type="text" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>'+
+                    '<td><input  type="text" class="form-control" style="width:100px;" name="codigoNIIIF[]" id="codigoNIIIF"  value="'+codigoNiff+'"/></td>' +
+                    '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
+                    '<td><button type="button" class="btn btn-link btn-danger remove borrar"><i class="fa fa-times"></i></button></td>'+
+                    '</tr>');
+
                 $(function () {
                     $(document).on('click', '.borrar', function (event) {
                         var debito =  $(this).parent().parent().find('.debitos').val();
@@ -926,6 +1023,10 @@
                         $(this).closest('tr').remove();
 
                     });
+                });
+
+                $('.selectPuc').select2({
+
                 });
             });
 
@@ -945,7 +1046,7 @@
                     url: '/puc/loadPuc',
                     dataType: 'json',
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                         data.forEach(element=>{
                             $('.puc_idD').append($('<option>',{class:'pucs', value: element.id, text:element.codigoCuenta+'-'+ element.nombreCuenta}))
 
@@ -979,6 +1080,7 @@
                 $('#ProSelected').append('<tr class="active">'+
                     '<input type="hidden" name="transacciones_id[]" data-id="'+sel3+'" />' +
                     '<input type="hidden" name="retecionesDescuentos_id[]"  data-id="'+sel2+'" />'+
+                    '<td><span></span> </td>'+
                     '<td>' +
                     '<select style="width: 28pc;" onchange="niif()" name="puc_id[]" id="puc_id" class="selectPuc puc_idD select2 form-control custom-select puc_id">'+
                     '</select>'+
@@ -1069,17 +1171,14 @@
                 });
             });
 
-
-
-
-
         });
     </script>
-    <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.select2').select2();
-
+            var valorBase = $('#valorBase').val();
+            console.log(valorBase)
+            $('#base').val(valorBase)
         });
     </script>
     <script>
@@ -1206,5 +1305,15 @@
             $('#mes').val("Diciembre");
         });
     </script>
+    <script>
+        function obtenerBase() {
+            var valorBase = $('#valorBase').val();
+            console.log(valorBase)
+            $('#base').val(valorBase)
+        }
+        $(document).ready(function() {
+            $('.select2').select2();
 
+        });
+    </script>
 @endsection
