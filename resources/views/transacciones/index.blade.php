@@ -146,6 +146,88 @@
                         </div>
                     </div>
                     <div class="card">
+                        <div class="card-header bg-danger" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link " style="color: #fff" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Transacciónes Erroneas
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTableSelect" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>Numero Doc</th>
+                                            <th>Fecha</th>
+                                            <th>Tercero</th>
+                                            <th>Soporte</th>
+                                            <th>Tipo Presupuesto</th>
+                                            <th>Valor de la Transacción</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Numero Doc</th>
+                                            <th>Fecha</th>
+                                            <th>Tercero</th>
+                                            <th>Soporte</th>
+                                            <th>Tipo Presupuesto</th>
+                                            <th>Valor de la Transacción</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        @foreach($trasaccionesErronea as $item)
+                                            <tr>
+                                                <td>{{$item->numeroDoc}}</td>
+                                                <td>{{$item->anio.'/'.$item->mes.'/'.$item->dia}}</td>
+                                                <td>{{$item->nombre1.' '.$item->nombre2.' '.$item->apellido.' '.$item->apellido2}}</td>
+                                                <td>{{$item->nombreSoporte}}</td>
+                                                <td>{{$item->nombrePresupuesto}}</td>
+                                                <td>{{$item->valortransaccion }}</td>
+                                                <td>
+                                                    @can('transaccion.edit')
+                                                        <a  title="EDITAR" href="{{route('transaccion.edit',$item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                </td>
+                                                <td>
+                                                    @can('transaccion.duplicate')
+                                                        <a  title="DUPLICAR" href="{{route('transaccion.duplicate',$item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-clone"></i></a>
+                                                    @endcan
+                                                </td>
+                                                <td>
+                                                    <a  title="IMPRIMIR" href="{{route('transaccion.printTrans',$item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-print"></i></a>
+                                                </td>
+                                                <td>
+                                                    @can('transaccion.destroy')
+
+                                                        <form method="POST" id="deleteRetencion"
+                                                              action="{{route('transaccion.destroy',$item->id)}}">
+                                                            {{method_field('DELETE')}}
+                                                            {{csrf_field()}}
+                                                            <button  title="ELIMINAR" type="submit"  onclick="return confirm('¿Esta seguro de eliminar este registro?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                        </form>
+                                                    @endcan
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
                         <div class="card-header bg-primary" id="headingThree">
                             <h2 class="mb-0">
                                 <button class="btn btn-link  collapsed" style="color: #fff" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">

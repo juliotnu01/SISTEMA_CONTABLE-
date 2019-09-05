@@ -34,6 +34,7 @@ class TrasaccionesController extends Controller
                 'transacciones.numeroDoc', 'transacciones.valortransaccion', 'transacciones.valortransaccionLetras', 'personas.nombre1', 'personas.nombre2', 'personas.apellido', 'personas.apellido2',
                 'comprobantes.nombreSoporte', 'tipo_presupuestos.nombrePresupuesto', 'transacciones.valorBase')
             ->where('transacciones.plantilla', '=', 'NO')
+            ->where('transacciones.diferencia', '=', 0)
             ->get();
 
         $trasaccionesFaltan = DB::table('transacciones')
@@ -44,6 +45,17 @@ class TrasaccionesController extends Controller
                 'transacciones.numeroDoc', 'transacciones.valortransaccion', 'transacciones.valortransaccionLetras', 'personas.nombre1', 'personas.nombre2', 'personas.apellido', 'personas.apellido2',
                 'comprobantes.nombreSoporte', 'tipo_presupuestos.nombrePresupuesto', 'transacciones.valorBase')
             ->where('transacciones.plantilla', '=', 'NO')
+            ->get();
+
+        $trasaccionesErronea=DB::table('transacciones')
+            ->join('personas', 'transacciones.tercero_id', '=', 'personas.id')
+            ->join('tipo_presupuestos', 'transacciones.tipoPresupuesto_id', '=', 'tipo_presupuestos.id')
+            ->join('comprobantes', 'transacciones.comprobante_id', '=', 'comprobantes.id')
+            ->select('transacciones.id', 'transacciones.anio', 'transacciones.mes', 'transacciones.dia',
+                'transacciones.numeroDoc', 'transacciones.valortransaccion', 'transacciones.valortransaccionLetras', 'personas.nombre1', 'personas.nombre2', 'personas.apellido', 'personas.apellido2',
+                'comprobantes.nombreSoporte', 'tipo_presupuestos.nombrePresupuesto', 'transacciones.valorBase')
+            ->where('transacciones.plantilla', '=', 'NO')
+            ->where('transacciones.diferencia', '!=', 0)
             ->get();
 
         $trasaccionesPlantilla =DB::table('transacciones')
@@ -59,7 +71,7 @@ class TrasaccionesController extends Controller
         $tipoPresupuesnto = TipoPresupuesto::all();
         //dd($retenciones);
         return view('transacciones.index', compact('trasacciones', 'trasaccionesPlantilla', 'trasaccionesFaltan',
-            'tipoPresupuesnto'));
+            'tipoPresupuesnto','trasaccionesErronea'));
     }
 
     public function create()
