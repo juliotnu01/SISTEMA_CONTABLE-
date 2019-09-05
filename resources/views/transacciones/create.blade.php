@@ -244,7 +244,7 @@
                             </div>
                             <br>
                             <h2>Plantilla Contable</h2>
-                            <button style="margin-top: -43px;float: right;" type="button"  class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
+                            <button style="margin-top: -43px;float: right;" type="button" class="btn btn-primary agregarPlanBasico" id="agregarPlan"><i class="fa fa-plus"></i></button>
                             <div class="row"  id="numeroDocumentos">
                                 <div class="col-md-12" style="overflow:scroll;
                                      height: 330px;">
@@ -279,7 +279,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-user btn-block enviar" type="submit">AGREGAR</button>
+                            <button class="btn btn-primary btn-user btn-block enviar" disabled="disabled" type="submit">AGREGAR</button>
                         </div>
                         &nbsp
                     </form>
@@ -355,7 +355,7 @@
                         <tr>
                             <td>{{$item->tipoRetencion}}</td>
                             <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                            <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base"  id="base" value="{{$item->base}}"/></td>
+                            <td><input  style="width: 143px; " class="baseFinal"  type="number" name="base"  id="base" /></td>
                             <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
                             <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
                             <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
@@ -731,8 +731,8 @@
 
     $('.botonesDesRet').click(function(){
 
-        var porcentaje =  $('.base').val();
-        var base =  $('.porcentaje').val();
+        var porcentaje =  $('.porcentaje').val();
+        var base =  $('.baseFinal').val();
         var total=parseFloat(porcentaje*base)/100;
         console.log(total);
         $('.valorRetenido').val(total.toFixed(2));
@@ -953,6 +953,17 @@
                 '</tr>');
             $('.selectPuc').select2({
             });
+            $(function () {
+                $(".puc_id").change(function () {
+                    var nFilas = $("#TablaPro tr").length;
+                    if (nFilas < 4 ){
+                        $('.enviar').prop("disabled", true)
+                    }else{
+                        $('.enviar').prop("disabled", false)
+                    }
+
+                });
+            });
             $('.debitos').keyup(function(){
                 let inps = $('.debitos');
                 let disabled = false;
@@ -1001,9 +1012,15 @@
         });
         $(function () {
             $(document).on('click', '.borrar', function (event) {
+                var nFilas = $("#TablaPro tr").length-1;
+                if (nFilas < 4 ){
+                    $('.enviar').prop("disabled", true)
+                }else{
+                    $('.enviar').prop("disabled", false)
+                }
                 event.preventDefault();
                 $(this).closest('tr').remove();
-        });
+            });
         });
     });
 </script>

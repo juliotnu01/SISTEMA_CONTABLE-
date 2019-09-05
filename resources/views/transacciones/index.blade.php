@@ -97,55 +97,6 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header" style="background-color: #28a745b0 !important;" id="headingTwo">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link  collapsed" style="color: #000" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Transacciónes por Completar
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="" width="100%" cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th style="width: 100px">Numero Doc</th>
-                                            <th style="width: 15%;">Fecha</th>
-                                            <th style="width: 15%">Valor de la Transacción</th>
-                                            <th style="width: 10px"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($trasaccionesFaltan as $item)
-                                            <tr>
-                                                <td style="width: 100px">{{$item->numeroDoc}}</td>
-                                                <td style="width: 15%;">{{$item->anio.'/'.$item->mes.'/'.$item->dia}}</td>
-                                                <td style="width: 80px">{{$item->valortransaccion}}</td>
-                                                <td style="width: 10px">
-                                                    @can('transaccion.edit')
-                                                        <a href="{{route('transaccion.edit',$item->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                                                    @endcan
-                                                </td>
-                                                <td style="width: 10px">
-                                                    @can('transaccion.destroy')
-                                                        <form method="POST" id="deleteRetencion"
-                                                              action="{{route('transaccion.destroy',$item->id)}}">
-                                                            {{method_field('DELETE')}}
-                                                            {{csrf_field()}}
-                                                            <button type="submit"  onclick="return confirm('¿Esta seguro de eliminar este registro?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                                        </form>
-                                                    @endcan
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
                         <div class="card-header bg-danger" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="btn btn-link " style="color: #fff" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -157,7 +108,7 @@
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTableSelect" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                         <thead>
                                         <tr>
                                             <th>Numero Doc</th>

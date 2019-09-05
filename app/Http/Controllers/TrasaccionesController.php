@@ -37,16 +37,6 @@ class TrasaccionesController extends Controller
             ->where('transacciones.diferencia', '=', 0)
             ->get();
 
-        $trasaccionesFaltan = DB::table('transacciones')
-            ->join('personas', 'transacciones.tercero_id', '=', 'personas.id')
-            ->join('tipo_presupuestos', 'transacciones.tipoPresupuesto_id', '=', 'tipo_presupuestos.id')
-            ->join('comprobantes', 'transacciones.comprobante_id', '=', 'comprobantes.id')
-            ->select('transacciones.id', 'transacciones.anio', 'transacciones.mes', 'transacciones.dia',
-                'transacciones.numeroDoc', 'transacciones.valortransaccion', 'transacciones.valortransaccionLetras', 'personas.nombre1', 'personas.nombre2', 'personas.apellido', 'personas.apellido2',
-                'comprobantes.nombreSoporte', 'tipo_presupuestos.nombrePresupuesto', 'transacciones.valorBase')
-            ->where('transacciones.plantilla', '=', 'NO')
-            ->get();
-
         $trasaccionesErronea=DB::table('transacciones')
             ->join('personas', 'transacciones.tercero_id', '=', 'personas.id')
             ->join('tipo_presupuestos', 'transacciones.tipoPresupuesto_id', '=', 'tipo_presupuestos.id')
@@ -70,7 +60,7 @@ class TrasaccionesController extends Controller
 
         $tipoPresupuesnto = TipoPresupuesto::all();
         //dd($retenciones);
-        return view('transacciones.index', compact('trasacciones', 'trasaccionesPlantilla', 'trasaccionesFaltan',
+        return view('transacciones.index', compact('trasacciones', 'trasaccionesPlantilla',
             'tipoPresupuesnto','trasaccionesErronea'));
     }
 
@@ -89,7 +79,7 @@ class TrasaccionesController extends Controller
         $retenciones = DB::table('retencion_descuentos')
             ->leftJoin('pucs', 'retencion_descuentos.puc_id', '=', 'pucs.id')
             ->leftJoin('niffs', 'niffs.puc_id', '=', 'pucs.id')
-            ->select('retencion_descuentos.id', 'retencion_descuentos.base', 'retencion_descuentos.tipoRetencion', 'retencion_descuentos.iva'
+            ->select('retencion_descuentos.id', 'retencion_descuentos.tipoRetencion', 'retencion_descuentos.iva'
                 , 'retencion_descuentos.concepto', 'retencion_descuentos.porcentaje', 'pucs.codigoCuenta', 'pucs.nombreCuenta', 'niffs.codigoNiff')
             ->where('retencion_descuentos.RetoDes', '=', null)
             ->get();
