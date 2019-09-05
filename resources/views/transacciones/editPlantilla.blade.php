@@ -461,7 +461,8 @@
                                 <td class="nameConcept">{{$itemDescuento->concepto}}</td>
                                 <td><input  style="width: 40px;" type="text" class="porcentaje" value="{{$itemDescuento->porcentaje}}"></td>
                                 <td><input  style="width: 80px;"  type="text" name="valorRetenido"></td>
-                                <input  type="hidden" class="base baseFinal" name="base"  id="base" value="{{$itemDescuento->base}}"/>
+                                <input type="hidden" class="retecionesDescuentos_id"   value="{{$itemDescuento->id}}"/>
+                                <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$itemDescuento->codigoCuenta}} - {{$itemDescuento->nombreCuenta}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$itemDescuento->codigoNiff}}"/><td>
                                     <input type="hidden" class="retecionesDescuentos_id" value="{{$itemDescuento->id}}"/>
                                 <td>
