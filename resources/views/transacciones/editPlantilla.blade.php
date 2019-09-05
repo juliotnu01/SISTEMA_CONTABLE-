@@ -752,15 +752,6 @@
         }//NumeroALetras()
     </script>
     <script>
-        $('.botonesDesRet').click(function(){
-
-            var porcentaje =  $('.base').val();
-            var base =  $('.porcentaje').val();
-            var total=parseFloat(porcentaje*base)/100;
-            console.log(total);
-            $('.valorRetenido').val(total.toFixed(2));
-
-        });
         function sum(){
             let total = 0;
             $('.debitos').each(function() {
@@ -800,7 +791,15 @@
             }
 
         }
+        $('.botonesDesRet').click(function(){
 
+            var base=  $('.base').val();
+            var porcentaje  =  $('.porcentaje').val();
+            var total=parseFloat(base*porcentaje)/100;
+            console.log(total);
+            $('.valorRetenido').val(total.toFixed(2));
+
+        });
         var productsId = [];
         $(document).ready(function() {
 
@@ -809,6 +808,20 @@
                 var porcentaje=($(tr).find('#porcentaje').val());
                 var base=($(tr).find('#base').val());
                 console.log(porcentaje,base);
+                if(isNaN(porcentaje)){
+                    porcentaje=0;
+                }
+                if(isNaN(base)){
+                    base=0;
+                }
+                var total=parseFloat(porcentaje*base)/100;
+                $(tr).find('#valorRetenido').val(total.toFixed(2));
+            });
+
+            $(document).on('change keyup','.porcentaje',function(){
+                var tr= $(this).parent().parent();//primer parent td segundo tr
+                var porcentaje=($(tr).find('#porcentaje').val());
+                var base=($(tr).find('#base').val());
                 if(isNaN(porcentaje)){
                     porcentaje=0;
                 }

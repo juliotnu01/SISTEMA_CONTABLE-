@@ -355,7 +355,7 @@
                         <tr>
                             <td>{{$item->tipoRetencion}}</td>
                             <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                            <td><input  style="width: 143px; " class="baseFinal"  type="number" name="base"  id="base" /></td>
+                            <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base" id="base"/></td>
                             <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
                             <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
                             <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido" name="valorRetenido"  id="valorRetenido"></td>
@@ -731,9 +731,9 @@
 
     $('.botonesDesRet').click(function(){
 
-        var porcentaje =  $('.porcentaje').val();
-        var base =  $('.baseFinal').val();
-        var total=parseFloat(porcentaje*base)/100;
+        var base=  $('.base').val();
+        var porcentaje  =  $('.porcentaje').val();
+        var total=parseFloat(base*porcentaje)/100;
         console.log(total);
         $('.valorRetenido').val(total.toFixed(2));
 
@@ -744,7 +744,6 @@
             var tr= $(this).parent().parent();//primer parent td segundo tr
             var porcentaje=($(tr).find('#porcentaje').val());
             var base=($(tr).find('#base').val());
-            console.log(porcentaje,base);
             if(isNaN(porcentaje)){
                 porcentaje=0;
             }
@@ -754,6 +753,21 @@
             var total=parseFloat(porcentaje*base)/100;
             $(tr).find('#valorRetenido').val(total.toFixed(2));
         });
+
+        $(document).on('change keyup','.porcentaje',function(){
+            var tr= $(this).parent().parent();//primer parent td segundo tr
+            var porcentaje=($(tr).find('#porcentaje').val());
+            var base=($(tr).find('#base').val());
+            if(isNaN(porcentaje)){
+                porcentaje=0;
+            }
+            if(isNaN(base)){
+                base=0;
+            }
+            var total=parseFloat(porcentaje*base)/100;
+            $(tr).find('#valorRetenido').val(total.toFixed(2));
+        });
+
         $('.agregarPlan').click(function(){
             var codigoPUC =  $(this).parent().parent().find('.codigoCuenta').val();
             var base =  $(this).parent().parent().find('.baseFinal').val();
@@ -1028,7 +1042,7 @@
     function obtenerBase() {
         var valorBase = $('#valorBase').val();
         console.log(valorBase)
-        $('#base').val(valorBase)
+        $('.baseFinal').val(valorBase)
     }
     $(document).ready(function() {
         $('.select2').select2();
