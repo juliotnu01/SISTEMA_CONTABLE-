@@ -16,10 +16,12 @@ class TrasnsacciomImport implements ToModel
         return new  PlantillaContable([
             'transacciones_id' => $row[0],
             'docReferencia' => $row[2],
-            'debito'=> $row[3],
-            'credito'=> $row[4],
-            //'diferencia' => $row[3]-$row[2],
+            'puc_id'=> $row[3],
+            'debito'=> $row[4],
+            'credito'=> $row[5],
             'base'=>0
+
+
         ]);
 
     }
