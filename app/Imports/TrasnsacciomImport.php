@@ -20,8 +20,6 @@ class TrasnsacciomImport implements ToModel
             'debito'=> $row[4],
             'credito'=> $row[5],
             'base'=>0
-
-
         ]);
 
     }

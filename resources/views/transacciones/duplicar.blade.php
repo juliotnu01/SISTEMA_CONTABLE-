@@ -378,7 +378,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table tablaRetencion" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Tipo de Retencion</th>
@@ -390,15 +390,15 @@
                             <th></th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="bodyt">
                         @foreach($retenciones as $item)
-                            <tr>
-                                <td>{{$item->tipoRetencion}}</td>
-                                <td><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
-                                <td><input  style="width: 143px; " class="base baseFinal"  type="number" name="base" id="base"/></td>
-                                <td><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
-                                <td><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
-                                <td><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido valorR" name="valorRetenido"  id="valorRetenido"></td>
+                            <tr id="tds">
+                                <td class="tdss">{{$item->tipoRetencion}}</td>
+                                <td class="tds"><input class="concepto " type="text" disabled="disabled" name="concepto" id="concepto" value="{{$item->concepto}}"/></td>
+                                <td class="tds"><input  style="width: 143px; " class="base baseFinal"  type="number" name="base" id="base"/></td>
+                                <td class="tds"><input type="number" disabled="disabled" name="iva" id="iva" value="{{$item->iva}}"/></td>
+                                <td class="tds"><input type="number" name="porcentaje" id="porcentaje" class="porcentaje" value="{{$item->porcentaje}}"/></td>
+                                <td class="tdss"><input  style="width: 143px;" disabled="disabled" type="text" class="valorRetenido valorR" name="valorRetenido"  id="valorRetenido"></td>
                                 <input type="hidden" class="retecionesDescuentos_id"   value="{{$item->id}}"/>
                                 <input  type="hidden" name="codigoCuenta" id="codigoCuenta" class="codigoCuenta" value="{{$item->codigoCuenta}} - {{$item->nombreCuenta}}"/>
                                 <input  type="hidden" name="codigoNiff" id="codigoNiff" class="codigoNiff" value="{{$item->codigoNiff}}"/>
@@ -812,19 +812,27 @@
             console.log(valorBase)
             $('.baseFinal').val(valorBase)
         }
+
         $('.botonesDesRet').click(function(){
 
             var valorBase = $('#valorBase').val();
             $('.baseFinal').val(valorBase);
 
-            var base=  $('.base').val();
-            console.log(base);
-            var porcentaje  =  $('.porcentaje').val();
-            var total=parseFloat(base*porcentaje)/100;
-            console.log(total);
-            $('.valorR').val(total.toFixed(2));
+            var base = $(this).parents("tr").find("#base").val();
+            var porcentaje = $(this).parents("tr").find("#porcentaje").val();
+            var total = parseFloat(base * porcentaje) / 100;
+            $(this).parents("tr").find(".valorR").val(total.toFixed(2));
 
         });
+
+        $('.agregarPlan').click(function(){
+            var base=  $(this).parents("tr").find("#base").val();
+            var porcentaje  =  $(this).parents("tr").find("#porcentaje").val();
+            console.log(porcentaje);
+            var total=parseFloat(base*porcentaje)/100;
+            $(this).parents("tr").find(".valorR").val(total.toFixed(2));
+        });
+
         var productsId = [];
         $(document).ready(function() {
 
