@@ -559,8 +559,7 @@ class TrasaccionesController extends Controller
                 Session::flash('message', 'Error al crear plantilla, prueba nuevamente');
                 return back();
             }
-        }
-}
+    }
 
     public function loadNiif ($id)
     {
