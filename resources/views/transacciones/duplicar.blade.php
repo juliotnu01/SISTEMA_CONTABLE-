@@ -232,9 +232,9 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>Sumas Iguales:</b></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalDebito" id="totalDebito" value="{{$trasacciones->totalDebito}}"></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalCredito" id="totalCredito" value="{{$trasacciones->totalCredito}}"></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="diferencia" id="direfencia" value="{{$trasacciones->diferencia}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" data-id="{{$trasacciones->totalDebito}}" class="form-control form-control-user" name="totalDebito" id="totalDebito" value="{{$trasacciones->totalDebito}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" data-id="{{$trasacciones->totalCredito}}" class="form-control form-control-user" name="totalCredito" id="totalCredito" value="{{$trasacciones->totalCredito}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" data-id="{{$trasacciones->diferencia}}" class="form-control form-control-user" name="diferencia" id="direfencia" value="{{$trasacciones->diferencia}}"></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -775,25 +775,24 @@
     </script>
     <script>
         function sum(){
-            let total =0;
+            let totalDB = parseFloat($('#totalDebito').data('id'));
             $('.debitos').each(function() {
                 let value = parseFloat($(this).val());
                 if (!isNaN(value)) {
-                    total +=value;
+                    totalDB +=value;
                 }
             });
-            $('#totalDebito').val(total);
+            $('#totalDebito').val(totalDB);
         }
         function sumC(){
-            let totalC=0;
+            let totalDB = parseFloat($('#totalCredito').data('id'));
             $('.credito').each(function() {
                 let value = parseFloat($(this).val());
-                console.log('credito '+value);
                 if (!isNaN(value)) {
-                    totalC += value;
+                    totalDB += value;
                 }
             });
-            $('#totalCredito').val(totalC);
+            $('#totalCredito').val(totalDB);
         }
         function resta() {
             var debito = $('#totalDebito').val();

@@ -443,16 +443,16 @@ class TrasaccionesController extends Controller
         $totales=Transacciones::select('id','totalCredito','totalDebito')->where('id','=',$id)->get();
 
         $movimientoContableDos=DB::table('plantilla_contables')
-            ->join('pucs', 'plantilla_contables.puc_id', '=', 'pucs.id')
-            ->join('personas_juridicas', 'pucs.persona_id', '=', 'personas_juridicas.id')
-            ->join('transacciones', 'plantilla_contables.transacciones_id', '=', 'transacciones.id')
+            ->leftJoin('pucs', 'plantilla_contables.puc_id', '=', 'pucs.id')
+            ->leftJoin('personas_juridicas', 'pucs.persona_id', '=', 'personas_juridicas.id')
+            ->leftJoin('transacciones', 'plantilla_contables.transacciones_id', '=', 'transacciones.id')
             ->select('plantilla_contables.id','plantilla_contables.docReferencia','pucs.codigoCuenta',
                 'personas_juridicas.nit','transacciones.totalCredito','pucs.naturalezaCuenta','pucs.nombreCuenta')
             //->where('plantilla_contables.codigoPUC','like','11%')
             ->where('pucs.naturalezaCuenta','=','Credito')
-            ->where('plantilla_contables.transacciones_id','=',$id)
+            ->orWhere('plantilla_contables.transacciones_id','=',$id)
             ->get();
-
+        //dd($movimientoContableDos);
         $desRet=DB::table('plantilla_contables')
             ->join('transacciones', 'plantilla_contables.transacciones_id', '=', 'transacciones.id')
             ->join('comprobantes', 'transacciones.comprobante_id', '=', 'comprobantes.id')
@@ -545,17 +545,17 @@ class TrasaccionesController extends Controller
 
     public function import(Request $request)
     {
-        try {
+        //try {
             $request->hasFile('excel');
             $archivo = $request->file('excel');
             Excel::import(new TrasnsacciomImport, $archivo);
             Session::flash('message', 'Plantilla creadas con exito');
-            return back();
-        }
+            return  ;
+        /*}
         catch (\Illuminate\Database\QueryException $e) {
             Session::flash('message', 'Error al crear plantilla, prueba nuevamente');
             return back();
-        }
+        }*/
 
     }
 

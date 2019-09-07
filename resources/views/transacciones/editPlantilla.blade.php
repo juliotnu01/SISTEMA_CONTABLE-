@@ -255,9 +255,9 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>Sumas Iguales:</b></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalDebito" id="totalDebito" value="{{$trasacciones->totalDebito}}"></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="totalCredito" id="totalCredito" value="{{$trasacciones->totalCredito}}"></td>
-                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" name="diferencia" id="direfencia" value="{{$trasacciones->diferencia}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" data-id="{{$trasacciones->totalDebito}}" name="totalDebito" id="totalDebito" value="{{$trasacciones->totalDebito}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" data-id="{{$trasacciones->totalCredito}}" name="totalCredito" id="totalCredito" value="{{$trasacciones->totalCredito}}"></td>
+                                        <td><input readonly="readonly" type="text" style="width:150px;" class="form-control form-control-user" data-id="{{$trasacciones->diferencia}}" name="diferencia" id="direfencia" value="{{$trasacciones->diferencia}}"></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -347,16 +347,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--  <div class="col-md-8">
-                          @can('transaccion.destroy')
-                              <form method="POST" id="deleteTipoDoc"
-                                    action="{{route('transaccion.destroy',$trasacciones->id)}}">
-                                  {{method_field('DELETE')}}
-                                  {{csrf_field()}}
-                                  <button type="submit" class="btn btn-danger btn-block">ELIMINAR</button>
-                              </form>
-                          @endcan
-                      </div>--}}
                 </div>
             </div>
         </div>
@@ -808,25 +798,24 @@
     </script>
     <script>
         function sum(){
-            let total =0;
+            let totalDB = parseFloat($('#totalDebito').data('id'));
             $('.debitos').each(function() {
                 let value = parseFloat($(this).val());
                 if (!isNaN(value)) {
-                    total +=value;
+                    totalDB +=value;
                 }
             });
-            $('#totalDebito').val(total);
+            $('#totalDebito').val(totalDB);
         }
         function sumC(){
-            let totalC=0;
+            let totalDB = parseFloat($('#totalCredito').data('id'));
             $('.credito').each(function() {
                 let value = parseFloat($(this).val());
-                console.log('credito '+value);
                 if (!isNaN(value)) {
-                    totalC += value;
+                    totalDB += value;
                 }
             });
-            $('#totalCredito').val(totalC);
+            $('#totalCredito').val(totalDB);
         }
         function resta() {
             var debito = $('#totalDebito').val();
