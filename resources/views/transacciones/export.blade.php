@@ -9,6 +9,9 @@
         <th>ID PUC</th>
         <th>DEBITO</th>
         <th>CREDITO</th>
+        <th>TOTAL CREDITO</th>
+        <th>TOTAL DEBITO</th>
+        <th>DIFERENCIA</th>
     </tr>
     </thead>
     <tbody>

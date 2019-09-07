@@ -548,19 +548,19 @@ class TrasaccionesController extends Controller
 
     public function import(Request $request)
     {
-        //try {
+        try {
             $request->hasFile('excel');
             $archivo = $request->file('excel');
             Excel::import(new TrasnsacciomImport, $archivo);
             Session::flash('message', 'Plantilla creadas con exito');
-            return  ;
-        /*}
-        catch (\Illuminate\Database\QueryException $e) {
-            Session::flash('message', 'Error al crear plantilla, prueba nuevamente');
-            return back();
-        }*/
-
-    }
+            return  back();
+        }
+            catch (\Illuminate\Database\QueryException $e) {
+                Session::flash('message', 'Error al crear plantilla, prueba nuevamente');
+                return back();
+            }
+        }
+}
 
     public function loadNiif ($id)
     {
