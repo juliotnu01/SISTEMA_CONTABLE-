@@ -167,7 +167,9 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="">No Documento</label>
-                                    <input type="text"  id="numeroDoc" class="form-control form-control-user" name="numeroDoc"  value="{{ old('numeroDoc') }}">
+                                    @foreach($ultimoNumeroDoc as $item)
+                                        <input type="text" id="numeroDoc" class="form-control form-control-user" name="numeroDoc"  value="{{$item->numeroDoc+1}}">
+                                    @endforeach
                                     @if ($errors->has('numeroDoc'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('numeroDoc') }}</strong>

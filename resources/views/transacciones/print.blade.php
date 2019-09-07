@@ -243,9 +243,9 @@
         @foreach($movimientoContableDos as $item)
             <tr class="info-products">
                 <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->nit}}</span></th>
-                <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->codigoCuenta}}-{{$item->nombreCuenta}}</span></th>
+                <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->numeroCuenta}}</span></th>
                 <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->docReferencia}} </span></th>
-                <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->totalCredito}} </span></th>
+                <th style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->credito}} </span></th>
             </tr>
         @endforeach
         </tbody>

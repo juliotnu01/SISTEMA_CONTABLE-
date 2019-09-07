@@ -71,6 +71,8 @@ class TrasaccionesController extends Controller
             ->get();
         $puc = Puc::select('id', 'codigoCuenta', 'nombreCuenta', 'tipoCuenta_id')->get();
         $niif = Niff::all();
+        $ultimoNumeroDoc=Transacciones::select('id','numeroDoc')->orderby('id','DESC')->take(1)->get();
+        //dd($ultimoNumeroDoc);
         $centroCosto = Sede::all();
         $numDocs = Transacciones::select('numeroDoc', 'created_at')->get();
         $terceros = Persona::with('natural', 'juridica', 'empleado')->get();
@@ -97,7 +99,7 @@ class TrasaccionesController extends Controller
             ->get();
         //dd($descuentos);
         return view('transacciones.create', compact('comprobante', 'retenciones',
-            'tipoPresupuestos', 'terceros', 'numDocs', 'descuentos', 'puc', 'niif', 'centroCosto'));
+            'tipoPresupuestos', 'terceros', 'numDocs', 'descuentos', 'puc', 'niif', 'centroCosto','ultimoNumeroDoc'));
     }
 
     public function store(Request $request)
@@ -447,7 +449,8 @@ class TrasaccionesController extends Controller
             ->leftJoin('personas_juridicas', 'pucs.persona_id', '=', 'personas_juridicas.id')
             ->leftJoin('transacciones', 'plantilla_contables.transacciones_id', '=', 'transacciones.id')
             ->select('plantilla_contables.id','plantilla_contables.docReferencia','pucs.codigoCuenta',
-                'personas_juridicas.nit','transacciones.totalCredito','pucs.naturalezaCuenta','pucs.nombreCuenta')
+                'personas_juridicas.nit','transacciones.totalCredito','pucs.naturalezaCuenta','pucs.nombreCuenta','pucs.numeroCuenta',
+                'plantilla_contables.credito')
             //->where('plantilla_contables.codigoPUC','like','11%')
             ->where('pucs.naturalezaCuenta','=','Credito')
             ->orWhere('plantilla_contables.transacciones_id','=',$id)
