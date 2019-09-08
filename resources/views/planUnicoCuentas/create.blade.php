@@ -391,13 +391,13 @@
             var primer=codigo[0];
             if (primer==='1' || primer==='5' || primer==='6' || primer==='7' || primer==='8'){
                 //console.log('debito')
-                primer=$('#naturalezaCuenta').val('Débito');
-                primer=$('#naturalezaCuenta').val('Débito');
+                primer=$('#naturalezaCuenta').val('Debito');
+                primer=$('#naturalezaCuenta').val('Debito');
             }
             if (primer==='2' || primer==='3' || primer==='4' || primer==='9'){
-                //console.log('Crédito')
-                primer=$('#naturalezaCuenta').val('Crédito');
-                primer=$('#naturalezaCuenta').val('Crédito');
+                //console.log('Credito')
+                primer=$('#naturalezaCuenta').val('Credito');
+                primer=$('#naturalezaCuenta').val('Credito');
             }
             if (tamano===1){
                 $('#nivel').val('1')

@@ -35,8 +35,6 @@ function tipoPresupuesto() {
     }
 }
 
-
-
 function niif() {
     var puc = $(".puc_idD").val();
     console.log(puc)
@@ -83,7 +81,7 @@ function nivelEmplo() {
     }
 }
 
-function crearTipoDoc() {
+function crearTipoDoc()  {
     var data = $('#newDoc').serialize();
     var url = route('tipoDocumento.store');
         $.ajax({

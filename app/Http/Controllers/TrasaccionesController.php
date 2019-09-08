@@ -452,7 +452,7 @@ class TrasaccionesController extends Controller
                 'personas_juridicas.nit','transacciones.totalCredito','pucs.naturalezaCuenta','pucs.nombreCuenta','pucs.numeroCuenta',
                 'plantilla_contables.credito')
             ->where('pucs.numeroCuenta','!=',null)
-            ->where('pucs.naturalezaCuenta','=','Credito')
+            ->where('pucs.naturalezaCuenta','=','Debito')
             ->where('plantilla_contables.transacciones_id','=',$id)
             ->get();
         //dd($movimientoContableDos);
