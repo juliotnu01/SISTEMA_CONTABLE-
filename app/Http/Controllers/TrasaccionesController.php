@@ -451,9 +451,9 @@ class TrasaccionesController extends Controller
             ->select('plantilla_contables.id','plantilla_contables.docReferencia','pucs.codigoCuenta',
                 'personas_juridicas.nit','transacciones.totalCredito','pucs.naturalezaCuenta','pucs.nombreCuenta','pucs.numeroCuenta',
                 'plantilla_contables.credito')
-            //->where('plantilla_contables.codigoPUC','like','11%')
+            ->where('pucs.numeroCuenta','!=',null)
             ->where('pucs.naturalezaCuenta','=','Credito')
-            ->orWhere('plantilla_contables.transacciones_id','=',$id)
+            ->where('plantilla_contables.transacciones_id','=',$id)
             ->get();
         //dd($movimientoContableDos);
         $desRet=DB::table('plantilla_contables')

@@ -205,7 +205,7 @@
         <tbody>
         @foreach($retenciones as $item)
             <tr class="bg-blue">
-                <th  style="border: solid; color: #000; background-color: #F2F8F9;"> <span>{{$item->codigoCuenta}}-{{$item->nombreCuenta}}</span></th>
+                <th  style="border: solid; color: #000; background-color: #F2F8F9;display: flex;"> <span>{{$item->codigoCuenta}}-{{$item->nombreCuenta}}</span></th>
                 <th  style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->debito}}</span></th>
                 <th  style="border: solid; color: #000; background-color: #F2F8F9;"><span>{{$item->credito}} </span></th>
             </tr>

@@ -19,6 +19,13 @@
         <tr>
             <td>{{ $item->id }}</td>
             <td>{{ $item->numeroDoc }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ $item->totalDebito }}</td>
+            <td>{{ $item->totalCredito }}</td>
+            <td>{{ $item->diferencia }}</td>
         </tr>
     @endforeach
     </tbody>
