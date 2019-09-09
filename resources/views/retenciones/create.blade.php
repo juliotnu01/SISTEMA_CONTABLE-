@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label for="">Monto Minimo</label>
-                                        <input type="text"  class="form-control form-control-user"  id="montoMinimo" name="montoMinimo"  placeholder="Monto Minimo...">
+                                        <input type="text"  class="form-control form-control-user"  onkeyup="format(this)" onchange="format(this)" id="montoMinimo" name="montoMinimo"  placeholder="Monto Minimo...">
                                     </div>
                                 </div>
                                 &nbsp
@@ -144,6 +144,19 @@
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
     <script>
+        function format(input)
+        {
+            var num = input.value.replace(/\./g,'');
+            if(!isNaN(num)){
+                num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                num = num.split('').reverse().join('').replace(/^[\.]/,'');
+                input.value = num;
+            }
+
+            else{ alert('Solo se permiten numeros');
+                input.value = input.value.replace(/[^\d\.]*/g,'');
+            }
+        }
         $(document).ready(function() {
             var disabledResults = $(".select2");
             disabledResults.select2();
@@ -183,7 +196,6 @@
                         maxlength:4,
                     },
                     montoMinimo:{
-                        digits:true,
                         maxlength:20,
                     },
                     iva:{
@@ -214,7 +226,6 @@
                         maxlength: "Este campo solo recive hasta 3 digitos"
                     },
                     montoMinimo:{
-                        digits: "Este campo solo recive digitos",
                         maxlength: "Este campo solo recive hasta 20 digitos"
                     },
                     iva:{

@@ -211,12 +211,12 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor de transacción</label>
-                                    <input type="text"  class="form-control form-control-user"  value="{{$trasacciones->valortransaccion}}" id="valortransaccion" name="valortransaccion"  placeholder="valor de transaccion...">
+                                    <input type="text"  class="form-control form-control-user"  onkeyup="format(this)" onchange="format(this)" value="{{$trasacciones->valortransaccion}}" id="valortransaccion" name="valortransaccion"  placeholder="valor de transaccion...">
                                     <input type="hidden"  class="form-control form-control-user"  id="valortransaccionLetras" value="{{old('valortransaccionLetras').$trasacciones->valortransaccionLetras}}" name="valortransaccionLetras">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor Base</label>
-                                    <input type="text"  class="form-control form-control-user" onblur="obtenerBase()"  value="{{$trasacciones->valorBase}}" id="valorBase" name="valorBase"  placeholder="Valor Base...">
+                                    <input type="text"  class="form-control form-control-user" onkeyup="format(this)" onchange="format(this)" onblur="obtenerBase()"  value="{{$trasacciones->valorBase}}" id="valorBase" name="valorBase"  placeholder="Valor Base...">
                                     <input type="hidden"  class="form-control form-control-user"  value="{{$trasacciones->plantilla}}" id="plantilla" name="plantilla" >
                                 </div>
                                 <div class="col-md-3">
@@ -797,6 +797,19 @@
         });
     </script>
     <script>
+        function format(input)
+        {
+            var num = input.value.replace(/\./g,'');
+            if(!isNaN(num)){
+                num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                num = num.split('').reverse().join('').replace(/^[\.]/,'');
+                input.value = num;
+            }
+
+            else{ alert('Solo se permiten numeros');
+                input.value = input.value.replace(/[^\d\.]*/g,'');
+            }
+        }
         function sum(){
             let totalDB = parseFloat($('#totalDebito').data('id'));
             $('.debitos').each(function() {
@@ -1214,11 +1227,11 @@
                     },
                     valortransaccion:{
                         required:true,
-                        digits:true,
+                        //digits:true,
                     },
                     valorBase:{
                         required:true,
-                        digits:true,
+                        //digits:true,
                     }
                 },
                 messages: {
@@ -1252,11 +1265,11 @@
                     },
                     valortransaccion:{
                         required: "Este campo es Obligatorio",
-                        digits: "Este campo solo recive digitos",
+                        //digits: "Este campo solo recive digitos",
                     },
                     valorBase:{
                         required: "Este campo es Obligatorio",
-                        digits: "Este campo solo recive digitos",
+                        //digits: "Este campo solo recive digitos",
                     },
                     detalle: {
                         required: "Este campo es Obligatorio",

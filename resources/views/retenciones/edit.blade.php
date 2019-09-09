@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label for="">Monto Minimo</label>
-                                        <input type="text"  class="form-control form-control-user"  value="{{$retencion->montoMinimo}}" id="montoMinimo" name="montoMinimo"  placeholder="Monto Minimo...">
+                                        <input type="text"  class="form-control form-control-user"  onkeyup="format(this)" onchange="format(this)" value="{{$retencion->montoMinimo}}" id="montoMinimo" name="montoMinimo"  placeholder="Monto Minimo...">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -136,20 +136,23 @@
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
     <script>
+
+        function format(input)
+        {
+            var num = input.value.replace(/\./g,'');
+            if(!isNaN(num)){
+                num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                num = num.split('').reverse().join('').replace(/^[\.]/,'');
+                input.value = num;
+            }
+
+            else{ alert('Solo se permiten numeros');
+                input.value = input.value.replace(/[^\d\.]*/g,'');
+            }
+        }
         $(document).ready(function() {
             var disabledResults = $(".select2");
             disabledResults.select2();
-           /* $( "#puc_id" ).change(function() {
-                var tipoCuenta=  $('select[name="puc_id"] option:selected').text();
-                var cadena=tipoCuenta.indexOf('DETALLE')
-                if (cadena == -1){
-                    alert('Esta cuenta es de tipo Superior, no puede ser elejida');
-                    $('.btnEnviar').attr('disabled',true)
-                }else {
-                    $('.btnEnviar').attr('disabled',false)
-                }
-                //console.log(tipoCuenta);
-            });*/
         });
     </script>
     <script>

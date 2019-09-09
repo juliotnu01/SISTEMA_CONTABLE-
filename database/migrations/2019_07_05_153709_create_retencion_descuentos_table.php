@@ -19,8 +19,8 @@ class CreateRetencionDescuentosTable extends Migration
             $table->integer('anio')->nullable();
             $table->string('concepto', 200)->nullable();
             $table->decimal('porcentaje')->nullable();
-            $table->decimal('base')->nullable();
-            $table->decimal('montoMinimo')->nullable();
+            $table->decimal('base',8,4)->nullable();
+            $table->decimal('montoMinimo',8,4)->nullable();
             $table->decimal('iva')->nullable();
             $table->decimal('consumo')->nullable();
             $table->string('automatico')->nullable();

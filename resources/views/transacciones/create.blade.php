@@ -228,7 +228,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor de transacción</label>
-                                    <input type="text"  class="form-control form-control-user" onkeyup="format(this)" onchange="format(this)" id="valortransaccion" value="{{old('valortransaccion')}}" name="valortransaccion"  placeholder="valor de transaccion...">
+                                    <input type="text"  class="form-control form-control-user"  onkeyup="format(this)" onchange="format(this)" id="valortransaccion" value="{{old('valortransaccion')}}" name="valortransaccion"  placeholder="valor de transaccion...">
                                     <input type="hidden"  class="form-control form-control-user"  id="valortransaccionLetras" value="{{old('valortransaccionLetras')}}" name="valortransaccionLetras">
                                 </div>
                                 <div class="col-md-3">
@@ -696,21 +696,6 @@
 
     }//NumeroALetras()
 </script>
-<script !src="">
-    function format(input)
-    {
-        var num = input.value.replace(/\./g,'');
-        if(!isNaN(num)){
-            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            num = num.split('').reverse().join('').replace(/^[\.]/,'');
-            input.value = num;
-        }
-
-        else{ alert('Solo se permiten numeros');
-            input.value = input.value.replace(/[^\d\.]*/g,'');
-        }
-    }
-</script>
 <script>
     function sum(){
         let total = 0;
@@ -893,8 +878,8 @@
                 '<option value="{{$item->id}}" {{ old('centroCosto_id') == $item->id ? 'selected' : '' }} >{{$item->codigoCC}}-{{$item->NombreCC}}</option>'+
                 '    @endforeach'+
                 '</select></td>' +
-                '<td ><input style="display: none" type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
-                '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito" value="'+retenido+'"/></td>'+
+                '<td ><input style="display: none" type="text" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>'+
+                '<td><input  type="text"  class="form-control credito" style="width:100px;" name="credito[]" id="credito" value="'+retenido+'"/></td>'+
                 '<td><input  type="number" class="form-control" style="width:100px;" name="base[]" id="base"  value="'+base+'"/></td>'+
                 '<td><input  type="number" class="form-control" style="width:100px;" name="codigoNIIIF[]" id="codigoNIIIF"  value="'+codigoNiff+'"/></td>' +
                 '<td><input  type="text" class="form-control" style="width:100px;" name="nota[]" id="nota"/></td>'+
@@ -976,8 +961,8 @@
                 '    @endforeach'+
                 '</select></td>' +
                 '<input  type="hidden" class="form-control " style="width:100px;" name="codigoPUC[]" id="codigoPUC"/>' +
-                '<td><input  type="number" class="form-control debitos" style="width:100px;" name="debito[]" id="debito"/></td>' +
-                '<td><input  type="number"  class="form-control credito" style="width:100px;" name="credito[]" id="credito"/></td>' +
+                '<td><input  type="text" class="form-control debitos" style="width:100px;"  name="debito[]" id="debito"/></td>' +
+                '<td><input  type="text"  class="form-control credito" style="width:100px;"  name="credito[]" id="credito"/></td>' +
                 '<td><input  type="number" class="form-control" style="width:100px;" name="base[]" id="base"/></td>' +
                 '<td><select style="width:100px;" name= "codigoNIIIF[]" id="codigoNIIIF" class="codigoNIIIFD select2 form-control custom-select" >' +
                 '   @foreach($niif as $item)'+
@@ -1074,6 +1059,16 @@
     });
 </script>
 <script>
+    function format(input)
+    {
+        var num = input.value.replace(/\./g,'');
+        if(!isNaN(num)){
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            input.value = num;
+        }
+
+    }
         $(function() {
             $( "#puc" ).validate({
                 rules: {

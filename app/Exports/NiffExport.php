@@ -23,7 +23,7 @@ class NiffExport implements FromView{
                 ->leftJoin('niffs', function($join)
                 {
                     $join->on('pucs.id', '=', 'niffs.puc_id');
-                })->select('pucs.id','pucs.codigoCuenta','pucs.nombreCuenta','niffs.tipoCuenta_id','niffs.naturalezaCuenta','niffs.nivel','niffs.nombreNiff','niffs.codigoNiff')
+                })->select('pucs.id','pucs.codigoCuenta','pucs.nombreCuenta','niffs.codigoNiff','niffs.nombreNiff','niffs.tipoCuenta_id','niffs.naturalezaCuenta','niffs.nivel')
                 ->get()
         ]);
     }

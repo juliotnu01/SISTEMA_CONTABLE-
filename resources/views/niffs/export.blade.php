@@ -6,11 +6,11 @@
         <th style="background-color:#ffef9c">ID</th>
         <th style="background-color:#ffef9c">Codigo de Cuenta</th>
         <th style="background-color:#ffef9c">Nombre de Cuenta</th>
+        <th style="background-color:#ffef9c">Codigo CGC NIFF</th>
+        <th style="background-color:#ffef9c">Nombre NIFF</th>
         <th style="background-color:#ffef9c">Tipo de Cuenta</th>
         <th style="background-color:#ffef9c">Naturaleza de Cuenta</th>
         <th style="background-color:#ffef9c">Nivel</th>
-        <th style="background-color:#ffef9c">Codigo CGC NIFF</th>
-        <th style="background-color:#ffef9c">Nombre NIFF</th>
     </tr>
     </thead>
     <tbody>
@@ -19,11 +19,11 @@
             <td>{{ $item->id}}</td>
             <td>{{ $item->codigoCuenta}}</td>
             <td>{{ $item->nombreCuenta}}</td>
+            <td @if ($item->codigoNiff == '') style="background-color:#ffc7ce"@endif >{{ $item->codigoNiff}}</td>
+            <td @if ($item->nombreNiff == '') style="background-color:#ffc7ce"@endif >{{ $item->nombreNiff}}</td>
             <td>{{ $item->tipoCuenta_id}}</td>
             <td>{{ $item->naturalezaCuenta}}</td>
             <td>{{ $item->nivel}}</td>
-            <td @if ($item->codigoNiff == '') style="background-color:#ffc7ce"@endif >{{ $item->codigoNiff}}</td>
-            <td @if ($item->nombreNiff == '') style="background-color:#ffc7ce"@endif >{{ $item->nombreNiff}}</td>
            {{-- @else
                 <td>{{ $item->nombreNiff}}</td>
                 <td>{{ $item->codigoNiff}}</td>
