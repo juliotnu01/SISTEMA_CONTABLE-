@@ -68,17 +68,17 @@ class NiffController extends Controller
 
     public function import(Request $request)
     {
-        try {
+        //try {
             DB::table('niffs')->truncate();
             $request->hasFile('excel');
             $archivo = $request->file('excel');
             Excel::import(new NiffImport, $archivo);
             return  redirect()->route('niff.index')->with('message', 'Cuentas NIIF Creadas Correctamente');
-        }
+       /* }
         catch (\Illuminate\Database\QueryException $e) {
             Session::flash('message','Ocurrio un error, verificque si se elimino previamente las filas 1, 2 y 3 de su excel');
             return redirect()->route('niff.index');
-        }
+        }*/
     }
 
 }

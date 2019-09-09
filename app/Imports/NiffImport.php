@@ -12,11 +12,12 @@ class NiffImport implements ToModel
     {
         return new Niff([
             'puc_id'=> $row[0],
-            'tipoCuenta_id'=> $row[3],
-            'naturalezaCuenta'=> $row[4],
-            'nivel'=> $row[5],
-            'codigoNiff'=> $row[6],
-            'nombreNiff'=> $row[7]
+            'codigoNiff'=> $row[3],
+            'nombreNiff'=> $row[4],
+            'tipoCuenta_id'=> $row[5],
+            'naturalezaCuenta'=> $row[6],
+            'nivel'=> $row[7],
+
         ]);
     }
 }
