@@ -228,12 +228,12 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor de transacción</label>
-                                    <input type="text"  class="form-control form-control-user"  id="valortransaccion" value="{{old('valortransaccion')}}" name="valortransaccion"  placeholder="valor de transaccion...">
+                                    <input type="text"  class="form-control form-control-user" onkeyup="format(this)" onchange="format(this)" id="valortransaccion" value="{{old('valortransaccion')}}" name="valortransaccion"  placeholder="valor de transaccion...">
                                     <input type="hidden"  class="form-control form-control-user"  id="valortransaccionLetras" value="{{old('valortransaccionLetras')}}" name="valortransaccionLetras">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Valor Base</label>
-                                    <input type="text"  class="form-control form-control-user" onblur="obtenerBase()" id="valorBase" value="{{old('valorBase')}}" name="valorBase"  placeholder="Valor Base...">
+                                    <input type="text"  class="form-control form-control-user" onkeyup="format(this)" onchange="format(this)" onblur="obtenerBase()" id="valorBase" value="{{old('valorBase')}}" name="valorBase"  placeholder="Valor Base...">
                                 </div>
                                 <div class="col-md-3">
                                     <button type="button" disabled="disabled" style="margin-top: 40px;" class="btn btn-primary botonesDesRet" data-toggle="modal" data-target="#Revelaciones">
@@ -696,6 +696,21 @@
 
     }//NumeroALetras()
 </script>
+<script !src="">
+    function format(input)
+    {
+        var num = input.value.replace(/\./g,'');
+        if(!isNaN(num)){
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            input.value = num;
+        }
+
+        else{ alert('Solo se permiten numeros');
+            input.value = input.value.replace(/[^\d\.]*/g,'');
+        }
+    }
+</script>
 <script>
     function sum(){
         let total = 0;
@@ -1095,11 +1110,11 @@
                     },
                     valortransaccion:{
                         required:true,
-                        digits:true,
+                        //digits:true,
                     },
                     valorBase:{
                         required:true,
-                        digits:true,
+                        //digits:true,
                     }
                 },
                 messages: {
@@ -1133,11 +1148,11 @@
                     },
                     valortransaccion:{
                         required: "Este campo es Obligatorio",
-                        digits: "Este campo solo recive digitos",
+                        //digits: "Este campo solo recive digitos",
                     },
                     valorBase:{
                         required: "Este campo es Obligatorio",
-                        digits: "Este campo solo recive digitos",
+                        //digits: "Este campo solo recive digitos",
                     },
                     detalle: {
                         required: "Este campo es Obligatorio",

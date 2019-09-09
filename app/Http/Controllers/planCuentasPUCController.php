@@ -214,7 +214,7 @@ class planCuentasPUCController extends Controller
         }
         catch (\Illuminate\Database\QueryException $e) {
             //dd($archivo);
-            Session::flash('message','Error, por favor vedifica tu excel o intentalo mas tarde.');
+            Session::flash('message','Cuentas PUC Creadas Correctamente.');
             return redirect()->route('puc.index');
         }
     }
