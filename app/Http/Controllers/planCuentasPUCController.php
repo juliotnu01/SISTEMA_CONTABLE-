@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\conceptoDianExogeno;
 use App\CuentaMaesta;
 use App\Exports\PucExport;
@@ -16,30 +14,25 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Excel;
-
 class planCuentasPUCController extends Controller
 {
-
     public function index()
     {
         $p = new PucImport;
         $search = Input::get('search');
         if($search){
             $pucQuery = puc::where('codigoCuenta',$search);
-
         }else{
             $pucQuery=puc::whereNull('codigoSuperior');
-
         }
         $puc = $pucQuery->with('cuentas.cuentas.cuentas.cuentas.cuentas.cuentas.cuentas')
-                        ->where('id','!=',1)
-                        ->get();
+            ->where('id','!=',1)
+            ->get();
         $pucTipoCuenta=Puc::select('tipoCuenta');
         //return response()->json($puc);
         return view('planUnicoCuentas.index',compact('puc','pucTipoCuenta'));
         //return view('planUnicoCuentas.index');
     }
-
     public function create(Puc $cuenta)
     {
         $concepto=conceptoDianExogeno::all();
@@ -50,9 +43,7 @@ class planCuentasPUCController extends Controller
         $tipoCuentas=TipoCuenta::all();
         return view('planUnicoCuentas.create',compact('concepto','formato','privilegios',
             'pucs','cuenta','maesta','tipoCuentas'));
-
     }
-
     public function store(CuentaRequest $request)
     {
         $puc=new Puc();
@@ -105,7 +96,6 @@ class planCuentasPUCController extends Controller
         Session::flash('message','Cuenta registrada con exito');
         return redirect()->route('puc.index');
     }
-
     public function edit($id)
     {
         $puc=Puc::find($id);
@@ -118,7 +108,6 @@ class planCuentasPUCController extends Controller
         return view('planUnicoCuentas.edit',compact('concepto','formato','puc',
             'privilegios','maesta','tipoCuentas'));
     }
-
     public function update(Request $request, $id)
     {
         $puc=Puc::find($id);
@@ -169,7 +158,6 @@ class planCuentasPUCController extends Controller
         Session::flash('message','Cuenta editada con exito');
         return redirect()->route('puc.index');
     }
-
     public function destroy($id)
     {
         try {
@@ -186,29 +174,25 @@ class planCuentasPUCController extends Controller
         /*ClasePersona::find($id)->delete();
         return back()->with('info', 'Eliminado correctamente');*/
     }
-
     public function exportPuc()
     {
         return (new PucExport)->download('PUC.xlsx');
     }
-
     public function import(Request $request)
     {
         try {
             //DB::table('pucs')->truncate();
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-            DB::table('pucs')->truncate();
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+            //DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            //DB::table('pucs')->truncate();
+            //DB::statement('SET FOREIGN_KEY_CHECKS = 1');
             $request->hasFile('excel');
             $archivo = $request->file('excel');
             $p = new PucImport;
             \Excel::import($p, $archivo);
-             $duplicado=$p->repetidos;
-
+            $duplicado=$p->repetidos;
             $pucRepetido = Puc::select('codigoCuenta')
                 ->where('codigoCuenta' ,$p->repetidos)
                 ->get();
-
             /*foreach ($pucRepetido as $key => $item){
                 dd(json_encode($item));
             }
@@ -218,7 +202,6 @@ class planCuentasPUCController extends Controller
                 Session::flash('email','Un numero de cuenta repetido es '. $pucRepetido);
                 return redirect()->route('puc.index');
             }
-
             /* if ($duplicado){
                  $cuenta=$duplicado;
                  //dd($cuenta);
@@ -228,33 +211,19 @@ class planCuentasPUCController extends Controller
                 return  redirect()->route('puc.index');
              }*/
             return  redirect()->route('puc.index')->with('message', 'Cuentas PUC Creadas Correctamente');
-
-       }
+        }
         catch (\Illuminate\Database\QueryException $e) {
             //dd($archivo);
             Session::flash('message','Error, por favor vedifica tu excel o intentalo mas tarde.');
             return redirect()->route('puc.index');
         }
     }
-
     public function downloadPlantilla()
     {
         $file= public_path(). "/files/PUC-PLANTILLA.xlsx";
-
         $headers = [
             'Content-Type' => 'application/xlsx',
         ];
-
         return response()->download($file, 'PUC-PLANTILLA.xlsx', $headers);
-    }
-
-    public function pucLoad()
-    {
-        return response()->json(Puc::select('id','codigoCuenta', 'nombreCuenta', 'tipoCuenta_id')->get());
-    }
-
-    public function pucLoadPrueba($id)
-    {
-        return response()->json(Puc::select('tipoCuenta_id')->where('id','=',$id)->get());
     }
 }

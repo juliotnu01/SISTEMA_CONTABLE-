@@ -1,23 +1,17 @@
 <?php
-
 namespace App\Imports;
-
 use App\Puc;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithValidation;
-
 class PucImport implements ToModel
 {
     public $repetidos = [];
-
     public function model(array $row)
     {
         $variable = Puc::where('codigoCuenta', $row[0])->get();
-
         if(count($variable) > 0){
-
             $this->repetidos[] = $row;
         }
         if (Puc::where('codigoCuenta', $row[0])->count() > 0) {
@@ -43,6 +37,4 @@ class PucImport implements ToModel
             ]);
         }
     }
-
 }
-

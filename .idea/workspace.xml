@@ -7,10 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bffc6f30-8596-46b3-951e-3506738c421b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/funciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/funciones.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/planUnicoCuentas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/planUnicoCuentas/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Imports/PucImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/PucImport.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,36 +45,43 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="451" column="54" lean-forward="true" selection-start-line="451" selection-start-column="54" selection-end-line="451" selection-end-column="54" />
+            <state relative-caret-position="388">
+              <caret line="200" column="42" lean-forward="true" selection-start-line="200" selection-start-column="42" selection-end-line="200" selection-end-column="42" />
               <folding>
-                <element signature="e#26758#28870#0#PHP" />
-                <element signature="e#28876#28995#0#PHP" />
-                <element signature="e#29001#29520#0#PHP" />
-                <element signature="e#29526#29636#0#PHP" />
-                <element signature="e#29642#29928#0#PHP" />
-                <element signature="e#29934#30125#0#PHP" />
+                <element signature="e#38#66#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Puc.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="399" column="58" selection-start-line="399" selection-start-column="58" selection-end-line="399" selection-end-column="58" />
+            <state relative-caret-position="152">
+              <caret line="9" column="38" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/edit.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="335" column="57" selection-start-line="335" selection-start-column="51" selection-end-line="335" selection-end-column="57" />
+            <state relative-caret-position="513">
+              <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Imports/PucImport.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="26" column="48" lean-forward="true" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
+              <folding>
+                <element signature="e#29#41#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,7 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Requests/CuentaRequest.php" />
         <option value="$PROJECT_DIR$/resources/views/cierres/index.blade.php" />
         <option value="$PROJECT_DIR$/app/ConceptosCierres.php" />
         <option value="$PROJECT_DIR$/app/Cierres.php" />
@@ -183,7 +188,6 @@
         <option value="$PROJECT_DIR$/resources/views/user/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/plantillaBase.blade.php" />
         <option value="$USER_HOME$/Desktop/Nuevo documento de texto.html" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Exports/SedesExport.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_05_195618_create_transacciones_table.php" />
@@ -212,6 +216,8 @@
         <option value="$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/planUnicoCuentas/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php" />
+        <option value="$PROJECT_DIR$/app/Imports/PucImport.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php" />
       </list>
     </option>
   </component>
@@ -342,9 +348,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1889" />
-    <option name="y" value="-45" />
-    <option name="width" value="1861" />
+    <option name="x" value="-1885" />
+    <option name="y" value="-46" />
+    <option name="width" value="1857" />
     <option name="height" value="1025" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -365,20 +371,13 @@
             <path>
               <item name="contable" type="b2602c69:ProjectViewProjectNode" />
               <item name="contable" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="contable" type="b2602c69:ProjectViewProjectNode" />
               <item name="contable" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contable" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="planUnicoCuentas" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Imports" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -395,7 +394,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../masterFullStack" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -772,18 +771,20 @@
       <workItem from="1567798888411" duration="5343000" />
       <workItem from="1567814725367" duration="8337000" />
       <workItem from="1567865168246" duration="5364000" />
-      <workItem from="1567958526676" duration="3857000" />
+      <workItem from="1567958526676" duration="3921000" />
+      <workItem from="1567982722763" duration="1004000" />
+      <workItem from="1568040366809" duration="781000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2064532000" />
+    <option name="totallyTimeSpent" value="2066381000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1889" y="-45" width="1861" height="1025" extended-state="0" />
+    <frame x="-1885" y="-46" width="1857" height="1025" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49433428" visible="true" weight="0.14658523" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49433428" visible="true" weight="0.12520868" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.5056657" side_tool="true" weight="0.19395973" />
@@ -846,24 +847,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="192" column="5" lean-forward="true" selection-start-line="189" selection-start-column="3" selection-end-line="192" selection-end-column="5" />
-          <folding>
-            <element signature="e#478#1131#0#PHP" />
-            <element signature="e#1572#4323#0#PHP" />
-            <element signature="e#4329#4758#0#PHP" />
-            <element signature="e#4764#7243#0#PHP" />
-            <element signature="e#7249#7965#0#PHP" />
-            <element signature="e#7971#8064#0#PHP" />
-            <element signature="e#8070#9781#0#PHP" />
-            <element signature="e#9787#10053#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/funcionesTransacciones.js" />
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_03_210440_create_personas_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
@@ -1074,9 +1057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Imports/PucImport.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_16_201638_create_plantilla_contables_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -1137,13 +1117,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Puc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="12" column="82" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="82" />
         </state>
       </provider>
     </entry>
@@ -1247,31 +1220,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="399" column="58" selection-start-line="399" selection-start-column="58" selection-end-line="399" selection-end-column="58" />
+        <state relative-caret-position="583">
+          <caret line="460" column="67" selection-start-line="460" selection-start-column="67" selection-end-line="460" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
+        <state relative-caret-position="806">
           <caret line="335" column="57" selection-start-line="335" selection-start-column="51" selection-end-line="335" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrasaccionesController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="451" column="54" lean-forward="true" selection-start-line="451" selection-start-column="54" selection-end-line="451" selection-end-column="54" />
+        <state relative-caret-position="806">
+          <caret line="399" column="58" selection-start-line="399" selection-start-column="58" selection-end-line="399" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/planUnicoCuentas/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Puc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Imports/PucImport.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="48" lean-forward="true" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
           <folding>
-            <element signature="e#26758#28870#0#PHP" />
-            <element signature="e#28876#28995#0#PHP" />
-            <element signature="e#29001#29520#0#PHP" />
-            <element signature="e#29526#29636#0#PHP" />
-            <element signature="e#29642#29928#0#PHP" />
-            <element signature="e#29934#30125#0#PHP" />
+            <element signature="e#29#41#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/planCuentasPUCController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="200" column="42" lean-forward="true" selection-start-line="200" selection-start-column="42" selection-end-line="200" selection-end-column="42" />
+          <folding>
+            <element signature="e#38#66#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
