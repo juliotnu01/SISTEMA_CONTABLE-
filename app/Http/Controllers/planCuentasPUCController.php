@@ -33,6 +33,7 @@ class planCuentasPUCController extends Controller
         return view('planUnicoCuentas.index',compact('puc','pucTipoCuenta'));
         //return view('planUnicoCuentas.index');
     }
+
     public function create(Puc $cuenta)
     {
         $concepto=conceptoDianExogeno::all();
@@ -44,6 +45,7 @@ class planCuentasPUCController extends Controller
         return view('planUnicoCuentas.create',compact('concepto','formato','privilegios',
             'pucs','cuenta','maesta','tipoCuentas'));
     }
+
     public function store(CuentaRequest $request)
     {
         $puc=new Puc();
@@ -65,6 +67,7 @@ class planCuentasPUCController extends Controller
         $puc->descripcion=$request->input('descripcion');
         $puc->tipoCuentaBancaria=$request->input('tipoCuentaBancaria');
         $puc->situacionFondos=$request->input('situacionFondos');
+        $puc->anio=$request->input('anio');
         $puc->usocuentaBancaria=$request->input('usocuentaBancaria');
         $puc->posicionClasificadorPresupuestalGastos=$request->input('posicionClasificadorPresupuestalGastos');
         $puc->posicionClasificadorPresupuestalIngresos=$request->input('posicionClasificadorPresupuestalIngresos');
@@ -126,6 +129,7 @@ class planCuentasPUCController extends Controller
         $puc->exigeCentroCostos=$request->exigeCentroCostos;
         $puc->exigeBase=$request->exigeBase;
         $puc->activa=$request->activa;
+        $puc->anio=$request->anio;
         $puc->numeroCuenta=$request->numeroCuenta;
         $puc->descripcion=$request->descripcion;
         $puc->tipoCuentaBancaria=$request->tipoCuentaBancaria;

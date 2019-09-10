@@ -85,6 +85,7 @@ class PersonaEmpleadoController extends Controller
         $p->direccion=$request->direccion;
         $p->telefono=$request->telefono;
         $p->celular=$request->celular;
+        $p->anio=$request->anio;
         $p->correo=$request->correo;
         if ($request->hasFile('foto'))
         {
@@ -176,6 +177,7 @@ class PersonaEmpleadoController extends Controller
         $personas->telefono=$request->telefono;
         $personas->celular=$request->celular;
         $personas->correo=$request->correo;
+        $personas->anio=$request->anio;
         $personas->responsableIVA=$request->responsableIVA;
         $personas->regimenSimple=$request->regimenSimple;
         if ($request->hasFile('foto'))

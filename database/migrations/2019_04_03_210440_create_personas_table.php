@@ -12,6 +12,7 @@ class CreatePersonasTable extends Migration
             $table->increments('id');
 
             $table->string('raz_social')->nullable();
+            $table->integer('anio')->nullable();
             $table->string('nombre1')->nullable();
             $table->string('nombre2')->nullable();
             $table->string('apellido')->nullable();

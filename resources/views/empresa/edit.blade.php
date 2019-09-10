@@ -145,6 +145,156 @@
                                     </div>
                                 </div>
                                 &nbsp
+                                <div class="row" >
+                                    <div class="col-md-4">
+                                        <label for="">Nombre del Representante Legal Completo</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('nombreRepresentanteLegal',$empresa->nombreRepresentanteLegal)}}" name="nombreRepresentanteLegal" id="nombRepresentanteLegal">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">Cedula del Representante Legal</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('cedulaRepresentanteLegal',$empresa->cedulaRepresentanteLegal)}}" name="cedulaRepresentanteLegal" id="ceduRepresentanteLegal">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">n° TP Representante Legal</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('noTpRepresentanteLegal',$empresa->noTpRepresentanteLegal)}}" name="noTpRepresentanteLegal" id="noRepresentanteLegal">
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp
+                                <div class="row" >
+                                    <div class="col-md-4">
+                                        <label for="">Nombre del Contador Completo</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('nombreContador',$empresa->nombreContador)}}" name="nombreContador" id="nombreContador">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">Cedula del Contador</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('cedulaContador',$empresa->cedulaContador)}}" name="cedulaContador" id="cedulaContador">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">n° TP Contador</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('noTpContador',$empresa->noTpContador)}}" name="noTpContador" id="noTpContador">
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp
+                                <div class="row" >
+                                    <div class="col-md-4">
+                                        <label for="">Nombre del Revisor Fiscal Completo</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('nombreRevisorFiscal',$empresa->nombreRevisorFiscal)}}" name="nombreRevisorFiscal" id="nombreRevisorFiscal">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">Cedula del Revisor Fiscal</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('cedulaRevisorFiscal',$empresa->cedulaRevisorFiscal)}}" name="cedulaRevisorFiscal" id="cedulaRevisorFiscal">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">n° TP Revisor Fiscal</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('noTPRevisorFiscal'),$empresa->noTPRevisorFiscal}}" name="noTPRevisorFiscal" id="noTPRevisorFiscal">
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp
+                                <div class="row" >
+                                    <div class="col-md-4">
+                                        <label for="">Nombre del Control Interno Completo</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('nombreControlInterno'),$empresa->nombreControlInterno}}" name="nombreControlInterno" id="nombreControlInterno">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">Cedula del Control Interno</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('cedulaControlInterno'),$empresa->cedulaControlInterno}}" name="cedulaControlInterno" id="cedulaControlInterno">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">n° TP Control Interno</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('noTPControlInterno'),$empresa->noTPControlInterno}}" name="noTPControlInterno" id="noTPControlInterno">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                &nbsp
+                                <div class="row" >
+                                    <div class="col-md-4">
+                                        <label for="">Nombre del Jefe de Presupuesto Completo</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('jefePresupuesto'),$empresa->jefePresupuesto}}" name="jefePresupuesto" id="jefePresupuesto">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">Cedula del Jefe de Presupuesto</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('cedulaJefePresupuesto'),$empresa->cedulaJefePresupuesto}}" name="cedulaJefePresupuesto" id="cedulaJefePresupuesto">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">n° TP Jefe de Presupuesto</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('noTPJefePresupuesto'),$empresa->noTPJefePresupuesto}}" name="noTPJefePresupuesto" id="noTPJefePresupuesto">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                &nbsp
+                                <div class="row" >
+                                    <div class="col-md-3">
+                                        <label for="">Otro Resposnable</label>
+                                        <select  name= "otroResponsable" id="otroResponsable" class="select2 form-control custom-select" >
+                                            <option value="{{$empresa->otroResponsable}}">{{$empresa->otroResponsable}}</option>
+                                            <option value="TESORERO(A)">TESORERO(A)</option>
+                                            <option value="SUB GER. AVO Y FRO.">SUB GER. AVO Y FRO.</option>
+                                            <option value="PAGADOR(A)">PAGADOR(A)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">Nombre Completo</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('nombreOtroResponsable'),$empresa->nombreOtroResponsable}}" name="nombreOtroResponsable" id="nombreOtroResponsable">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="">Cedula</label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('cedulaJefePresupuesto'),$empresa->cedulaJefePresupuesto}}" name="cedulaJefePresupuesto" id="cedulaJefePresupuesto">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="">n° TP </label>
+                                        <div class="form-group" >
+                                            <input type="text" class="form-control form-control-user" value="{{old('noTPOtroResponsable'),$empresa->noTPOtroResponsable}}" name="noTPOtroResponsable" id="noTPOtroResponsable">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                &nbsp
                                 <button class="btn btn-primary btn-user btn-block" type="submit">EDITAR</button>
                             </div>
                     </form>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sede extends Model
 {
    protected $fillable=['codigoCC', 'NombreCC', 'NombreCorto', 'claseCC', 'prorrateo', 'nombreGrupoCC', 'vigenciaInicio',
-       'vigenciaFin', 'tercero_id', 'puc_id', 'empresa_id'];
+       'vigenciaFin', 'tercero_id', 'puc_id', 'empresa_id','anio'];
 
    public function terceros()
    {

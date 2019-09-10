@@ -20,6 +20,31 @@ class CreateEmpresasTable extends Migration
             $table->string('nit',200)->nullable();
             $table->string('dig_verificacion',200)->nullable();
             $table->string('codCgn',200)->nullable();
+            $table->string('nombreRepresentanteLegal',200)->nullable();
+            $table->integer('cedulaRepresentanteLegal',20)->nullable();
+            $table->integer('noTPRepresentanteLegal',20)->nullable();
+
+            $table->string('nombreContador',200)->nullable();
+            $table->integer('cedulaContador',20)->nullable();
+            $table->integer('noTpContador',20)->nullable();
+
+            $table->string('nombreRevisorFiscal',200)->nullable();
+            $table->integer('cedulaRevisorFiscal',20)->nullable();
+            $table->integer('noTPRevisorFiscal',20)->nullable();
+
+            $table->string('nombreControlInterno',200)->nullable();
+            $table->integer('cedulaControlInterno',20)->nullable();
+            $table->integer('noTPControlInterno',20)->nullable();
+
+            $table->string('jefePresupuesto',200)->nullable();
+            $table->integer('cedulaJefePresupuesto',20)->nullable();
+            $table->integer('noTPJefePresupuesto',20)->nullable();
+
+            $table->string('otroResponsable',200)->nullable();
+            $table->string('nombreOtroResponsable',200)->nullable();
+            $table->integer('cedulaJefePresupuesto',20)->nullable();
+            $table->integer('noTPOtroResponsable',20)->nullable();
+
             $table->string('marco_normativo',200)->nullable();
             $table->string('direccion',200)->nullable();
             $table->string('telefono',200)->nullable();

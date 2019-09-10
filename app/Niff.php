@@ -8,7 +8,7 @@ class Niff extends Model
 {
     protected $fillable=['codigoNiff', 'nombreNiff', 'naturalezaCuenta', 'CuentaCoNC', 'cuentaCobrar', 'cuentaPagar',
         'refiereFlujo', 'exigeCentroCostos', 'exigeBase', 'exigeTerceros', 'activa', 'porcentaje', 'nivel', 'puc_id',
-        'conceptoDian_id', 'formatoDian_id', 'tipoCuenta_id','opcionesPrivilegios_id'];
+        'conceptoDian_id', 'formatoDian_id', 'tipoCuenta_id','opcionesPrivilegios_id','anio'];
 
     public function puc()
     {

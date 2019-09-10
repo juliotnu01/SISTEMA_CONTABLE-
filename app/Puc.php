@@ -9,7 +9,7 @@ class Puc extends Model
 {
     protected $fillable=['codigoCuenta', 'codigoSuperior', 'nombreCuenta', 'tipoCuenta_id',
         'naturalezaCuenta', 'CuentaCoNC', 'cuentaCobrar', 'cuentaPagar','cuentaMaestraSalud',
-        'refiereFlujo', 'exigeTerceros', 'exigeCentroCostos','exigeBase', 'activa',
+        'refiereFlujo', 'exigeTerceros', 'exigeCentroCostos','exigeBase', 'activa','anio',
         'formatoDian_id', 'conceptoDian_id','opcionesPrivilegios_id','numeroCuenta', 'descripcion',
         'tipoCuentaBancaria', 'situacionFondos', 'usocuentaBancaria', 'posicionClasificadorPresupuestalGastos',
         'posicionClasificadorPresupuestalIngresos', 'codigoInterno', 'codigoSucursal', 'fuentefinanciacionSIA_id',

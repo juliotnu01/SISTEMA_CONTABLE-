@@ -17,6 +17,7 @@ class CreateDependenciasTable extends Migration
             $table->increments('id');
 
             $table->string('codigo',20)->nullable();
+            $table->integer('anio')->nullable();
             $table->string('nombre',50)->nullable();
             $table->integer('persona_id')->unsigned()->nullable();
             $table->timestamps();

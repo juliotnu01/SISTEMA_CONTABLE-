@@ -10,8 +10,10 @@ use Illuminate\Http\Request;
 class EmpresaController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        //$identificador_carrito = Session::put('idUser', $idUser);;
+        //dd($identificador_carrito);
         $empresa = Empresa::all();
         //dd($empresa);
         return view('empresa.index',compact('empresa'));
@@ -58,6 +60,25 @@ class EmpresaController extends Controller
         $empresa->lema=$request->input('lema');
         $empresa->marco_normativo=$request->input('marco_normativo');
 
+        $empresa->nombreRepresentanteLegal=$request->input('nombreRepresentanteLegal');
+        $empresa->cedulaRepresentanteLegal=$request->input('cedulaRepresentanteLegal');
+        $empresa->noTpRepresentanteLegal=$request->input('noTpRepresentanteLegal');
+        $empresa->nombreContador=$request->input('nombreContador');
+        $empresa->cedulaContador=$request->input('cedulaContador');
+        $empresa->noTpContador=$request->input('noTpContador');
+        $empresa->nombreRevisorFiscal=$request->input('nombreRevisorFiscal');
+        $empresa->cedulaRevisorFiscal=$request->input('cedulaRevisorFiscal');
+        $empresa->noTPRevisorFiscal=$request->input('noTPRevisorFiscal');
+        $empresa->nombreControlInterno=$request->input('nombreControlInterno');
+        $empresa->cedulaControlInterno=$request->input('cedulaControlInterno');
+        $empresa->noTPControlInterno=$request->input('noTPControlInterno');
+        $empresa->jefePresupuesto=$request->input('jefePresupuesto');
+        $empresa->cedulaJefePresupuesto=$request->input('cedulaJefePresupuesto');
+        $empresa->noTPJefePresupuesto=$request->input('noTPJefePresupuesto');
+        $empresa->otroResponsable=$request->input('otroResponsable');
+        $empresa->nombreOtroResponsable=$request->input('nombreOtroResponsable');
+        $empresa->cedulaJefePresupuesto=$request->input('cedulaJefePresupuesto');
+        $empresa->noTPOtroResponsable=$request->input('noTPOtroResponsable');
 
         $empresa->num_ingresoinicial=$request->input('num_ingresoinicial');
         $empresa->num_ingresoactual=$request->input('num_ingresoactual');
@@ -111,6 +132,9 @@ class EmpresaController extends Controller
         $empresa->telefono=$request->input('telefono');
         $empresa->correo=$request->input('correo');
         $empresa->url=$request->input('url');
+        $empresa->nombreRepresentanteLegal=$request->input('nombreRepresentanteLegal');
+        $empresa->cedulaRepresentanteLegal=$request->input('cedulaRepresentanteLegal');
+        $empresa->noTpRepresentanteLegal=$request->input('noTpRepresentanteLegal');
         $empresa->lema=$request->input('lema');
         $empresa->marco_normativo=$request->input('marco_normativo');
         $empresa->num_ingresoinicial=$request->input('num_ingresoinicial');
@@ -118,6 +142,22 @@ class EmpresaController extends Controller
         $empresa->vigencia_cdp=$request->input('vigencia_cdp');
         $empresa->id_ciudad=$request->input('id_ciudad');
         $empresa->id_departamento=$request->input('id_departamento');
+        $empresa->nombreContador=$request->input('nombreContador');
+        $empresa->cedulaContador=$request->input('cedulaContador');
+        $empresa->noTpContador=$request->input('noTpContador');
+        $empresa->nombreRevisorFiscal=$request->input('nombreRevisorFiscal');
+        $empresa->cedulaRevisorFiscal=$request->input('cedulaRevisorFiscal');
+        $empresa->noTPRevisorFiscal=$request->input('noTPRevisorFiscal');
+        $empresa->nombreControlInterno=$request->input('nombreControlInterno');
+        $empresa->cedulaControlInterno=$request->input('cedulaControlInterno');
+        $empresa->noTPControlInterno=$request->input('noTPControlInterno');
+        $empresa->jefePresupuesto=$request->input('jefePresupuesto');
+        $empresa->cedulaJefePresupuesto=$request->input('cedulaJefePresupuesto');
+        $empresa->noTPJefePresupuesto=$request->input('noTPJefePresupuesto');
+        $empresa->otroResponsable=$request->input('otroResponsable');
+        $empresa->nombreOtroResponsable=$request->input('nombreOtroResponsable');
+        $empresa->cedulaJefePresupuesto=$request->input('cedulaJefePresupuesto');
+        $empresa->noTPOtroResponsable=$request->input('noTPOtroResponsable');
 
         if ($request->hasFile('logo_republica'))
         {

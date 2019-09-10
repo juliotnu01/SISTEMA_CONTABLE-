@@ -10,7 +10,7 @@ class EmpresaConsorcios extends Model
         'correo', 'pais','nit', 'dv', 'raz_social', 'nomComercial','responsableIVA',
         'regimenSimple', 'autoRetenedor', 'TipocuentaBancaria', 'numeroCuenta', 'estadoCuenta',
         'id_regimenTributario', 'id_actividadesCiiu', 'ciudad_id', 'idDepartamento', 'descritores_id',
-        'entidadBancaria_id'];
+        'entidadBancaria_id','anio'];
 
     public function consorcios()
     {

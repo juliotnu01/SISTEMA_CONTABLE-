@@ -69,6 +69,7 @@ class DependenciasController extends Controller
         $dependecias= Dependencia::find($id);
         $dependecias->codigo= $request->codigo;
         $dependecias->nombre= $request->nombre;
+        $dependecias->anio= $request->anio;
         $dependecias->persona_id= $request->persona_id;
         //dd($personasNaturales);
         Session::flash('message','El registro se edito con exito');

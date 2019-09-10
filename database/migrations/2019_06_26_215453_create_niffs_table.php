@@ -17,6 +17,7 @@ class CreateNiffsTable extends Migration
             $table->increments('id');
 
             $table->bigInteger('codigoNiff')->nullable();
+            $table->integer('anio')->nullable();
             $table->string('nombreNiff',500)->nullable();
             $table->string('naturalezaCuenta')->nullable();
             $table->string('CuentaCoNC')->nullable();

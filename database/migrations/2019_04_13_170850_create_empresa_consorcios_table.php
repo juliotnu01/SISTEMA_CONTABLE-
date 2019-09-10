@@ -27,6 +27,7 @@ class CreateEmpresaConsorciosTable extends Migration
             $table->string('pais')->default('COLOMBIA');
             $table->integer('responsableIVA')->nullable();
             $table->integer('regimenSimple')->nullable();
+            $table->integer('anio')->nullable();
             $table->string('nit')->unique();
             $table->string('dv');
             $table->string('raz_social')->nullable();
