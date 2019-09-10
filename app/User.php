@@ -5,10 +5,19 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Scopes\ActiveScope;
 
 class User extends Authenticatable
 {
     use Notifiable,ShinobiTrait;
+
+   /* protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new ActiveScope);
+    }*/
+
 
     protected $fillable = [
         'email', 'password','persona_id','nombreCompleto'
@@ -29,6 +38,12 @@ class User extends Authenticatable
     public function persona()
     {
         return $this->belongsTo(Persona::class);
+    }
+
+    public function scopeAnio($query, $year)
+    {
+        if ($year)
+            return $query->where('anio','LIKE',"%anio%");
     }
 
 }

@@ -17,6 +17,7 @@ class CreateSubSedesTable extends Migration
             $table->increments('id');
 
             $table->integer('codigoCC')->nullable();
+            $table->integer('anio')->nullable();
             $table->string('NombreCC')->nullable();
             $table->string('NombreCorto')->nullable();
             $table->string('tipoCC')->nullable();

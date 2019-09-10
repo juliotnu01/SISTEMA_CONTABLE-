@@ -22,7 +22,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     //Persona Narutal
-    Route::get('personaNarutal', 'PersonaNarutalController@index')->name('personaNarutal.index')->middleware('permission:personaNarutal.index');
+    Route::get('personaNarutal/{anio}', 'PersonaNarutalController@index')->name('personaNarutal.index')->middleware('permission:personaNarutal.index');
 
     Route::get('personaNarutal/create', 'PersonaNarutalController@create')->name('personaNarutal.create')->middleware('permission:personaNarutal.create');
 
@@ -112,10 +112,9 @@ Route::middleware(['auth'])->group(function () {
 
 
     //EMPRESA
-    Route::get('/', 'EmpresaController@index')->name('empresa.index')->middleware('permission:empresa.index');
+    Route::get('/empresa', 'EmpresaController@index')->name('empresa.index')->middleware('permission:empresa.index');
 
-    Route::get('empresa/crñ
-    eate', 'EmpresaController@create')->name('empresa.create')->middleware('permission:empresa.create');
+    Route::get('empresa/create', 'EmpresaController@create')->name('empresa.create')->middleware('permission:empresa.create');
 
     Route::post('empresa/store', 'EmpresaController@store')->name('empresa.store')->middleware('permission:empresa.create');
 
@@ -466,8 +465,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('cierresConcepto/{cierres}', 'CierresController@destroyConcepto')->name('cierres.destroyConcepto')->middleware('permission:destroyConcepto');
 
-
+    Route::get('/', 'HomeController@index')->name('/');
 
 });
 
-Route::get('/home', 'EmpresaController@index')->name('empresa.index');
+

@@ -42,40 +42,40 @@
 
                     <div class="row">
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="enero">ENERO</button>
+                            <button class="btn btn-primary btn-sm btn-block mes31" id="enero">ENERO</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="febrero">FEBRERO</button>
+                            <button class="btn btn-primary btn-sm btn-block mes31" id="febrero">FEBRERO</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="marzo">MARZO</button>
+                            <button class="btn btn-primary btn-sm btn-block mes31" id="marzo">MARZO</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="abril">ABRIL</button>
+                            <button class="btn btn-primary btn-sm btn-block mes30" id="abril">ABRIL</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="mayo">MAYO</button>
+                            <button class="btn btn-primary btn-sm btn-block mes30" id="mayo">MAYO</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="junio">JUNIO</button>
+                            <button class="btn btn-primary btn-sm btn-block mes31" id="junio">JUNIO</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="julio">JULIO</button>
+                            <button class="btn btn-primary btn-sm btn-block mes30" id="julio">JULIO</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="agosto">AGOS</button>
+                            <button class="btn btn-primary btn-sm btn-block mes31" id="agosto">AGOS</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="septiembre">SEPTI</button>
+                            <button class="btn btn-primary btn-sm btn-block mes31" id="septiembre">SEPTI</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm btn-block" id="octubre">OCTUB</button>
+                            <button class="btn btn-primary btn-sm btn-block mes30" id="octubre">OCTUB</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm" id="noviembre">NOVIE</button>
+                            <button class="btn btn-primary btn-sm mes31" id="noviembre">NOVIE</button>
                         </div>
                         <div class="col-sm-4 col-md-1">
-                            <button class="btn btn-primary btn-sm" id="diciembre">DICIEM</button>
+                            <button class="btn btn-primary btn-sm mes30" id="diciembre">DICIEM</button>
                         </div>
                     </div>
                     <form class="user"  action="{{route('transaccion.update',$trasacciones->id)}}" method="post" id="puc"  name="puc">
@@ -90,43 +90,12 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label for="">Mes</label>
-                                    <input type="text"  class="form-control form-control-user" id="mes" name="mes" value="{{$trasacciones->mes}}">
+                                    <input type="text"  class="form-control form-control-user" readonly="readonly" id="mes" name="mes" value="{{$trasacciones->mes}}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="">Día</label>
                                     <select  name= "dia" id="dia" class="select2 form-control custom-select" >
                                         <option {{ old('dia', $trasacciones->dia) == $trasacciones->dia ? 'selected' : '' }} value="{{$trasacciones->dia}}">{{$trasacciones->dia}}</option>
-                                        <option value="1" {{ old('dia') }}>1</option>
-                                        <option value="2" {{ old('dia') }}>2</option>
-                                        <option value="3" {{ old('dia') }}>3</option>
-                                        <option value="4" {{ old('dia') }}>4</option>
-                                        <option value="5" {{ old('dia') }}>5</option>
-                                        <option value="6" {{ old('dia') }}>6</option>
-                                        <option value="7" {{ old('dia') }}>7</option>
-                                        <option value="8" {{ old('dia') }}>8</option>
-                                        <option value="9" {{ old('dia') }}>9</option>
-                                        <option value="10" {{ old('dia') }}>10</option>
-                                        <option value="11" {{ old('dia') }}>11</option>
-                                        <option value="12" {{ old('dia') }}>12</option>
-                                        <option value="13" {{ old('dia') }}>13</option>
-                                        <option value="14" {{ old('dia') }}>14</option>
-                                        <option value="15" {{ old('dia') }}>15</option>
-                                        <option value="16" {{ old('dia') }}>16</option>
-                                        <option value="17" {{ old('dia') }}>17</option>
-                                        <option value="18" {{ old('dia') }}>18</option>
-                                        <option value="19" {{ old('dia') }}>19</option>
-                                        <option value="20" {{ old('dia') }}>20</option>
-                                        <option value="21" {{ old('dia') }}>21</option>
-                                        <option value="22" {{ old('dia') }}>22</option>
-                                        <option value="23" {{ old('dia') }}>23</option>
-                                        <option value="24" {{ old('dia') }}>24</option>
-                                        <option value="25" {{ old('dia') }}>25</option>
-                                        <option value="26" {{ old('dia') }}>26</option>
-                                        <option value="27" {{ old('dia') }}>27</option>
-                                        <option value="28" {{ old('dia') }}>28</option>
-                                        <option value="29" {{ old('dia') }}>29</option>
-                                        <option value="30" {{ old('dia') }}>30</option>
-                                        <option value="31" {{ old('dia') }}>31</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
@@ -498,12 +467,8 @@
 
         function Unidades(num){
 
-
-
             switch(num)
-
             {
-
                 case 1: return "UN";
 
                 case 2: return "DOS";
@@ -521,35 +486,20 @@
                 case 8: return "OCHO";
 
                 case 9: return "NUEVE";
-
             }
-
-
-
             return "";
-
         }
 
         function Decenas(num){
-
-
-
             decena = Math.floor(num/10);
 
             unidad = num - (decena * 10);
 
-
-
             switch(decena)
-
             {
-
                 case 1:
-
                     switch(unidad)
-
                     {
-
                         case 0: return "DIEZ";
 
                         case 1: return "ONCE";
@@ -563,19 +513,13 @@
                         case 5: return "QUINCE";
 
                         default: return "DIECI" + Unidades(unidad);
-
                     }
 
                 case 2:
-
                     switch(unidad)
-
                     {
-
                         case 0: return "VEINTE";
-
                         default: return "VEINTI" + Unidades(unidad);
-
                     }
 
                 case 3: return DecenasY("TREINTA", unidad);
@@ -603,8 +547,6 @@
             if (numUnidades > 0)
 
                 return strSin + " Y " + Unidades(numUnidades)
-
-
 
             return strSin;
 
@@ -797,8 +739,7 @@
         });
     </script>
     <script>
-        function format(input)
-        {
+        function format(input){
             var num = input.value.replace(/\./g,'');
             if(!isNaN(num)){
                 num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
@@ -847,6 +788,74 @@
             console.log(valorBase)
             $('.baseFinal').val(valorBase)
         }
+
+        $('.mes30').click(function(){
+            $('#dia').empty();
+            $('#dia').append('<option value="1" >1</option>' +
+                '<option value="2" >2</option>'+
+                '<option value="3" >3</option>'+
+                '<option value="4" >4</option>'+
+                '<option value="5" >5</option>'+
+                '<option value="6" >6</option>'+
+                '<option value="7" >7</option>'+
+                '<option value="8" >8</option>'+
+                '<option value="9" >9</option>'+
+                '<option value="10" >10</option>'+
+                '<option value="11" >11</option>'+
+                '<option value="12" >12</option>'+
+                '<option value="13" >13</option>'+
+                '<option value="14" >14</option>'+
+                '<option value="15" >15</option>'+
+                '<option value="16" >16</option>'+
+                '<option value="17" >17</option>'+
+                '<option value="18" >18</option>'+
+                '<option value="19" >19</option>'+
+                '<option value="20" >20</option>'+
+                '<option value="21" >21</option>'+
+                '<option value="22" >22</option>'+
+                '<option value="23" >23</option>'+
+                '<option value="24" >24</option>'+
+                '<option value="25" >25</option>'+
+                '<option value="26" >26</option>'+
+                '<option value="27" >27</option>'+
+                '<option value="28" >28</option>'+
+                '<option value="29" >29</option>'+
+                '<option value="30" >30</option>'+
+                '<option value="31" >31</option>');
+        })
+        $('.mes31').click(function(){
+            $('#dia').empty();
+            $('#dia').append('<option value="1" >1</option>' +
+                '<option value="2" >2</option>'+
+                '<option value="3" >3</option>'+
+                '<option value="4" >4</option>'+
+                '<option value="5" >5</option>'+
+                '<option value="6" >6</option>'+
+                '<option value="7" >7</option>'+
+                '<option value="8" >8</option>'+
+                '<option value="9" >9</option>'+
+                '<option value="10" >10</option>'+
+                '<option value="11" >11</option>'+
+                '<option value="12" >12</option>'+
+                '<option value="13" >13</option>'+
+                '<option value="14" >14</option>'+
+                '<option value="15" >15</option>'+
+                '<option value="16" >16</option>'+
+                '<option value="17" >17</option>'+
+                '<option value="18" >18</option>'+
+                '<option value="19" >19</option>'+
+                '<option value="20" >20</option>'+
+                '<option value="21" >21</option>'+
+                '<option value="22" >22</option>'+
+                '<option value="23" >23</option>'+
+                '<option value="24" >24</option>'+
+                '<option value="25" >25</option>'+
+                '<option value="26" >26</option>'+
+                '<option value="27" >27</option>'+
+                '<option value="28" >28</option>'+
+                '<option value="29" >29</option>'+
+                '<option value="30" >30</option>');
+        })
 
         $('.botonesDesRet').click(function(){
 

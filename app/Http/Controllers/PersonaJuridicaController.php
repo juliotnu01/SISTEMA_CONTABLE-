@@ -73,6 +73,7 @@ class PersonaJuridicaController extends Controller
         $p->celular=$request->celular;
         $p->raz_social=$request->raz_social;
         $p->correo=$request->correo;
+        $p->anio=$request->anio;
         $p->responsableIVA=$request->responsableIVA;
         $p->regimenSimple=$request->regimenSimple;
 
@@ -150,6 +151,7 @@ class PersonaJuridicaController extends Controller
         $personas->correo=$request->correo;
         $personas->responsableIVA=$request->responsableIVA;
         $personas->regimenSimple=$request->regimenSimple;
+        $personas->anio=$request->anio;
         $personas->pais = 'COLOMBIA';
         $personas->update();
         $idJ=$personas->juridica_id;

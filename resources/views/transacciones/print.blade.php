@@ -143,7 +143,7 @@
             @foreach($trasacciones as $item)
                 <td class="logocontainer">
                     <div class="">
-                        <?php $imageneEmpresa= \Illuminate\Support\Facades\DB::table('empresas')->select('logo_plandesarrollo')->first(); ?>
+                        <?php $imageneEmpresa= \Illuminate\Support\Facades\DB::table('empresas')->select('logo_plandesarrollo')->first(); ?>nombreRevisorFiscal
                         {{--{{dd($imageneEmpresa)}}--}}
                         <img src="{{asset('images/'.$imageneEmpresa->logo_plandesarrollo)}}" class="img-circle" style="margin-left: 51px;width: 21%;" alt="">
                     </div>
@@ -292,8 +292,15 @@
         <tfoot>
         <tr class="info-products">
             <td class="precio-day-container">{{auth()->user()->nombreCompleto}}</td>
-            <td class="precio-day-container"></td>
-            <td class="precio-day-container"><span style="margin-left:30px"></span></td>
+            <td class="precio-day-container">
+                <?php $nombreRevisorFiscal= \Illuminate\Support\Facades\DB::table('empresas')->select('nombreContador')->first(); ?>
+                {{$nombreRevisorFiscal->nombreContador}}
+            </td>
+            <td class="precio-day-container"><span style="margin-left:30px">
+                     <?php $nombreRepresentanteLegal= \Illuminate\Support\Facades\DB::table('empresas')->select('nombreRepresentanteLegal')->first(); ?>
+                    {{$nombreRepresentanteLegal->nombreRepresentanteLegal}}
+
+                </span></td>
             <td class="precio-day-container"><span style="margin-left: -300px;">CC/NIT</span></td>
         </tr>
         </tfoot>

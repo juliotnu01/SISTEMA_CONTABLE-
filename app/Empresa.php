@@ -8,7 +8,11 @@ class Empresa extends Model
 {
     protected $fillable=['nombre', 'nit', 'dig_verificacion', 'codCgn', 'marco_normativo','direccion',
        'telefono', 'correo', 'url', 'lema', 'logo_republica', 'logo_municipio', 'logo_plandesarrollo',
-       'num_ingresoinicial', 'num_ingresoactual', 'vigencia_cdp', 'id_ciudad','id_departamento'];
+       'num_ingresoinicial', 'num_ingresoactual', 'vigencia_cdp', 'id_ciudad','id_departamento',
+        'nombreContador', 'cedulaContador', 'noTpContador', 'nombreRevisorFiscal', 'cedulaRevisorFiscal',
+        'noTPRevisorFiscal', 'nombreControlInterno', 'cedulaControlInterno', 'noTPControlInterno', 'jefePresupuesto',
+        'cedulaJefePresupuesto', 'noTPJefePresupuesto', 'otroResponsable', 'nombreOtroResponsable',
+        'cedulaJefePresupuesto', 'noTPOtroResponsable'];
 
     public function ciudades()
     {

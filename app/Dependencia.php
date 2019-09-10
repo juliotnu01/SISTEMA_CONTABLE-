@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dependencia extends Model
 {
-    protected $fillable=['codigo','nombre','persona_id'];
+    protected $fillable=['codigo','nombre','persona_id','anio'];
 
     public function tercero()
     {

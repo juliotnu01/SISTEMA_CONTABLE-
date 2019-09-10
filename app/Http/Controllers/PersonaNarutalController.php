@@ -10,7 +10,6 @@ use App\Departamento;
 use App\Dependencia;
 use App\EntidadBancaria;
 use App\Exports\PersonaNaturalesExport;
-use App\Http\Requests\ImporteRequest;
 use App\Imports\PersonasImport;
 use App\Persona;
 use App\PersonasNaturales;
@@ -23,7 +22,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class PersonaNarutalController extends Controller
 {
 
-    public function index()
+    public function index($anio)
     {
         $personasNaturales = Persona::with(['natural' => function($dp){
             $dp->select('id','numeroDocumento', 'Subclase', 'designadoSupervisor', 'TipocuentaBancaria',
@@ -35,6 +34,7 @@ class PersonaNarutalController extends Controller
                 'direccion', 'telefono', 'celular', 'correo', 'pais',
                 'responsableIVA', 'regimenSimple','natural_id')
             ->where('natural_id','!=' ,'')
+            ->where('anio','=' ,$anio)
             ->orwhere('pesonaNatural','=' ,'PN')
             ->get();
        return view('terceros.naturales.index',compact('personasNaturales'));
@@ -70,6 +70,7 @@ class PersonaNarutalController extends Controller
         $p->correo=$request->correo;
         $p->responsableIVA=$request->responsableIVA;
         $p->regimenSimple=$request->regimenSimple;
+        $p->anio=$request->anio;
         if($request->tipoPersona == '2')
         {
             $data2 = $request->validate([
@@ -144,6 +145,7 @@ class PersonaNarutalController extends Controller
         $personas->telefono=$request->telefono;
         $personas->celular=$request->celular;
         $personas->correo=$request->correo;
+        $personas->anio=$request->anio;
         $personas->pais = 'COLOMBIA';
         $personas->responsableIVA=$request->responsableIVA;
         $personas->regimenSimple=$request->regimenSimple;

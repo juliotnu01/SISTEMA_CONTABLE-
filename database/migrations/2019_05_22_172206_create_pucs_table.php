@@ -14,6 +14,7 @@ class CreatePucsTable extends Migration
         Schema::create('pucs', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('codigoCuenta')->unique()->nullable();
+            $table->integer('anio')->nullable();
             $table->bigInteger('codigoSuperior')->nullable();
             $table->string('nombreCuenta',990)->nullable();
             $table->string('naturalezaCuenta')->nullable();

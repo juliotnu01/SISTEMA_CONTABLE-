@@ -38,12 +38,26 @@
                                         <label for="password" class="col-md-6 col-form-label ">Contraseña</label>
                                         <div class="col-md-12">
                                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
                                             @if ($errors->has('password'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('password') }}</strong>
                                                 </span>
                                             @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="password" class="col-md-6 col-form-label">Vigencia</label>
+                                        <div class="col-md-12">
+                                            <select  name="anio" id="anio" class="form-control" required>
+                                                <option value="">[Seleccione una vigencia]</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                            </select>
                                         </div>
                                     </div>
 

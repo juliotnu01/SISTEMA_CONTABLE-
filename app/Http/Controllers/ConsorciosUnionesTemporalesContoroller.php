@@ -73,6 +73,7 @@ class ConsorciosUnionesTemporalesContoroller extends Controller
         $empresa -> dv=$request->dv;
         $empresa -> raz_social=$request->raz_social;
         $empresa -> nomComercial=$request->nomComercial;
+        $empresa -> anio=$request->anio;
         $empresa -> responsableIVA=$request->responsableIVA;
         $empresa -> regimenSimple=$request->regimenSimple;
         $empresa -> autoRetenedor=$request->autoRetenedor;
@@ -142,6 +143,7 @@ class ConsorciosUnionesTemporalesContoroller extends Controller
         $empresaconsorcio -> numeroCuenta=$request->numeroCuenta;
         $empresaconsorcio -> estadoCuenta=$request->estadoCuenta;
         $empresaconsorcio -> id_regimenTributario=$request->id_regimenTributario;
+        $empresaconsorcio -> anio=$request->anio;
         $empresaconsorcio -> id_actividadesCiiu=$request->id_actividadesCiiu;
         $empresaconsorcio -> ciudad_id=$request->ciudad_id;
         $empresaconsorcio -> idDepartamento=$request->idDepartamento;

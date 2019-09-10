@@ -8,7 +8,7 @@ class Persona extends Model
 {
     protected $fillable=['nombre1', 'nombre2', 'apellido', 'apellido2','raz_social',
         'direccion', 'telefono', 'celular', 'correo', 'pais','foto',
-        'responsableIVA', 'regimenSimple','natural_id','juridica_id','empleado_id','pesonaNatural'];
+        'responsableIVA', 'regimenSimple','natural_id','juridica_id','empleado_id','pesonaNatural','anio'];
 
     public function natural()
     {
